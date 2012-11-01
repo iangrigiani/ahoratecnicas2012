@@ -1,0 +1,11 @@
+class ValidadorPadronNuevo
+!!!128258.java!!!	getDescripcion() : string
+return "PADRON";
+!!!128386.java!!!	validar(in parametro : String) : bool
+    try{
+        if(Integer.parseInt(parametro)>0)
+            return true;
+        return false;
+    }catch(NumberFormatException e){
+        return false;
+    }

@@ -1,0 +1,13 @@
+window_sizes 1200 896 300 894 702 120
+diagrams
+  active  classdiagram_ref 128002 // diagrama de clases
+    715 561 100 4 0 0
+end
+show_stereotypes
+selected class_ref 128002 // ValidadorParametro
+open
+  class_ref 128002 // ValidadorParametro
+  class_ref 128130 // ValidadorPadronNuevo
+  deploymentview_ref 128002 // clases
+end
+end
