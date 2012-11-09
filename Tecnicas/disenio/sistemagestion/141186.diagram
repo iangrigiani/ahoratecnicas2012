@@ -1,0 +1,15 @@
+format 74
+
+statecanvas 128002 state_ref 128130 // SinAsignar
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 150 98 2000 83 37
+end
+pseudostatecanvas 128130 pseudostate_ref 128002 // initial
+   xyz 147 50 2000
+end
+transitioncanvas 128258 transition_ref 128002 // <transition>
+  
+  from ref 128130 z 2001 to ref 128002
+  write_horizontally default show_definition default drawing_language default
+end
+end

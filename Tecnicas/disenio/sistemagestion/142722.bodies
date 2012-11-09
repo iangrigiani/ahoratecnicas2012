@@ -1,0 +1,10 @@
+class Ticket_State
+!!!144258.cpp!!!	create(inout stm : Ticket) : void
+  {
+    stm._set_currentState(stm._ticket_state._sinasignar_state);
+#ifdef VERBOSE_STATE_MACHINE
+    puts("DEBUG : current state is now .Ticket.SinAsignar");
+#endif
+  }
+!!!144386.cpp!!!	_upper(inout stm : Ticket) : AnyState
+  return 0;
