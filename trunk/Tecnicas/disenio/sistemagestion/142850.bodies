@@ -1,0 +1,3 @@
+class SinAsignar_State
+!!!143874.cpp!!!	_upper(inout stm : Ticket) : AnyState
+  return &stm._ticket_state;

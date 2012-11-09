@@ -1,13 +1,26 @@
-window_sizes 1200 896 300 894 702 120
+window_sizes 1280 744 273 1001 550 120
 diagrams
-  active  classdiagram_ref 128002 // diagrama de clases
-    715 561 100 4 0 0
+  classdiagram_ref 128002 // diagrama de clases
+    715 561 100 4 84 0
+  active  classdiagram_ref 134530 // Validadores
+    1001 550 100 4 0 0
 end
 show_stereotypes
-selected class_ref 128002 // ValidadorParametro
+selected classdiagram_ref 141314 // TP
 open
+  classdiagram_ref 134530 // Validadores
   class_ref 128002 // ValidadorParametro
   class_ref 128130 // ValidadorPadronNuevo
+  class_ref 134786 // Cadena
+  class_ref 135042 // AccionFactory
+  class_ref 135170 // Accion
+  class_ref 135426 // ValidadorParametroFactory
+  class_ref 135554 // ValidadorPadronDeInscripto
+  class_ref 135682 // ValidadorPadron
+  class_ref 135810 // ValidadorCodigoMateria
+  class_ref 135938 // Materia
+  class_ref 142466 // Ticket
+  state_ref 128002 // Ticket
   deploymentview_ref 128002 // clases
 end
 end

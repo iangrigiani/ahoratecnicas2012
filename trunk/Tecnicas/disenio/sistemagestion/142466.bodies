@@ -1,0 +1,16 @@
+class Ticket
+!!!143618.cpp!!!	Ticket()
+  _current_state = 0;
+!!!144002.cpp!!!	create() : bool
+if (_current_state == 0)
+(_current_state = &(*this)._ticket_state)->create(*this);
+return (_current_state != 0);
+!!!144514.cpp!!!	doActivity() : void
+  _current_state->_do(*this);
+!!!144642.cpp!!!	_set_currentState(inout st : AnyState) : void
+  _current_state = &st;
+!!!144770.cpp!!!	_final() : void
+  _current_state = 0;
+#ifdef VERBOSE_STATE_MACHINE
+  puts("DEBUG : final state reached");
+#endif
