@@ -7,14 +7,14 @@ package ar.com.fi.uba.tecnicas.controlador.validador;
  * @author Jonathan
  *
  */
-public class ValidadorPadronNuevo implements ValidadorParametro {
+public class ValidadorPadronDeInscripto implements ValidadorParametro {
 	
 	/**
 	 * @see ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro#getDescripcion()
 	 */
 	@Override
 	public String getDescripcion() {
-		return "PADRON_NUEVO";
+		return "PADRON_INSCRIPTO";
 	}
 	
 	/**
@@ -31,4 +31,6 @@ public class ValidadorPadronNuevo implements ValidadorParametro {
 			return false;
 		}
 	}
+	
+	
 }

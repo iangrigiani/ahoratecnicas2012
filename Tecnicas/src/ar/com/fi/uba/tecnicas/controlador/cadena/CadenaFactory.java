@@ -25,7 +25,7 @@ public class CadenaFactory {
 			actual = actual.getEslabon();
 		}
 		nuevoEslabon.setMediador(actual.getMediador());
-		actual.addEslabon(nuevoEslabon);
+		actual.setEslabon(nuevoEslabon);
 	}
 	
 }

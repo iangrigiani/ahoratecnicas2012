@@ -1,19 +1,70 @@
 package ar.com.fi.uba.tecnicas.controlador.cadena;
 
-/*
- * modificado por guillermo pantaleo
- *
- **/
+import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
 
-public interface Eslabon
-{ 
+
+/**
+ * Representa el eslabon de una cadena
+ * @author ramiro
+ */
+abstract class Eslabon {
 	
-	abstract void addEslabon(Eslabon c);
+	private Eslabon eslabon;
+	private Regla regla;
+	private Mediador mediador;
+	private String regex;
+	
 	abstract void sendToEslabon(String mesg) throws Exception;
-	Eslabon getEslabon();
-	void setRegex(String regex);
-	abstract void setMediador(Mediador mediador);
-	abstract Mediador getMediador();
-	abstract void setNombre(String nombre);
-	abstract String getNombre();
+	
+	/**
+	 * @return the eslabon
+	 */
+	public Eslabon getEslabon() {
+		return eslabon;
+	}
+	/**
+	 * @param eslabon the eslabon to set
+	 */
+	public void setEslabon(Eslabon eslabon) {
+		this.eslabon = eslabon;
+	}
+	/**
+	 * @return the regla
+	 */
+	public Regla getRegla() {
+		return regla;
+	}
+	/**
+	 * @param regla the regla to set
+	 */
+	public void setRegla(Regla regla) {
+		this.regla = regla;
+	}
+	/**
+	 * @return the mediador
+	 */
+	public Mediador getMediador() {
+		return mediador;
+	}
+	/**
+	 * @param mediador the mediador to set
+	 */
+	public void setMediador(Mediador mediador) {
+		this.mediador = mediador;
+	}
+
+	/**
+	 * @return the regex
+	 */
+	public String getRegex() {
+		return regex;
+	}
+
+	/**
+	 * @param regex the regex to set
+	 */
+	public void setRegex(String regex) {
+		this.regex = regex;
+	}
+
 }
