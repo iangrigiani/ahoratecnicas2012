@@ -1,12 +1,10 @@
 package ar.com.fi.uba.tecnicas.controlador.cadena;
 
-import java.util.List;
-
-import ar.com.fi.uba.tecnicas.controlador.comun.Constantes;
-import ar.com.fi.uba.tecnicas.controlador.parser.ParserUtils;
-import ar.com.fi.uba.tecnicas.modelo.evaluable.Evaluable;
-import ar.com.fi.uba.tecnicas.modelo.evaluable.ValidarEntradaEncendida;
-
+/**
+ * Es el ultimo eslabon de la cadena
+ * @author ramiro
+ *
+ */
 public class EslabonFinal implements Eslabon {
 
 	private Eslabon eslavon;
@@ -26,35 +24,35 @@ public class EslabonFinal implements Eslabon {
 	public void sendToEslabon(String mesg) throws Exception {
 //		System.out.println("Eslavon Final: " + mesg);
 		
-		String nuevoMesg = ParserUtils.parsearRegexPorMatch(mesg, getRegex(), "");
+		//String nuevoMesg = ParserUtils.parsearRegexPorMatch(mesg, getRegex(), "");
 		
 //		System.out.println("Eslavon Final: " + nuevoMesg);
 		
-		if (nuevoMesg.equals(mesg)) {
-			if (eslavon != null) {
-				eslavon.sendToEslabon(mesg);
-				return;
-			} else {
-
-				getMediador().setFuncionAParsear(null);
-				
-			}
-		} else {
-			getMediador().setFuncionAParsear(nuevoMesg);
-			if (getMediador().getGenerarEvaluable()) {
-				String operacion = ParserUtils.getGrupoMacheado();
-				Evaluable regla1 = null;
-				List<String> entradasOperacion = ParserUtils.parsearEntradas(operacion, Constantes.REGEX_ENTRADAS_REALES, "");
-				for (String nroEntradaEnFuncion : entradasOperacion) {
-					if (Integer.parseInt(nroEntradaEnFuncion, 10) > Constantes.MAXIMO_NRO_ENTRADAS) {
-						regla1 = getMediador().getEvaluablesIntermedios().get(Integer.parseInt(nroEntradaEnFuncion, 10));
-					} else {
-						regla1 = new ValidarEntradaEncendida(Integer.parseInt(nroEntradaEnFuncion, 10));
-					}
-				}
-				getMediador().getEvaluablesIntermedios().put(getMediador().getCountEvaluables(), regla1);
-			}
-		}
+//		if (nuevoMesg.equals(mesg)) {
+//			if (eslavon != null) {
+//				eslavon.sendToEslabon(mesg);
+//				return;
+//			} else {
+//
+//				getMediador().setFuncionAParsear(null);
+//				
+//			}
+//		} else {
+//			getMediador().setFuncionAParsear(nuevoMesg);
+//			if (getMediador().getGenerarEvaluable()) {
+//				String operacion = ParserUtils.getGrupoMacheado();
+//				Evaluable regla1 = null;
+//				List<String> entradasOperacion = ParserUtils.parsearEntradas(operacion, Constantes.REGEX_ENTRADAS_REALES, "");
+//				for (String nroEntradaEnFuncion : entradasOperacion) {
+//					if (Integer.parseInt(nroEntradaEnFuncion, 10) > Constantes.MAXIMO_NRO_ENTRADAS) {
+//						regla1 = getMediador().getEvaluablesIntermedios().get(Integer.parseInt(nroEntradaEnFuncion, 10));
+//					} else {
+//						regla1 = new ValidarEntradaEncendida(Integer.parseInt(nroEntradaEnFuncion, 10));
+//					}
+//				}
+//				getMediador().getEvaluablesIntermedios().put(getMediador().getCountEvaluables(), regla1);
+//			}
+//		}
 	}
 
 	@Override
