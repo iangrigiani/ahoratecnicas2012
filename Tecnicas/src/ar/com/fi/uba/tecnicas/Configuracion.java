@@ -24,10 +24,8 @@ public class Configuracion {
 	
 	public static String DIRECTORIO_PRESISTENCIA_BASE = properties.getProperty("directorio.persistencia.base");
 	
-	public static String SUBDIR_CIRCUITOS = "/circuitos";
+	public static String SUBDIR_REGLAS = "/reglas";
 	
-	public static String SUBDIR_COMPONENTES = "/componetes";
-	
-	public static String SUBDIR_DEMUX = "/demux";
+	public static String SUBDIR_MENSAJES = "/mensajes";
 	
 }
