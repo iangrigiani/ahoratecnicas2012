@@ -6,11 +6,14 @@ package ar.com.fi.uba.tecnicas.controlador.cadena;
  **/
 
 public interface Eslabon
-{
-	public abstract void addEslabon(Eslabon c);
-	public abstract void sendToEslabon(String mesg) throws Exception;
-	public Eslabon getEslabon();
-	public void setRegex(String regex);
-	public abstract void setMediador(Mediador mediador);
-	public abstract Mediador getMediador();
+{ 
+	
+	abstract void addEslabon(Eslabon c);
+	abstract void sendToEslabon(String mesg) throws Exception;
+	Eslabon getEslabon();
+	void setRegex(String regex);
+	abstract void setMediador(Mediador mediador);
+	abstract Mediador getMediador();
+	abstract void setNombre(String nombre);
+	abstract String getNombre();
 }
