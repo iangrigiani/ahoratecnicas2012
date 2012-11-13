@@ -1,5 +1,17 @@
 package ar.com.fi.uba.tecnicas.controlador;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
+import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorPadronDeInscripto;
+import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorPadronNuevo;
+import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Parametro;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
+import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
+import ar.com.fi.uba.tecnicas.persistencia.Repositorio;
+import ar.com.fi.uba.tecnicas.persistencia.RepositorioReglas;
 import ar.com.fi.uba.tecnicas.vista.InterfazUsuario;
 
 /**
@@ -9,13 +21,47 @@ import ar.com.fi.uba.tecnicas.vista.InterfazUsuario;
  */
 public class ComandosUsuarioFacade {
 	
+	private Repositorio<Regla> repositorioRegla;
+	private List<ValidadorParametro> validadores;
 
 	/**
 	 * 
 	 * @param invocador
 	 * @return
 	 */
-	public String crearRepositorio(InterfazUsuario invocador){
+	public String crearRegla(InterfazUsuario invocador){
+		if (repositorioRegla == null) {
+			repositorioRegla = new RepositorioReglas();
+		}
+		if (validadores == null) {
+			//reemplazar este new por la llamada a una factory o builder 
+			validadores = new ArrayList<ValidadorParametro>();
+			validadores.add(new ValidadorPadronNuevo());
+			validadores.add(new ValidadorPadronDeInscripto());
+		}
+		Regla regla = new Regla();
+		regla.setNombre(invocador.obtenerDatos("Ingrese el nombre de la regla: "));
+		regla.setAsunto(invocador.obtenerDatos("Ingrese el asunto que será validado: "));
+		Parametro parametro;
+		Integer indice = 0;
+		if (invocador.obtenerDatos("Desea especificar parametros? (Si/No)").equalsIgnoreCase("si")) {
+			parametro = new Parametro();
+			parametro.setNombre(invocador.obtenerDatos("Ingrese el nombre del parametro: "));
+			//Necesito listar los validadores que tengo para los parametros
+			invocador.mensaje("Validadores disponibles para su parametro: ");
+			for (ValidadorParametro validador : validadores) {
+				invocador.mensaje(validadores.indexOf(validador) + ") " + validador.getDescripcion());
+			}
+			indice = Integer.valueOf(invocador.obtenerDatos("Elija el validador para su parametro: "));
+			if (!regla.addParametro(parametro, validadores.get(indice))) {
+				invocador.mensaje("No pudo agregarse el nuevo parametro por favor intentelo de nuevo.");
+			}
+		}
+		try {
+			repositorioRegla.agregar(regla);
+		} catch (ValidacionExcepcion e) {
+			invocador.mensaje("No pudo guardarse la nueva regla, puede que ya exista. Por favor intentelo de nuevo.");
+		}
 		return "";
 	}
 	

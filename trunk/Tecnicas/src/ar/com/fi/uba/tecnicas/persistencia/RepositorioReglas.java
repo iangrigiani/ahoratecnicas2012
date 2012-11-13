@@ -9,10 +9,10 @@ import com.thoughtworks.xstream.persistence.PersistenceStrategy;
 import com.thoughtworks.xstream.persistence.XmlArrayList;
 
 import ar.com.fi.uba.tecnicas.Configuracion;
-import ar.com.fi.uba.tecnicas.controlador.cadena.Eslabon;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
 
-public class RepositorioReglas implements Repositorio<Eslabon> {
+public class RepositorioReglas implements Repositorio<Regla> {
 
 	static {
 		File file = new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + "/reglas"); 
@@ -24,26 +24,23 @@ public class RepositorioReglas implements Repositorio<Eslabon> {
 	private PersistenceStrategy strategyReglas = new FilePersistenceStrategy(new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + "/reglas"));
 	
 	@SuppressWarnings("unchecked")
-	private List<Eslabon> reglas = new XmlArrayList(strategyReglas);
+	private List<Regla> reglas = new XmlArrayList(strategyReglas);
 
 	@Override
-	public Eslabon obtener(String nombre) {
-		Eslabon elementoRegla = obtenerRegla(reglas, nombre);
+	public Regla obtener(String nombre) {
+		Regla elementoRegla = obtenerRegla(reglas, nombre);
 		if (elementoRegla != null) {
 			return elementoRegla;
 		}
 		return elementoRegla;
-		
 	}
 	
 	@Override
-	public void agregar(Eslabon componente) throws ValidacionExcepcion {
-		
-		if (obtener(componente.getNombre()) != null) {
+	public void agregar(Regla regla) throws ValidacionExcepcion {
+		if (obtener(regla.getNombre()) != null) {
 			throw new ValidacionExcepcion("Ya existe un componente del mismo nombre.");
 		}
-		
-		reglas.add((Eslabon)componente);
+		reglas.add((Regla)regla);
 	}
 	
 	@Override
@@ -54,25 +51,25 @@ public class RepositorioReglas implements Repositorio<Eslabon> {
 	@Override
 	public void quitar(String nombre) {
 		
-		Eslabon componente = obtener(nombre);
-		removerComponente(reglas, componente.getNombre());
+		Regla componente = obtener(nombre);
+		removerRegla(reglas, componente.getNombre());
 	}
 	
-	private void removerComponente(List<? extends Eslabon> componentes,String nombre) {
-		Eslabon c = null;
-		for (Eslabon comp : componentes) {
+	private void removerRegla(List<? extends Regla> reglas,String nombre) {
+		Regla c = null;
+		for (Regla comp : reglas) {
 			if (comp.getNombre().equalsIgnoreCase(nombre)) {
 				c = comp;
 			}	
 		}
-		componentes.remove(c);
+		reglas.remove(c);
 	}
 	
-	private Eslabon obtenerRegla(List<? extends Eslabon> eslabones, String nombre) {
-		if (eslabones != null && !eslabones.isEmpty()) {
-			for (Eslabon comp : eslabones) {
-				if (comp.getNombre().equals(nombre)) {
-					return comp;
+	private Regla obtenerRegla(List<? extends Regla> reglas, String nombre) {
+		if (reglas != null && !reglas.isEmpty()) {
+			for (Regla regla : reglas) {
+				if (regla.getNombre().equals(nombre)) {
+					return regla;
 				}
 			}			
 		}
@@ -80,7 +77,7 @@ public class RepositorioReglas implements Repositorio<Eslabon> {
 	}
 
 	@Override
-	public List<Eslabon> obtenerTodos() {
-		return new ArrayList<Eslabon>(reglas);
+	public List<Regla> obtenerTodos() {
+		return new ArrayList<Regla>(reglas);
 	}
 }

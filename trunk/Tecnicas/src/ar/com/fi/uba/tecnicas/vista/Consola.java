@@ -39,7 +39,7 @@ public class Consola extends Thread implements InterfazUsuario {
 	 * Este metodo se llama cuando el hilo comienza.
 	 */
 	public final void run() {
-		mensaje("Bienvenido al simulador de circuitos Chircuitus V1.1. Para solicitar ayuda escriba, \"ayuda\"");
+		mensaje("Bienvenido al administrador de mails. Para solicitar ayuda escriba, \"ayuda\"");
 		this.leer();
 		
 	}

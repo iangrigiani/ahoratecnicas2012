@@ -5,7 +5,7 @@ package ar.com.fi.uba.tecnicas.controlador.validador;
  * @author Jonathan
  *
  */
-interface ValidadorParametro {
+public interface ValidadorParametro {
 	 
 	/**
 	 * Obtengo la descripcion del parametro que estoy validando
