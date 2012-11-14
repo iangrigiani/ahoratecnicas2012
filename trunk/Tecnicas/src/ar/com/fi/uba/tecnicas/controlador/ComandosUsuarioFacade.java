@@ -34,12 +34,23 @@ public class ComandosUsuarioFacade {
 	public String crearRegla(InterfazUsuario invocador){
 		inicializar(invocador);
 		
+		if (validadores.isEmpty()) {
+			invocador.mensaje("No hay validadores para crear la regla.");
+			return "";
+		}
+
+		if (acciones.isEmpty()) {
+			invocador.mensaje("No hay acciones para crear la regla.");
+			return "";
+		}
+
+		
 		Regla regla = new Regla();
 		regla.setNombre(invocador.obtenerDatos("Ingrese el nombre de la regla: "));
 		regla.setAsunto(invocador.obtenerDatos("Ingrese el asunto que será validado: "));
 		
 		agregarParametros(invocador, regla);
-		
+	
 		agregarAcciones(invocador, regla);
 		
 		try {
@@ -54,7 +65,6 @@ public class ComandosUsuarioFacade {
 	private void agregarAcciones(InterfazUsuario invocador, Regla regla) {
 		Integer indice;
 		String agregarMasAcciones;
-		
 		do {
 			//Necesito listar los validadores que tengo para los parametros
 			invocador.mensaje("Acciones disponibles para ejecutarse: ");
@@ -96,17 +106,17 @@ public class ComandosUsuarioFacade {
 		if (validadores == null) {
 			//reemplazar este new por la llamada a una factory o builder 
 			validadores = new ArrayList<ValidadorParametro>();
-			validadores = Converter.getValidadoresParametros(BuscadorClases.buscarClasesImplementanInterfaz(Constantes.NOMBRE_INTERFAZ_VALIDADOR, 
-														   Configuracion.DIRECTORIO_VALIDADOR_PARAMETROS_BASE, 
-														   Constantes.PAQUETE_INTERFAZ_VALIDADOR));
 		}
+		validadores = Converter.getValidadoresParametros(BuscadorClases.buscarClasesImplementanInterfaz(Constantes.NOMBRE_INTERFAZ_VALIDADOR, 
+				   Configuracion.DIRECTORIO_VALIDADOR_PARAMETROS_BASE, 
+				   Constantes.PAQUETE_INTERFAZ_VALIDADOR));
 		if (acciones == null) {
 			//reemplazar este new por la llamada a una factory o builder 
 			acciones = new ArrayList<String>();
-			acciones = BuscadorClases.buscarNombreClasesImplementanInterfaz(Constantes.NOMBRE_INTERFAZ_ACCION, 
-					   Configuracion.DIRECTORIO_ACCIONES_BASE, 
-					   Constantes.PAQUETE_INTERFAZ_VALIDADOR);
 		}
+		acciones = BuscadorClases.buscarNombreClasesImplementanInterfaz(Constantes.NOMBRE_INTERFAZ_ACCION, 
+				   Configuracion.DIRECTORIO_ACCIONES_BASE, 
+				   Constantes.PAQUETE_INTERFAZ_ACCION);
 	}
 	
 	/**
