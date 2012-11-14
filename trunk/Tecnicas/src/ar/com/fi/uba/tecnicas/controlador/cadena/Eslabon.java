@@ -13,7 +13,6 @@ abstract class Eslabon {
 	private Eslabon eslabon;
 	private Regla regla;
 	private Mediador mediador;
-	private String regex;
 	
 	abstract void sendToEslabon(Mensaje mesg) throws Exception;
 	
@@ -52,20 +51,6 @@ abstract class Eslabon {
 	 */
 	public void setMediador(Mediador mediador) {
 		this.mediador = mediador;
-	}
-
-	/**
-	 * @return the regex
-	 */
-	public String getRegex() {
-		return regex;
-	}
-
-	/**
-	 * @param regex the regex to set
-	 */
-	public void setRegex(String regex) {
-		this.regex = regex;
 	}
 
 }
