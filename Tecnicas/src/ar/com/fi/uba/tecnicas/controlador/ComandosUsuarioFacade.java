@@ -6,6 +6,7 @@ import java.util.List;
 
 import ar.com.fi.uba.tecnicas.controlador.cadena.Mediador;
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Materia;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Parametro;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
@@ -55,6 +56,28 @@ public class ComandosUsuarioFacade {
 			return "";
 		}
 		return "Se creo la regla.";
+	}
+
+	/**
+	 * Crea la regla interactuando con el usuario
+	 * @param invocador
+	 * @return
+	 */
+	public String crearMateria(InterfazUsuario invocador){
+		if (mediador == null) {
+			mediador = new Mediador();
+		}
+			
+		Materia materia = new Materia();
+		materia.setCodigo(invocador.obtenerDatos("Ingrese el codigo de la materia: "));
+		
+		try {
+			mediador.agregarMateria(materia);
+		} catch (ValidacionExcepcion e) {
+			invocador.mensaje("No pudo guardarse porque ya existe una materia.");
+			return "";
+		}
+		return "Se creo la materia.";
 	}
 
 	/**
@@ -130,8 +153,13 @@ public class ComandosUsuarioFacade {
 		if (mediador == null) {
 			mediador = new Mediador();
 		}
-		mediador.actualizarBandejas();
-		return "";
+		try {
+			mediador.generarTickets();
+		} catch (ValidacionExcepcion e) {
+			invocador.mensaje("No pudo actualizarse las bandejas y/o generar los tickets. Por favor intentelo de nuevo.");
+			return "";
+		}
+		return "Los tickets fueron creados correctamente";
 	}
 	
 	

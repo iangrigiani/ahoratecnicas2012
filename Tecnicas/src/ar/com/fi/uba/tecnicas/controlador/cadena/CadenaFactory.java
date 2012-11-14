@@ -23,6 +23,7 @@ public class CadenaFactory {
 				CadenaFactory.agregarEslabon(eslabonActual, inicioCadena);
 			}
 		}
+		CadenaFactory.agregarEslabon(new EslabonFinal(), inicioCadena);
 		return inicioCadena;
 	}
 	
