@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+
 public class Configuracion {
 
 	private static Properties properties = null;
@@ -22,7 +23,11 @@ public class Configuracion {
 		}
 	}
 	
+	public static String DIRECTORIO_VALIDADOR_PARAMETROS_BASE = properties.getProperty("validador.class.path");
+	
 	public static String DIRECTORIO_PRESISTENCIA_BASE = properties.getProperty("directorio.persistencia.base");
+	
+	public static final String DIRECTORIO_ACCIONES_BASE = properties.getProperty("acciones.class.path");
 	
 	public static String SUBDIR_REGLAS = "/reglas";
 	

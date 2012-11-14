@@ -3,7 +3,9 @@
  */
 package ar.com.fi.uba.tecnicas.modelo.entidades;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
@@ -17,6 +19,15 @@ public class Regla {
 	private String nombre;
 	private String asunto;
 	private Map<Parametro, ValidadorParametro> parametros;
+	private List<String> acciones;
+	
+	public Boolean validar(Mensaje mensaje) {
+		return mensaje.getAsunto().contains(asunto);
+	}
+	
+	public List<String> getParametros(Mensaje mensaje) {
+		return null;
+	}
 	
 	/**
 	 * @return the nombre
@@ -55,6 +66,21 @@ public class Regla {
 		this.parametros = parametros;
 	}
 	
+
+	/**
+	 * @return the acciones
+	 */
+	public List<String> getAcciones() {
+		return acciones;
+	}
+
+	/**
+	 * @param acciones the acciones to set
+	 */
+	public void setAcciones(List<String> acciones) {
+		this.acciones = acciones;
+	}
+
 	/**
 	 * Agrego un parametro pero primero valido que no se repita
 	 * @param parametro Parametro a agregar
@@ -70,6 +96,25 @@ public class Regla {
 		
 		if (!this.parametros.containsKey(parametro)) {
 			this.parametros.put(parametro, validador);
+			ret = Boolean.TRUE;
+		}
+		return ret;
+	}
+	
+	/**
+	 * Agrego una accion pero primero valido que no se repita
+	 * @param accion Accion a agregar
+	 * @return True se pudo agregar o false si el parametro ya existe
+	 */
+	public Boolean addAccion(String accion) {
+		Boolean ret = Boolean.FALSE;
+		
+		if (this.acciones == null) {
+			this.acciones = new ArrayList<String>();
+		}
+		
+		if (!this.acciones.contains(accion)) {
+			this.acciones.add(accion);
 			ret = Boolean.TRUE;
 		}
 		return ret;

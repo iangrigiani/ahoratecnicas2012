@@ -7,9 +7,9 @@ import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
  * @author ramiro
  *
  */
-public class EslabonFinal extends Eslabon {
+public class EslabonComun extends Eslabon {
 	
-	public EslabonFinal(String regex) {
+	public EslabonComun(String regex) {
 		setRegex(regex);
 	}
 	
@@ -19,9 +19,10 @@ public class EslabonFinal extends Eslabon {
 	 * @throws Exception 
 	 */
 	@Override
-	void sendToEslabon(Mensaje mesg) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public void sendToEslabon(Mensaje mesg) throws Exception {
+		if (getRegla().validar(mesg)) {
+			
+		}
 	}
 
 }

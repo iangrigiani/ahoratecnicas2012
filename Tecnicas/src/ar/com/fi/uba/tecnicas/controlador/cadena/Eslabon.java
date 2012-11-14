@@ -1,5 +1,6 @@
 package ar.com.fi.uba.tecnicas.controlador.cadena;
 
+import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
 
 
@@ -14,7 +15,7 @@ abstract class Eslabon {
 	private Mediador mediador;
 	private String regex;
 	
-	abstract void sendToEslabon(String mesg) throws Exception;
+	abstract void sendToEslabon(Mensaje mesg) throws Exception;
 	
 	/**
 	 * @return the eslabon
