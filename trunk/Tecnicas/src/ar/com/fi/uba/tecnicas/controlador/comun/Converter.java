@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
+import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
 
 /**
  * @author ramiro
@@ -20,5 +21,13 @@ public class Converter {
 			validadores.add((ValidadorParametro) object);
 		}
 		return validadores;
+	}
+	
+	public static List<Accion> getAcciones(List<Object> lista) {
+		List<Accion> acciones = new ArrayList<Accion>();
+		for (Object object : lista) {
+			acciones.add((Accion) object);
+		}
+		return acciones;
 	}
 }
