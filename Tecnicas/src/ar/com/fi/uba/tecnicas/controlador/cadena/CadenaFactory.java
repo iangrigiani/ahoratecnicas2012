@@ -1,14 +1,28 @@
 package ar.com.fi.uba.tecnicas.controlador.cadena;
 
+import java.util.List;
+
+import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
+
 /**
  * Se encarga de crear la cadena de reglas
  * @author ramiro
  */
 public class CadenaFactory {
 	
-	public static Eslabon crearCadenaReglas() {
+	public static Eslabon crearCadenaReglas(List<Regla> reglas, Mediador mediador) {
 		Eslabon inicioCadena = null;
-		
+		Eslabon eslabonActual = null;
+		for (Regla regla : reglas) {
+			eslabonActual = new EslabonComun();
+			eslabonActual.setRegla(regla);
+			eslabonActual.setMediador(mediador);
+			if (inicioCadena == null) {
+				inicioCadena = eslabonActual;
+			} else {
+				CadenaFactory.agregarEslabon(eslabonActual, inicioCadena);
+			}
+		}
 		return inicioCadena;
 	}
 	
@@ -17,14 +31,13 @@ public class CadenaFactory {
 	 * @param nuevoEslabon Eslabon a agregar
 	 * @param extremoDeCadena Eslabon existente
 	 */
-	public static void agregarEslabon(Eslabon nuevoEslabon, Eslabon extremoDeCadena){
+	private static void agregarEslabon(Eslabon nuevoEslabon, Eslabon extremoDeCadena){
 		
 		Eslabon actual = extremoDeCadena;
 		
 		while (actual.getEslabon() != null){
 			actual = actual.getEslabon();
 		}
-		nuevoEslabon.setMediador(actual.getMediador());
 		actual.setEslabon(nuevoEslabon);
 	}
 	

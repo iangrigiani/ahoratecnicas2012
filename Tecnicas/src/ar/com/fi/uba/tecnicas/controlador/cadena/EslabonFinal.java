@@ -9,8 +9,7 @@ import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
  */
 public class EslabonFinal extends Eslabon {
 	
-	public EslabonFinal(String regex) {
-		setRegex(regex);
+	public EslabonFinal() {
 	}
 	
 	/**

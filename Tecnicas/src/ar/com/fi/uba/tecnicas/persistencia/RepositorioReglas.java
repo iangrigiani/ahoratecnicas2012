@@ -38,7 +38,7 @@ public class RepositorioReglas implements Repositorio<Regla> {
 	@Override
 	public void agregar(Regla regla) throws ValidacionExcepcion {
 		if (obtener(regla.getNombre()) != null) {
-			throw new ValidacionExcepcion("Ya existe un componente del mismo nombre.");
+			throw new ValidacionExcepcion("Ya existe una regla con el mismo nombre.");
 		}
 		reglas.add((Regla)regla);
 	}
@@ -51,8 +51,8 @@ public class RepositorioReglas implements Repositorio<Regla> {
 	@Override
 	public void quitar(String nombre) {
 		
-		Regla componente = obtener(nombre);
-		removerRegla(reglas, componente.getNombre());
+		Regla regla = obtener(nombre);
+		removerRegla(reglas, regla.getNombre());
 	}
 	
 	private void removerRegla(List<? extends Regla> reglas,String nombre) {
