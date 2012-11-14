@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
 
@@ -66,6 +67,12 @@ public class Regla {
 		this.parametros = parametros;
 	}
 	
+	/**
+	 * @return the parametros
+	 */
+	public Set<Parametro> getParametrosParaAccion() {
+		return parametros.keySet();
+	}
 
 	/**
 	 * @return the acciones

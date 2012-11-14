@@ -6,12 +6,16 @@ import ar.com.fi.uba.tecnicas.Configuracion;
 import ar.com.fi.uba.tecnicas.controlador.BuscadorClases;
 import ar.com.fi.uba.tecnicas.controlador.comun.Constantes;
 import ar.com.fi.uba.tecnicas.controlador.comun.Converter;
+import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMail;
+import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMailMockImpl;
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Materia;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
 import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
 import ar.com.fi.uba.tecnicas.persistencia.Repositorio;
+import ar.com.fi.uba.tecnicas.persistencia.RepositorioMateria;
 import ar.com.fi.uba.tecnicas.persistencia.RepositorioReglas;
 
 /**
@@ -23,10 +27,14 @@ public class Mediador {
 	
 	private Eslabon extremoCadena;
 	private Repositorio<Regla> repositorioRegla;
+	private Repositorio<Materia> repositorioMateria;
 	private Repositorio<Mensaje> repositorioTickets;
+	private ServicioMail servicioMail;
+	private List<String> nombreAcciones;
 
 	public Mediador() {
 		this.repositorioRegla = new RepositorioReglas();
+		this.repositorioMateria = new RepositorioMateria();
 		this.extremoCadena = CadenaFactory.crearCadenaReglas(repositorioRegla.obtenerTodos(), this);
 	}
 	
@@ -38,12 +46,25 @@ public class Mediador {
 	}
 
 	/**
-	 * Actualiza las bandejas que tengamos
-	 */
-	public void actualizarBandejas() {
-		
-		
+	 * Genera los tickets de los mensajes nuevos
+	 * @throws ValidacionExcepcion 
+	 */	
+	public void generarTickets() throws ValidacionExcepcion {
+		if (servicioMail == null) {
+			servicioMail = new ServicioMailMockImpl();
+		}
+		List<Mensaje> mensajes = servicioMail.getMensajesNuevos();
+		for (Mensaje mensaje : mensajes) {
+			try {
+				extremoCadena.sendToEslabon(mensaje);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
+
+	
 
 	/**
 	 * @return the extremoCadena
@@ -69,6 +90,17 @@ public class Mediador {
 		repositorioRegla.agregar(regla);
 	}
 
+	/**
+	 * 
+	 * @param regla
+	 * @throws ValidacionExcepcion
+	 */
+	public void agregarMateria(Materia materia) throws ValidacionExcepcion {
+		repositorioMateria.agregar(materia);
+	}
+
+	
+	
 	/**
 	 * Busca los validadores disponibles y las instancia
 	 * @return Los validadores disponibles instanciadas
@@ -125,6 +157,20 @@ public class Mediador {
 	 */
 	public void setRepositorioTickets(Repositorio<Mensaje> repositorioTickets) {
 		this.repositorioTickets = repositorioTickets;
+	}
+
+	/**
+	 * @return the nombreAcciones
+	 */
+	public List<String> getNombreAcciones() {
+		return nombreAcciones;
+	}
+
+	/**
+	 * @param nombreAcciones the nombreAcciones to set
+	 */
+	public void setNombreAcciones(List<String> nombreAcciones) {
+		this.nombreAcciones = nombreAcciones;
 	}
 
 

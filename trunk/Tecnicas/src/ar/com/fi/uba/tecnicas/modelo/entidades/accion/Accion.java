@@ -3,7 +3,7 @@
  */
 package ar.com.fi.uba.tecnicas.modelo.entidades.accion;
 
-import java.util.List;
+import java.util.Set;
 
 import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Parametro;
@@ -14,6 +14,6 @@ import ar.com.fi.uba.tecnicas.modelo.entidades.Parametro;
  */
 public interface Accion {
 	
-	void ejecutar(Mensaje mensaje, List<Parametro> parametros);
+	void ejecutar(Mensaje mensaje, Set<Parametro> parametros);
 	
 }

@@ -19,8 +19,7 @@ public class EslabonFinal extends Eslabon {
 	 */
 	@Override
 	void sendToEslabon(Mensaje mesg) throws Exception {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Llegue a final de la cadena");
 	}
 
 }
