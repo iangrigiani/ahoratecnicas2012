@@ -68,7 +68,7 @@ public class ConexionMail {
 		
 		for (int i=0;i<mensajesMail.length;i++){
 			MailAdapter adaptador=new MailAdapter(mensajesMail[i]);
-			Mensaje nuevoMensaje=adaptador.adaptarMail();
+			Mensaje nuevoMensaje=adaptador.adaptarMail(); // TODO DONDE SE TOMA LA EXCEPCION
 			
 			//AGREGO EL MENSAJE A LA LISTA 
 			mensajes.add(nuevoMensaje);
