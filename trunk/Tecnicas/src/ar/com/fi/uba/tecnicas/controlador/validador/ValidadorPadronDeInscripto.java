@@ -1,5 +1,7 @@
 package ar.com.fi.uba.tecnicas.controlador.validador;
 
+import ar.com.fi.uba.tecnicas.modelo.entidades.Parametro;
+
 
 /**
  * Calse que implementa ValidadorParametro y que se encarga 
@@ -21,9 +23,9 @@ public class ValidadorPadronDeInscripto implements ValidadorParametro {
 	 * @see ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro#validar(java.lang.String)
 	 */
 	@Override
-	public boolean validar(String parametro) {
+	public boolean validar(Parametro parametro) {
 		try{
-			if (Integer.parseInt(parametro)>0) {
+			if (Integer.parseInt(parametro.getValor())>0) {
 				return true;
 			}
 			return false;

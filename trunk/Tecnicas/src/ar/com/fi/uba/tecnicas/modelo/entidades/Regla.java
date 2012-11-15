@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
@@ -23,8 +24,34 @@ public class Regla {
 	private List<String> acciones;
 	
 	public Boolean validar(Mensaje mensaje) {
+		Boolean valida = Boolean.TRUE;
+		valida = valida && validarAsunto(mensaje);
+		if (!valida) {
+			return valida;
+		}
+		parsearParametros();
+		valida = valida && validarParametros();
+		return valida;
+	}
+
+	private boolean validarAsunto(Mensaje mensaje) {
 		return mensaje.getAsunto().contains(asunto);
 	}
+
+	private void parsearParametros() {
+		for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
+			//le hardcodeo un valor hasta que hagamos el parser de los parametros
+			parParametroValidador.getKey().setValor("83350");
+		}
+	}
+	
+	private boolean validarParametros() {
+		Boolean ret = Boolean.TRUE;
+		for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
+			parParametroValidador.getValue().validar(parParametroValidador.getKey());
+		}
+		return ret;
+	}	
 	
 	public List<String> getParametros(Mensaje mensaje) {
 		return null;
