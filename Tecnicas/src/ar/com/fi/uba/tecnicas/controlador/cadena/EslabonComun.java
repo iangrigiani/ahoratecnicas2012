@@ -23,13 +23,7 @@ public class EslabonComun extends Eslabon {
 	@Override
 	public void sendToEslabon(Mensaje mesg) throws Exception {
 		if (getRegla().validar(mesg)) {
-			System.out.println("Valido la regla " + getRegla().getNombre() + " con asunto: " + mesg.getAsunto());
-			//TODO: Generar Parametros
-			//TODO: ValidarParametros
-			List<Accion> accionesDeReglas = getAccionesDeReglas(getRegla().getAcciones());
-			for (Accion accion : accionesDeReglas) {
-				accion.ejecutar(mesg, getRegla().getParametrosParaAccion());
-			}
+			getRegla().procesar(mesg);
 		} else {
 			getEslabon().sendToEslabon(mesg);
 		}
