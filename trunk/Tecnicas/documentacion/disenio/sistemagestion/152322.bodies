@@ -1,0 +1,13 @@
+class Converter
+!!!156674.java!!!	getValidadoresParametros(inout lista : List<Object>) : ValidadorParametro
+		List<ValidadorParametro> validadores = new ArrayList<ValidadorParametro>();
+		for (Object object : lista) {
+			validadores.add((ValidadorParametro) object);
+		}
+		return validadores;
+!!!156802.java!!!	getAcciones(inout lista : List<Object>) : Accion
+		List<Accion> acciones = new ArrayList<Accion>();
+		for (Object object : lista) {
+			acciones.add((Accion) object);
+		}
+		return acciones;

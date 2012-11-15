@@ -1,0 +1,19 @@
+class Main
+!!!151298.java!!!	Main()
+		super();
+!!!151426.java!!!	main(in args : String) : void
+		
+		try {
+			
+			Consola consola = new Consola(ComandosUsuarioFacade.class);
+			
+			consola.start();
+			
+			consola.join();
+			
+			
+
+		} catch (Exception e) {
+			//logger.error("Error en main: " + e.getMessage());
+		}
+

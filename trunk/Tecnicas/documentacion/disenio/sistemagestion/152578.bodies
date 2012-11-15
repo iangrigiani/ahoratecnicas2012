@@ -1,0 +1,76 @@
+class DatosConexion
+!!!157314.java!!!	DatosConexion(in dirMail : String, in passMail : String, in popServer : String)
+		datosConexionSmtp=null;
+		datosConexionPop3=null;
+		mailPass=dirMail;
+		mailUser=passMail;
+		this.popNameServer=popServer;
+!!!157442.java!!!	DatosConexionSmtp(in newHost : String, inout tls : boolean, in numeroDePuerto : String, in mailUsuario : String, inout passNeed : boolean) : void
+		
+		datosConexionSmtp=new Properties();
+		
+		setHostCorreoSmtp(newHost);
+		setTlsSmtp (tls);
+		setPuertoEnvioCorreoSmtp(numeroDePuerto);
+		setUserSmtp(mailUsuario);
+		setIsPasswordNesesarioSmtp(passNeed);
+!!!157570.java!!!	getDatosSmtp() : Properties
+		return this.datosConexionSmtp;
+!!!157698.java!!!	setDatosConexionPop3(inout tls : boolean, in socketsSllNombre : String, in puerto : String) : void
+		datosConexionPop3 = new Properties();
+		setIsTlsPop3(tls);
+		setSslPop3(socketsSllNombre);
+		setPuertoRecepcionCorreoPop3(puerto);
+!!!157826.java!!!	getDatosPop3() : Properties
+		return this.datosConexionPop3;
+!!!157954.java!!!	setHostCorreoSmtp(in newHost : String) : void
+		datosConexionSmtp.setProperty("mail.smtp.host", newHost);
+		
+!!!158082.java!!!	setTlsSmtp(inout tls : boolean) : void
+		
+		if (tls==true){
+			datosConexionSmtp.setProperty("mail.smtp.starttls.enable", "true");
+		}else{
+			datosConexionSmtp.setProperty("mail.smtp.starttls.enable", "false");
+		}
+		
+!!!158210.java!!!	setPuertoEnvioCorreoSmtp(in numeroDePuerto : String) : void
+		
+		datosConexionSmtp.setProperty("mail.smtp.port", numeroDePuerto);
+		
+!!!158338.java!!!	setUserSmtp(in mailUsuario : String) : void
+		
+		datosConexionSmtp.setProperty("mail.smtp.user", mailUsuario);
+		mailUser=mailUsuario;
+		
+!!!158466.java!!!	setIsPasswordNesesarioSmtp(inout passNeed : boolean) : void
+		
+		if (passNeed==true){
+			datosConexionSmtp.setProperty("mail.smtp.auth", "true");
+		}else{
+			datosConexionSmtp.setProperty("mail.smtp.auth", "false");
+		}
+			
+!!!158594.java!!!	setIsTlsPop3(inout tls : boolean) : void
+		
+		if (tls==true){
+			datosConexionPop3.setProperty("mail.pop3.starttls.enable", "true");
+		}else{
+			datosConexionPop3.setProperty("mail.pop3.starttls.enable", "false");
+		}
+		
+!!!158722.java!!!	setSslPop3(in socketsSllNombre : String) : void
+		
+		datosConexionPop3.setProperty("mail.pop3.starttls.enable", "true");
+!!!158850.java!!!	setPuertoRecepcionCorreoPop3(in puerto : String) : void
+		
+		datosConexionPop3.setProperty("mail.pop3.port",puerto);
+		datosConexionPop3.setProperty("mail.pop3.socketFactory.port", puerto);
+!!!158978.java!!!	setMailPass(in pass : String) : void
+		this.mailPass=pass;
+!!!159106.java!!!	getMailPass() : String
+		return this.mailPass;
+!!!159234.java!!!	getMailUser() : String
+		return this.mailUser;
+!!!159362.java!!!	getPopNameServer() : String
+		return this.popNameServer;

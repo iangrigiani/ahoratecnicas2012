@@ -1,0 +1,12 @@
+class ValidadorNumeroTP
+!!!161026.java!!!	getDescripcion() : String
+		return "Numero de TP";
+!!!161154.java!!!	validar(in parametro : String) : boolean
+		try{
+			if (Integer.parseInt(parametro)>0) {
+				return true;
+			}
+			return false;
+		} catch (NumberFormatException e) {
+			return false;
+		}

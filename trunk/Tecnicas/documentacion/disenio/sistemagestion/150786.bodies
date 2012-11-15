@@ -1,0 +1,66 @@
+class Regla
+!!!164994.java!!!	validar(inout mensaje : Mensaje) : Boolean
+		return mensaje.getAsunto().contains(asunto);
+!!!165122.java!!!	getParametros(inout mensaje : Mensaje) : List<String>
+		return null;
+!!!165250.java!!!	getNombre() : String
+		return nombre;
+!!!165378.java!!!	setNombre(in nombre : String) : void
+		this.nombre = nombre;
+!!!165506.java!!!	getAsunto() : String
+		return asunto;
+!!!165634.java!!!	setAsunto(in asunto : String) : void
+		this.asunto = asunto;
+!!!165762.java!!!	getParametros() : Parametro
+		return parametros;
+!!!165890.java!!!	setParametros(inout parametros : Map<Parametro, ValidadorParametro>) : void
+		this.parametros = parametros;
+!!!166018.java!!!	getParametrosParaAccion() : Parametro
+		return parametros.keySet();
+!!!166146.java!!!	getAcciones() : List<String>
+		return acciones;
+!!!166274.java!!!	setAcciones(inout acciones : List<String>) : void
+		this.acciones = acciones;
+!!!166402.java!!!	addParametro(inout parametro : Parametro, inout validador : ValidadorParametro) : Boolean
+		Boolean ret = Boolean.FALSE;
+		
+		if (this.parametros == null) {
+			this.parametros = new HashMap<Parametro, ValidadorParametro>();
+		}
+		
+		if (!this.parametros.containsKey(parametro)) {
+			this.parametros.put(parametro, validador);
+			ret = Boolean.TRUE;
+		}
+		return ret;
+!!!166530.java!!!	addAccion(in accion : String) : Boolean
+		Boolean ret = Boolean.FALSE;
+		
+		if (this.acciones == null) {
+			this.acciones = new ArrayList<String>();
+		}
+		
+		if (!this.acciones.contains(accion)) {
+			this.acciones.add(accion);
+			ret = Boolean.TRUE;
+		}
+		return ret;
+!!!166658.java!!!	hashCode() : int
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
+!!!166786.java!!!	equals(inout obj : Object) : boolean
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Regla other = (Regla) obj;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;

@@ -1,0 +1,111 @@
+class ComandosUsuarioFacade
+!!!151810.java!!!	crearRegla(inout invocador : InterfazUsuario) : String
+		inicializar(invocador);
+		
+		if (validadores.isEmpty()) {
+			invocador.mensaje("No hay validadores para crear la regla.");
+			return "";
+		}
+
+		if (acciones.isEmpty()) {
+			invocador.mensaje("No hay acciones para crear la regla.");
+			return "";
+		}
+
+		Regla regla = new Regla();
+		regla.setNombre(invocador.obtenerDatos("Ingrese el nombre de la regla: "));
+		regla.setAsunto(invocador.obtenerDatos("Ingrese el asunto que será validado: "));
+		
+		agregarParametros(invocador, regla);
+	
+		agregarAcciones(invocador, regla);
+		
+		try {
+			mediador.agregarRegla(regla);
+		} catch (ValidacionExcepcion e) {
+			invocador.mensaje("No pudo guardarse la nueva regla, puede que ya exista. Por favor intentelo de nuevo.");
+			return "";
+		}
+		return "Se creo la regla.";
+!!!151938.java!!!	crearMateria(inout invocador : InterfazUsuario) : String
+		if (mediador == null) {
+			mediador = new Mediador();
+		}
+			
+		Materia materia = new Materia();
+		materia.setCodigo(invocador.obtenerDatos("Ingrese el codigo de la materia: "));
+		
+		try {
+			mediador.agregarMateria(materia);
+		} catch (ValidacionExcepcion e) {
+			invocador.mensaje("No pudo guardarse porque ya existe una materia.");
+			return "";
+		}
+		return "Se creo la materia.";
+!!!152066.java!!!	agregarAcciones(inout invocador : InterfazUsuario, inout regla : Regla) : void
+		Integer indice;
+		String agregarMasAcciones;
+		do {
+			//Necesito listar los validadores que tengo para los parametros
+			invocador.mensaje("Acciones disponibles para ejecutarse: ");
+			for (String accion : acciones) {
+				invocador.mensaje(acciones.indexOf(accion) + ") " + accion);
+			}
+			indice = Integer.valueOf(invocador.obtenerDatos("Elija la accion para ejecutar: "));
+			if (!regla.addAccion(acciones.get(indice))) {
+				invocador.mensaje("No pudo agregarse el nuevo parametro por favor intentelo de nuevo.");
+			}
+			agregarMasAcciones = invocador.obtenerDatos("Desea especificar más acciones? (Si/No): ");	
+		} while (agregarMasAcciones.equalsIgnoreCase("si"));
+!!!152194.java!!!	agregarParametros(inout invocador : InterfazUsuario, inout regla : Regla) : void
+		Parametro parametro;
+		Integer indice;
+		String agregarParametros = invocador.obtenerDatos("Desea especificar parametros? (Si/No): "); 
+		while (agregarParametros.equalsIgnoreCase("si")) {
+			parametro = new Parametro();
+			parametro.setNombre(invocador.obtenerDatos("Ingrese el nombre del parametro: "));
+			//Necesito listar los validadores que tengo para los parametros
+			invocador.mensaje("Validadores disponibles para su parametro: ");
+			for (ValidadorParametro validador : validadores) {
+				invocador.mensaje(validadores.indexOf(validador) + ") " + validador.getDescripcion());
+			}
+			indice = Integer.valueOf(invocador.obtenerDatos("Elija el validador para su parametro: "));
+			if (!regla.addParametro(parametro, validadores.get(indice))) {
+				invocador.mensaje("No pudo agregarse el nuevo parametro por favor intentelo de nuevo.");
+			}
+			agregarParametros = invocador.obtenerDatos("Desea especificar más parametros? (Si/No): ");	
+		}
+!!!152322.java!!!	inicializar(inout invocador : InterfazUsuario) : void
+		if (mediador == null) {
+			mediador = new Mediador();
+		}
+		if (validadores == null) {
+			//reemplazar este new por la llamada a una factory o builder 
+			validadores = new ArrayList<ValidadorParametro>();
+		}
+		validadores = mediador.getValidadores();
+		if (acciones == null) {
+			//reemplazar este new por la llamada a una factory o builder 
+			acciones = new ArrayList<String>();
+		}
+		acciones = mediador.getAcciones();
+!!!152450.java!!!	actualizarBandejas(inout invocador : InterfazUsuario) : String
+		if (mediador == null) {
+			mediador = new Mediador();
+		}
+		try {
+			mediador.generarTickets();
+		} catch (ValidacionExcepcion e) {
+			invocador.mensaje("No pudo actualizarse las bandejas y/o generar los tickets. Por favor intentelo de nuevo.");
+			return "";
+		}
+		return "Los tickets fueron creados correctamente";
+!!!152578.java!!!	ayuda(inout invocador : InterfazUsuario) : String
+		String mensaje="LISTA DE COMANDOS\n" +
+				"* crearRegla \n" +
+				"	-Crea una regla vinculando los validadores y las acciones disponibles al momento de crearla." +
+				"* actualizarBandejas\n" +
+				"	-Actualiza las bandejas disponibles.\n\n"+
+				"\nFIN\n";
+		return mensaje;
+			

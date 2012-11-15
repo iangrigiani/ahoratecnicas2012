@@ -1,0 +1,55 @@
+class Mediador
+!!!154498.java!!!	Mediador()
+		this.repositorioRegla = new RepositorioReglas();
+		this.repositorioMateria = new RepositorioMateria();
+		this.repositorioTickets = new RepositorioTickets();
+		this.extremoCadena = CadenaFactory.crearCadenaReglas(repositorioRegla.obtenerTodos(), this);
+!!!154626.java!!!	getEslavon() : Eslabon
+		return extremoCadena;
+!!!154754.java!!!	setEslavon(inout eslavon : Eslabon) : void
+		this.extremoCadena = eslavon;
+!!!154882.java!!!	generarTickets() : void
+		if (servicioMail == null) {
+			servicioMail = new ServicioMailMockImpl();
+		}
+		List<Mensaje> mensajes = servicioMail.getMensajesNuevos();
+		for (Mensaje mensaje : mensajes) {
+			try {
+				extremoCadena.sendToEslabon(mensaje);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+!!!155010.java!!!	getExtremoCadena() : Eslabon
+		return extremoCadena;
+!!!155138.java!!!	setExtremoCadena(inout extremoCadena : Eslabon) : void
+		this.extremoCadena = extremoCadena;
+!!!155266.java!!!	agregarRegla(inout regla : Regla) : void
+		repositorioRegla.agregar(regla);
+!!!155394.java!!!	agregarMateria(inout materia : Materia) : void
+		repositorioMateria.agregar(materia);
+!!!155522.java!!!	getValidadores() : ValidadorParametro
+		return Converter.getValidadoresParametros(BuscadorClases.buscarClasesImplementanInterfaz(Constantes.NOMBRE_INTERFAZ_VALIDADOR, 
+				   Configuracion.DIRECTORIO_VALIDADOR_PARAMETROS_BASE, 
+				   Constantes.PAQUETE_INTERFAZ_VALIDADOR));
+!!!155650.java!!!	getAcciones() : List<String>
+		return BuscadorClases.buscarNombreClasesImplementanInterfaz(Constantes.NOMBRE_INTERFAZ_ACCION, 
+				   Configuracion.DIRECTORIO_ACCIONES_BASE, 
+				   Constantes.PAQUETE_INTERFAZ_ACCION);
+!!!155778.java!!!	getAccionesInstanciadas() : Accion
+		return Converter.getAcciones(BuscadorClases.buscarClasesImplementanInterfaz(Constantes.NOMBRE_INTERFAZ_ACCION, 
+				   Configuracion.DIRECTORIO_ACCIONES_BASE, 
+				   Constantes.PAQUETE_INTERFAZ_ACCION));
+!!!155906.java!!!	getRepositorioRegla() : Repositorio
+		return repositorioRegla;
+!!!156034.java!!!	setRepositorioRegla(inout repositorioRegla : Repositorio) : void
+		this.repositorioRegla = repositorioRegla;
+!!!156162.java!!!	getRepositorioTickets() : Repositorio
+		return repositorioTickets;
+!!!156290.java!!!	setRepositorioTickets(inout repositorioTickets : Repositorio) : void
+		this.repositorioTickets = repositorioTickets;
+!!!156418.java!!!	getNombreAcciones() : List<String>
+		return nombreAcciones;
+!!!156546.java!!!	setNombreAcciones(inout nombreAcciones : List<String>) : void
+		this.nombreAcciones = nombreAcciones;

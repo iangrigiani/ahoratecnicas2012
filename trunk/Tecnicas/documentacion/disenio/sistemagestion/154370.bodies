@@ -1,0 +1,37 @@
+class RepositorioReglas
+!!!169730.java!!!	obtener(in nombre : String) : Regla
+		Regla elementoRegla = obtenerRegla(reglas, nombre);
+		if (elementoRegla != null) {
+			return elementoRegla;
+		}
+		return elementoRegla;
+!!!169858.java!!!	agregar(inout regla : Regla) : void
+		if (obtener(regla.getNombre()) != null) {
+			throw new ValidacionExcepcion("Ya existe una regla con el mismo nombre.");
+		}
+		reglas.add((Regla)regla);
+!!!169986.java!!!	vaciar() : void
+		reglas.clear();
+!!!170114.java!!!	quitar(in nombre : String) : void
+		
+		Regla regla = obtener(nombre);
+		removerRegla(reglas, regla.getNombre());
+!!!170242.java!!!	removerRegla(inout reglas : List<? extends Regla>, in nombre : String) : void
+		Regla c = null;
+		for (Regla regla : reglas) {
+			if (regla.getNombre().equalsIgnoreCase(nombre)) {
+				c = regla;
+			}	
+		}
+		reglas.remove(c);
+!!!170370.java!!!	obtenerRegla(inout reglas : List<? extends Regla>, in nombre : String) : Regla
+		if (reglas != null && !reglas.isEmpty()) {
+			for (Regla regla : reglas) {
+				if (regla.getNombre().equals(nombre)) {
+					return regla;
+				}
+			}			
+		}
+		return null;
+!!!170498.java!!!	obtenerTodos() : Regla
+		return new ArrayList<Regla>(reglas);

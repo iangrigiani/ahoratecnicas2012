@@ -1,0 +1,12 @@
+class ValidadorPadronDeInscripto
+!!!161282.java!!!	getDescripcion() : String
+		return "PADRON_INSCRIPTO";
+!!!161410.java!!!	validar(in parametro : String) : boolean
+		try{
+			if (Integer.parseInt(parametro)>0) {
+				return true;
+			}
+			return false;
+		} catch (NumberFormatException e) {
+			return false;
+		}

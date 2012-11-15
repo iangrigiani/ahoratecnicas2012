@@ -1,0 +1,37 @@
+class RepositorioMateria
+!!!168834.java!!!	obtener(in nombre : String) : Materia
+		Materia elementoMateria = obtenerMateria(materias, nombre);
+		if (elementoMateria != null) {
+			return elementoMateria;
+		}
+		return elementoMateria;
+!!!168962.java!!!	agregar(inout materia : Materia) : void
+		if (materias.size() > 0) {
+			throw new ValidacionExcepcion("Ya existe una materia en el sistema.");
+		}
+		materias.add((Materia)materia);
+!!!169090.java!!!	vaciar() : void
+		materias.clear();
+!!!169218.java!!!	quitar(in nombre : String) : void
+		
+		Materia materia = obtener(nombre);
+		removerMateria(materias, materia.getCodigo());
+!!!169346.java!!!	removerMateria(inout materias : List<? extends Materia>, in codigo : String) : void
+		Materia c = null;
+		for (Materia comp : materias) {
+			if (comp.getCodigo().equalsIgnoreCase(codigo)) {
+				c = comp;
+			}	
+		}
+		materias.remove(c);
+!!!169474.java!!!	obtenerMateria(inout materias : List<? extends Materia>, in codigo : String) : Materia
+		if (materias != null && !materias.isEmpty()) {
+			for (Materia materia : materias) {
+				if (materia.getCodigo().equals(codigo)) {
+					return materia;
+				}
+			}			
+		}
+		return null;
+!!!169602.java!!!	obtenerTodos() : Materia
+		return new ArrayList<Materia>(materias);

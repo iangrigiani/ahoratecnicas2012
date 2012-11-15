@@ -1,0 +1,13 @@
+class EslabonComun
+!!!154114.java!!!	sendToEslabon(inout mesg : Mensaje) : void
+		if (getRegla().validar(mesg)) {
+			System.out.println("Valido la regla " + getRegla().getNombre() + " con asunto: " + mesg.getAsunto());
+			//TODO: Generar Parametros
+			//TODO: ValidarParametros
+			List<Accion> accionesDeReglas = getAccionesDeReglas(getRegla().getAcciones());
+			for (Accion accion : accionesDeReglas) {
+				accion.ejecutar(mesg, getRegla().getParametrosParaAccion());
+			}
+		} else {
+			getEslabon().sendToEslabon(mesg);
+		}

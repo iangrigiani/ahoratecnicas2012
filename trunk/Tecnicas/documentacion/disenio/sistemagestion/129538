@@ -1,0 +1,738 @@
+format 74
+"persistencia" // ar::com::fi::uba::tecnicas::persistencia
+  revision 1
+  modified_by 2 "jonathan"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/jonathan/tp ttdd/Tecnicas/src/ar/com/fi/uba/tecnicas/persistencia/"
+  java_package "ar.com.fi.uba.tecnicas.persistencia"
+  classview 135426 "persistencia"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 151682 "Repositorio"
+      visibility public stereotype "interface"
+      nformals 1
+      formal name "T" type "" explicit_default_value ""
+        explicit_extends ""
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 168194 "obtener"
+	public explicit_return_type "T"
+	nparams 1
+	  param in name "clave" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Obtiene un elemento sin importar de que tipo sea.
+
+@param nombre
+           identificador del elemento.
+@return"
+      end
+
+      operation 168322 "obtenerTodos"
+	public explicit_return_type "List<T>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Devuelve todos los objetos de un determinados tipo.
+@param clazz
+@return"
+      end
+
+      operation 168450 "agregar"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "elemento" explicit_type "T"
+	nexceptions 1
+	  exception class_ref 152066 // ValidacionExcepcion
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Agrega un elemento, en caso de que no exista. Caso contrario no lo
+agrega.
+
+@param elemento
+           elemento que se quiere agregar
+@throws en caso de que el compomente exista."
+      end
+
+      operation 168578 "quitar"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "clave" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Remueve un elemento.
+
+@param elemento
+           elemento a remover."
+      end
+
+      operation 168706 "vaciar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Vacia el repositorio."
+      end
+    end
+
+    class 154242 "RepositorioMateria"
+      visibility public 
+      nactuals 1
+      actual class class_ref 151682 // Repositorio
+        rank 0 explicit_value ""
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 153346 // <realization>
+	relation 153218 -_-|>
+	  stereotype "bind"
+	  a public
+	    java "${type}"
+	    classrelation_ref 153346 // <realization>
+	  b parent class_ref 151682 // Repositorio
+      end
+
+      attribute 139010 "CARPETA_MATERIA"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"/materia\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      extra_member 128130 "initialization"
+	
+	cpp "" ""
+	java "  static {
+		File file = new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + CARPETA_MATERIA); 
+		if (!file.exists()) {
+			file.mkdir();
+		}
+	}"
+	php ""
+	python ""
+	idl ""
+      end
+
+      attribute 139138 "strategyMaterias"
+	private explicit_type "PersistenceStrategy"
+	init_value " new FilePersistenceStrategy(new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + CARPETA_MATERIA))"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 153474 // materias (<unidirectional association>)
+	relation 153346 --->
+	  stereotype "List"
+	  a role_name "materias" init_value " new XmlArrayList(strategyMaterias)" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    java_annotation "@SuppressWarnings(\"unchecked\")
+"
+	    classrelation_ref 153474 // materias (<unidirectional association>)
+	  b parent class_ref 151810 // Materia
+      end
+
+      operation 168834 "obtener"
+	public return_type class_ref 151810 // Materia
+	nparams 1
+	  param in name "nombre" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 168962 "agregar"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "materia" type class_ref 151810 // Materia
+	nexceptions 1
+	  exception class_ref 152066 // ValidacionExcepcion
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 169090 "vaciar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 169218 "quitar"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nombre" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 169346 "removerMateria"
+	private explicit_return_type "void"
+	nparams 2
+	  param inout name "materias" explicit_type "List<? extends Materia>"
+	  param in name "codigo" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 169474 "obtenerMateria"
+	private return_type class_ref 151810 // Materia
+	nparams 2
+	  param inout name "materias" explicit_type "List<? extends Materia>"
+	  param in name "codigo" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 169602 "obtenerTodos"
+	public return_type class_ref 151810 // Materia
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 154370 "RepositorioReglas"
+      visibility public 
+      nactuals 1
+      actual class class_ref 151682 // Repositorio
+        rank 0 explicit_value ""
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 153602 // <realization>
+	relation 153474 -_-|>
+	  stereotype "bind"
+	  a public
+	    java "${type}"
+	    classrelation_ref 153602 // <realization>
+	  b parent class_ref 151682 // Repositorio
+      end
+
+      extra_member 128258 "initialization"
+	
+	cpp "" ""
+	java "  static {
+		File file = new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + \"/reglas\"); 
+		if (!file.exists()) {
+			file.mkdir();
+		}
+	}"
+	php ""
+	python ""
+	idl ""
+      end
+
+      attribute 139266 "strategyReglas"
+	private explicit_type "PersistenceStrategy"
+	init_value " new FilePersistenceStrategy(new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + \"/reglas\"))"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 153730 // reglas (<unidirectional association>)
+	relation 153602 --->
+	  stereotype "List"
+	  a role_name "reglas" init_value " new XmlArrayList(strategyReglas)" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    java_annotation "@SuppressWarnings(\"unchecked\")
+"
+	    classrelation_ref 153730 // reglas (<unidirectional association>)
+	  b parent class_ref 150786 // Regla
+      end
+
+      operation 169730 "obtener"
+	public return_type class_ref 150786 // Regla
+	nparams 1
+	  param in name "nombre" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 169858 "agregar"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "regla" type class_ref 150786 // Regla
+	nexceptions 1
+	  exception class_ref 152066 // ValidacionExcepcion
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 169986 "vaciar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 170114 "quitar"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nombre" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 170242 "removerRegla"
+	private explicit_return_type "void"
+	nparams 2
+	  param inout name "reglas" explicit_type "List<? extends Regla>"
+	  param in name "nombre" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 170370 "obtenerRegla"
+	private return_type class_ref 150786 // Regla
+	nparams 2
+	  param inout name "reglas" explicit_type "List<? extends Regla>"
+	  param in name "nombre" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 170498 "obtenerTodos"
+	public return_type class_ref 150786 // Regla
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 154498 "RepositorioTickets"
+      visibility public 
+      nactuals 1
+      actual class class_ref 151682 // Repositorio
+        rank 0 explicit_value ""
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 153858 // <realization>
+	relation 153730 -_-|>
+	  stereotype "bind"
+	  a public
+	    java "${type}"
+	    classrelation_ref 153858 // <realization>
+	  b parent class_ref 151682 // Repositorio
+      end
+
+      attribute 139394 "CARPETA_TICKETS"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"/tickets\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      extra_member 128386 "initialization"
+	
+	cpp "" ""
+	java "  static {
+		File file = new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + CARPETA_TICKETS); 
+		if (!file.exists()) {
+			file.mkdir();
+		}
+	}"
+	php ""
+	python ""
+	idl ""
+      end
+
+      attribute 139522 "strategyTickets"
+	private explicit_type "PersistenceStrategy"
+	init_value " new FilePersistenceStrategy(new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + CARPETA_TICKETS))"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 153986 // tickets (<unidirectional association>)
+	relation 153858 --->
+	  stereotype "List"
+	  a role_name "tickets" init_value " new XmlArrayList(strategyTickets)" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    java_annotation "@SuppressWarnings(\"unchecked\")
+"
+	    classrelation_ref 153986 // tickets (<unidirectional association>)
+	  b parent class_ref 151170 // Mensaje
+      end
+
+      operation 170626 "obtener"
+	public return_type class_ref 151170 // Mensaje
+	nparams 1
+	  param in name "nombre" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 170754 "agregar"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "ticket" type class_ref 151170 // Mensaje
+	nexceptions 1
+	  exception class_ref 152066 // ValidacionExcepcion
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 170882 "vaciar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 171010 "quitar"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nombre" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 171138 "removerTicket"
+	private explicit_return_type "void"
+	nparams 2
+	  param inout name "tickets" explicit_type "List<? extends Mensaje>"
+	  param in name "codigo" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 171266 "obtenerTickets"
+	private return_type class_ref 151170 // Mensaje
+	nparams 2
+	  param inout name "tickets" explicit_type "List<? extends Mensaje>"
+	  param in name "codigo" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 171394 "obtenerTodos"
+	public return_type class_ref 151170 // Mensaje
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+  end
+
+  deploymentview 135810 "persistencia"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 138626 "Repositorio"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.List;
+import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
+${definition}"
+      associated_classes
+	class_ref 151682 // Repositorio
+      end
+    end
+
+    artifact 138754 "RepositorioMateria"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import com.thoughtworks.xstream.persistence.FilePersistenceStrategy;
+import com.thoughtworks.xstream.persistence.PersistenceStrategy;
+import com.thoughtworks.xstream.persistence.XmlArrayList;
+import ar.com.fi.uba.tecnicas.Configuracion;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Materia;
+import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
+${definition}"
+      associated_classes
+	class_ref 154242 // RepositorioMateria
+      end
+    end
+
+    artifact 138882 "RepositorioReglas"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import com.thoughtworks.xstream.persistence.FilePersistenceStrategy;
+import com.thoughtworks.xstream.persistence.PersistenceStrategy;
+import com.thoughtworks.xstream.persistence.XmlArrayList;
+import ar.com.fi.uba.tecnicas.Configuracion;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
+import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
+${definition}"
+      associated_classes
+	class_ref 154370 // RepositorioReglas
+      end
+    end
+
+    artifact 139010 "RepositorioTickets"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import ar.com.fi.uba.tecnicas.Configuracion;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
+import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
+import com.thoughtworks.xstream.persistence.FilePersistenceStrategy;
+import com.thoughtworks.xstream.persistence.PersistenceStrategy;
+import com.thoughtworks.xstream.persistence.XmlArrayList;
+${definition}"
+      associated_classes
+	class_ref 154498 // RepositorioTickets
+      end
+    end
+  end
+end

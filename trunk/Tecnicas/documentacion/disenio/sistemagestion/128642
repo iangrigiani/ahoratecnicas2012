@@ -1,0 +1,294 @@
+format 74
+"controlador" // ar::com::fi::uba::tecnicas::controlador
+  revision 1
+  modified_by 2 "jonathan"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/jonathan/tp ttdd/Tecnicas/src/ar/com/fi/uba/tecnicas/controlador/"
+  java_package "ar.com.fi.uba.tecnicas.controlador"
+  classview 134658 "controlador"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 150146 "BuscadorClases"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "@author ramiro
+"
+      operation 151554 "buscarClasesImplementanInterfaz"
+	class_operation public explicit_return_type "List<Object>"
+	nparams 3
+	  param in name "interfas" explicit_type "String"
+	  param in name "directorio" explicit_type "String"
+	  param in name "paquete" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151682 "buscarNombreClasesImplementanInterfaz"
+	class_operation public explicit_return_type "List<String>"
+	nparams 3
+	  param in name "interfas" explicit_type "String"
+	  param in name "directorio" explicit_type "String"
+	  param in name "paquete" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 150274 "ComandosUsuarioFacade"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Facade con los metodos que puede ejecutar el usuario.
+@author cristian
+"
+      classrelation 150530 // validadores (<unidirectional association>)
+	relation 150402 --->
+	  stereotype "List"
+	  a role_name "validadores" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 150530 // validadores (<unidirectional association>)
+	  b parent class_ref 150402 // ValidadorParametro
+      end
+
+      attribute 135426 "acciones"
+	private explicit_type "String"
+	stereotype "List"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 150658 // mediador (<unidirectional association>)
+	relation 150530 --->
+	  a role_name "mediador" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 150658 // mediador (<unidirectional association>)
+	  b parent class_ref 150530 // Mediador
+      end
+
+      operation 151810 "crearRegla"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "invocador" type class_ref 150658 // InterfazUsuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Crea la regla interactuando con el usuario
+@param invocador
+@return"
+      end
+
+      operation 151938 "crearMateria"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "invocador" type class_ref 150658 // InterfazUsuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Crea la regla interactuando con el usuario
+@param invocador
+@return"
+      end
+
+      operation 152066 "agregarAcciones"
+	private explicit_return_type "void"
+	nparams 2
+	  param inout name "invocador" type class_ref 150658 // InterfazUsuario
+	  param inout name "regla" type class_ref 150786 // Regla
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param invocador
+@param regla"
+      end
+
+      operation 152194 "agregarParametros"
+	private explicit_return_type "void"
+	nparams 2
+	  param inout name "invocador" type class_ref 150658 // InterfazUsuario
+	  param inout name "regla" type class_ref 150786 // Regla
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param invocador
+@param regla"
+      end
+
+      operation 152322 "inicializar"
+	private explicit_return_type "void"
+	nparams 1
+	  param inout name "invocador" type class_ref 150658 // InterfazUsuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param invocador"
+      end
+
+      operation 152450 "actualizarBandejas"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "invocador" type class_ref 150658 // InterfazUsuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Actualiza las bandejas del sistema
+@param invocador
+@return"
+      end
+
+      operation 152578 "ayuda"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "invocador" type class_ref 150658 // InterfazUsuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "help! I need somebody!
+@param invocador
+@return"
+      end
+    end
+  end
+
+  deploymentview 134658 "controlador"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 134914 "BuscadorClases"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
+${definition}"
+      associated_classes
+	class_ref 150146 // BuscadorClases
+      end
+    end
+
+    artifact 135042 "ComandosUsuarioFacade"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.List;
+import ar.com.fi.uba.tecnicas.controlador.cadena.Mediador;
+import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Materia;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Parametro;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
+import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
+import ar.com.fi.uba.tecnicas.vista.InterfazUsuario;
+${definition}"
+      associated_classes
+	class_ref 150274 // ComandosUsuarioFacade
+      end
+    end
+  end
+
+  package_ref 128770 // validador
+
+  package_ref 128898 // cadena
+
+  package_ref 129666 // mail
+
+  package_ref 129922 // comun
+end

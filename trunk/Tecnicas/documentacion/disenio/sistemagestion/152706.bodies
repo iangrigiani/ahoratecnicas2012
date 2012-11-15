@@ -1,0 +1,9 @@
+class MailException
+!!!167170.java!!!	MailException()
+		super();
+!!!167298.java!!!	MailException(in arg0 : String)
+		super(arg0);
+!!!167426.java!!!	MailException(inout arg0 : Throwable)
+		super(arg0);
+!!!167554.java!!!	MailException(in arg0 : String, inout arg1 : Throwable)
+		super(arg0, arg1);

@@ -1,15 +1,24 @@
-window_sizes 1280 744 273 1001 550 120
+window_sizes 1278 744 273 999 550 120
 diagrams
   classdiagram_ref 128002 // diagrama de clases
-    715 561 100 4 84 0
+    715 561 100 4 0 0
   active  classdiagram_ref 134530 // Validadores
     1001 550 100 4 0 0
 end
 show_stereotypes
-selected classdiagram_ref 141314 // TP
-open
-  classdiagram_ref 134530 // Validadores
+marked
   class_ref 128002 // ValidadorParametro
+  operation_ref 128002 // getDescripcion
+  operation_ref 128130 // validar
+  class_ref 128130 // ValidadorPadronNuevo
+  operation_ref 128258 // getDescripcion
+  operation_ref 128386 // validar
+  classrelation_ref 136066 // <generalisation>
+  artifact_ref 128002 // ValidadorParametro
+  artifact_ref 128130 // ValidadorPadronNuevo
+end
+selected class_ref 134786 // Cadena
+open
   class_ref 128130 // ValidadorPadronNuevo
   class_ref 134786 // Cadena
   class_ref 135042 // AccionFactory
@@ -22,5 +31,22 @@ open
   class_ref 142466 // Ticket
   state_ref 128002 // Ticket
   deploymentview_ref 128002 // clases
+  classview_ref 134530 // tecnicas
+  deploymentview_ref 134530 // tecnicas
+  classview_ref 134658 // controlador
+  deploymentview_ref 134658 // controlador
+  classview_ref 134914 // cadena
+  classview_ref 135554 // mail
+  classview_ref 135810 // comun
+  deploymentview_ref 134914 // comun
+  class_ref 150786 // Regla
+  class_ref 153986 // EnviarMail
+  deploymentview_ref 135426 // entidades
+  classview_ref 135682 // excepciones
+  classview_ref 135938 // modelo
+  deploymentview_ref 135298 // modelo
+  deploymentview_ref 135938 // creacion
+  classview_ref 136322 // persistencia
+  classview_ref 136066 // unknown
 end
 end

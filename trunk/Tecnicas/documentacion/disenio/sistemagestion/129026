@@ -1,0 +1,364 @@
+format 74
+"vista" // ar::com::fi::uba::tecnicas::vista
+  revision 1
+  modified_by 2 "jonathan"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/jonathan/tp ttdd/Tecnicas/src/ar/com/fi/uba/tecnicas/vista/"
+  java_package "ar.com.fi.uba.tecnicas.vista"
+  classview 135042 "vista"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 150658 "InterfazUsuario"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Interface para poder comunicarse con el usuario.
+
+@author LedZeppeling
+"
+      operation 172546 "mensaje"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "mensaje" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}final ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Despliega un mensaje para el usuario.
+
+@param mensaje Texto a mostrar.
+           ."
+      end
+
+      operation 172674 "obtenerDatos"
+	public explicit_return_type "String"
+	nparams 1
+	  param in name "mensaje" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}final ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Pide al usuario que ingrese datos, con la posibilidad de hacer alguna
+pregunta.
+
+@param mensaje Pregunta u sugerencia que se le hace al usuario.
+           .
+@return mensaje con el resultado."
+      end
+
+      operation 172802 "mensajeSinSalto"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "mensaje" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}final ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Mensaje para el usuario sin un fin de linea.
+
+@param mensaje Texto a mostrar.
+           ."
+      end
+    end
+
+    class 155010 "Consola"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "@author LedZeppeling"
+      classrelation 154114 // <generalisation>
+	relation 153986 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 154114 // <generalisation>
+	  b parent class_ref 155138 // Thread
+      end
+
+      classrelation 154242 // <realization>
+	relation 154114 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 154242 // <realization>
+	  b parent class_ref 150658 // InterfazUsuario
+      end
+
+      attribute 139650 "invocador"
+	private explicit_type "Object"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment "Clase que implementa los m�todos de la consola.
+"
+      end
+
+      classrelation 154370 // parser (<unidirectional association>)
+	relation 154242 --->
+	  a role_name "parser" init_value " new ConsolaParser()" private
+	    comment "
+Para parsear la entrada de la consola.
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 154370 // parser (<unidirectional association>)
+	  b parent class_ref 155266 // ConsolaParser
+      end
+
+      attribute 139778 "PROMPCHAR"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"> \""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment "Caracter de la primera linea de la consola.
+"
+      end
+
+      attribute 139906 "ENDWORD"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"FIN\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment "Comando para terminar la consola.
+"
+      end
+
+      operation 172930 "run"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Logger.
+
+private static final Logger LOGGER = Logger.getLogger(Consola.class);
+
+Este metodo se llama cuando el hilo comienza."
+      end
+
+      operation 173058 "Consola"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "clazz" explicit_type "Class< ? >"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}<clazz> ${name}${(}final ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Constructor.
+@param <clazz> .
+@param clazz ."
+      end
+
+      operation 173186 "obtenerDatos"
+	public explicit_return_type "String"
+	nparams 1
+	  param in name "mensaje" explicit_type "String"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}final ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Para que el que usa la consola pueda pedir datos al usuario.
+@param mensaje un mensaje.
+@return mensaje de resultado."
+      end
+
+      operation 173314 "mensaje"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "mensaje" explicit_type "String"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}final ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Para que el que usa la consola pueda comunicar algo.
+@param mensaje El mensaje que va a la salida standar."
+      end
+
+      operation 173442 "mensajeSinSalto"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "mensaje" explicit_type "String"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}final ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Para que el que usa la consola pueda comunicar algo.
+@param mensaje El mensaje que va a la salida standar."
+      end
+
+      operation 173570 "leer"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressWarnings(\"unchecked\")
+"
+	
+	
+	
+	comment "Lee desde la entrada estandar y ejecuta el metodo correspondiente."
+      end
+    end
+
+    class 155266 "ConsolaParser"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "@author LedZeppeling
+"
+      operation 173698 "parseLine"
+	public explicit_return_type "String"
+	nparams 1
+	  param in name "linea" explicit_type "String"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[] ${name}${(}final ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Parsea una linea parametros de la consola.
+@param linea parametros.
+@return los parametros en un array."
+      end
+    end
+  end
+
+  deploymentview 136194 "vista"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 139522 "InterfazUsuario"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 150658 // InterfazUsuario
+      end
+    end
+
+    artifact 139650 "Consola"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+${definition}"
+      associated_classes
+	class_ref 155010 // Consola
+      end
+    end
+
+    artifact 139778 "ConsolaParser"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.List;
+${definition}"
+      associated_classes
+	class_ref 155266 // ConsolaParser
+      end
+    end
+  end
+end
