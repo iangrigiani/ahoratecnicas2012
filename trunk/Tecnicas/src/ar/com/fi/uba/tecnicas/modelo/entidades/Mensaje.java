@@ -6,12 +6,12 @@ public class Mensaje {
 	
 	private String textoPlano;
 	private String de;
-	private String para;
+	private List <String> para;
 	private String asunto;
-	private String copia;
-	private String copiaOculta;
+	//private String copia; AL PARECER NO LOS ENCONTRE EN LA CLASE 
+	//private String copiaOculta; AL PARECER NO LOS ENCONTRE EN LA CLASE
 	
-	private List<String> pahtAdjunto;
+	private List<String> pathAdjunto;
 
 	/**
 	 * @return the textoPlano
@@ -44,14 +44,14 @@ public class Mensaje {
 	/**
 	 * @return the para
 	 */
-	public String getPara() {
+	public List <String> getPara() {
 		return para;
 	}
 
 	/**
 	 * @param para the para to set
 	 */
-	public void setPara(String para) {
+	public void setPara(List <String> para) {
 		this.para = para;
 	}
 
@@ -69,46 +69,58 @@ public class Mensaje {
 		this.asunto = asunto;
 	}
 
-	/**
-	 * @return the copia
-	 */
-	public String getCopia() {
-		return copia;
-	}
-
-	/**
-	 * @param copia the copia to set
-	 */
-	public void setCopia(String copia) {
-		this.copia = copia;
-	}
-
-	/**
-	 * @return the copiaOculta
-	 */
-	public String getCopiaOculta() {
-		return copiaOculta;
-	}
-
-	/**
-	 * @param copiaOculta the copiaOculta to set
-	 */
-	public void setCopiaOculta(String copiaOculta) {
-		this.copiaOculta = copiaOculta;
-	}
+//	/**
+//	 * @return the copia
+//	 */
+//	public String getCopia() {
+//		return copia;
+//	}
+//
+//	/**
+//	 * @param copia the copia to set
+//	 */
+//	public void setCopia(String copia) {
+//		this.copia = copia;
+//	}
+//
+//	/**
+//	 * @return the copiaOculta
+//	 */
+//	public String getCopiaOculta() {
+//		return copiaOculta;
+//	}
+//
+//	/**
+//	 * @param copiaOculta the copiaOculta to set
+//	 */
+//	public void setCopiaOculta(String copiaOculta) {
+//		this.copiaOculta = copiaOculta;
+//	}
 
 	/**
 	 * @return the pahtAdjunto
 	 */
-	public List<String> getPahtAdjunto() {
-		return pahtAdjunto;
+	public List<String> getPathAdjunto() {
+		return pathAdjunto;
 	}
 
 	/**
-	 * @param pahtAdjunto the pahtAdjunto to set
+	 * @param pathAdjunto the pathAdjunto to set
 	 */
-	public void setPahtAdjunto(List<String> pahtAdjunto) {
-		this.pahtAdjunto = pahtAdjunto;
+	public void setPahtAdjunto(List<String> pathAdjunto) {
+		this.pathAdjunto = pathAdjunto;
+	}
+	
+	public void agregarPathAdjunto(String newPath){
+		this.pathAdjunto.add(newPath); 
+	}
+	
+	public void agregarTextoPlano(String newTexto){
+		this.textoPlano+=newTexto;
+	}
+	
+	public void agregarPara(String newPara){
+		this.para.add(newPara);
 	}
 
 }
