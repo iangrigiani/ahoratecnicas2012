@@ -29,7 +29,7 @@ public class TestPersistenciaRegla {
 			regla.setNombre("Regla1");
 			regla.setAsunto("REGLA");
 			regla.setAcciones(new ArrayList<String>());
-			regla.getAcciones().add("EnviarMail");
+			regla.getNombreAcciones().add("EnviarMail");
 			regla.setParametros(new HashMap<Parametro, ValidadorParametro>());
 			Parametro parametro = new Parametro();
 			parametro.setNombre("PARAM1");
@@ -40,10 +40,10 @@ public class TestPersistenciaRegla {
 			
 			Assert.assertEquals(regla.getNombre(), reglaRecup.getNombre());
 			Assert.assertEquals(regla.getAsunto(), reglaRecup.getAsunto());
-			Assert.assertNotNull(reglaRecup.getAcciones());
-			Assert.assertEquals(regla.getAcciones().size(), reglaRecup.getAcciones().size());
-			Assert.assertEquals(reglaRecup.getAcciones().size(), 1);
-			Assert.assertTrue(regla.getAcciones().get(0).equals(reglaRecup.getAcciones().get(0)));
+			Assert.assertNotNull(reglaRecup.getNombreAcciones());
+			Assert.assertEquals(regla.getNombreAcciones().size(), reglaRecup.getNombreAcciones().size());
+			Assert.assertEquals(reglaRecup.getNombreAcciones().size(), 1);
+			Assert.assertTrue(regla.getNombreAcciones().get(0).equals(reglaRecup.getNombreAcciones().get(0)));
 			Assert.assertNotNull(reglaRecup.getParametros());
 			Assert.assertEquals(regla.getParametros().size(), reglaRecup.getParametros().size());
 			Assert.assertEquals(reglaRecup.getParametros().size(), 1);

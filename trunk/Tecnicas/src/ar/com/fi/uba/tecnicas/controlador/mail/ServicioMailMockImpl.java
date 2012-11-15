@@ -19,16 +19,20 @@ public class ServicioMailMockImpl implements ServicioMail {
 		List<Mensaje> mensajes = new ArrayList<Mensaje>();
 		
 		Mensaje msg = new Mensaje();
-		msg.setAsunto("[ALTA-MATERIA-CODIGO] PADRON-NOMBRE");
+		msg.setAsunto("[ALTA-MATERIA] 7510-87330-Juan");
 		mensajes.add(msg);
 		
 		msg = new Mensaje();
-		msg.setAsunto("[ENTREGA-TP-NUMERO]");
+		msg.setAsunto("[ENTREGA-TP] 1");
 		mensajes.add(msg);
 		
 		msg = new Mensaje();
-		msg.setAsunto("[CONSULTA-PUBLICA/PRIVADA] Tema");
-		mensajes.add(msg);	
+		msg.setAsunto("[CONSULTA] PUBLICA-Pregunta1");  //"[CONSULTA-PUBLICA/PRIVADA] Tema"
+		mensajes.add(msg);
+                
+		msg = new Mensaje();
+		msg.setAsunto("[RECONSULTA] Pregunta1");  // Para cuando el ticket ya fue creado la consulta se hace así
+		mensajes.add(msg);
 		
 		msg = new Mensaje();
 		msg.setAsunto("Basura");

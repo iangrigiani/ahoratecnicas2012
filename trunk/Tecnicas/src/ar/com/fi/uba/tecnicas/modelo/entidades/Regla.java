@@ -3,6 +3,7 @@
  */
 package ar.com.fi.uba.tecnicas.modelo.entidades;
 
+import ar.com.fi.uba.tecnicas.controlador.comun.Constantes;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
+import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * La regla
@@ -21,7 +24,7 @@ public class Regla {
 	private String nombre;
 	private String asunto;
 	private Map<Parametro, ValidadorParametro> parametros;
-	private List<String> acciones;
+	private List<String> nombreAcciones;
 	
 	public Boolean validar(Mensaje mensaje) {
 		Boolean valida = Boolean.TRUE;
@@ -35,7 +38,7 @@ public class Regla {
 	}
 
 	private boolean validarAsunto(Mensaje mensaje) {
-		return mensaje.getAsunto().contains(asunto);
+		return mensaje.getAsunto().contains('['+asunto+']');
 	}
 
 	private void parsearParametros() {
@@ -102,17 +105,17 @@ public class Regla {
 	}
 
 	/**
-	 * @return the acciones
+	 * @return the nombreAcciones
 	 */
-	public List<String> getAcciones() {
-		return acciones;
+	public List<String> getNombreAcciones() {
+		return nombreAcciones;
 	}
 
 	/**
-	 * @param acciones the acciones to set
+	 * @param nombreAcciones the nombreAcciones to set
 	 */
 	public void setAcciones(List<String> acciones) {
-		this.acciones = acciones;
+		this.nombreAcciones = acciones;
 	}
 
 	/**
@@ -143,12 +146,12 @@ public class Regla {
 	public Boolean addAccion(String accion) {
 		Boolean ret = Boolean.FALSE;
 		
-		if (this.acciones == null) {
-			this.acciones = new ArrayList<String>();
+		if (this.nombreAcciones == null) {
+			this.nombreAcciones = new ArrayList<String>();
 		}
 		
-		if (!this.acciones.contains(accion)) {
-			this.acciones.add(accion);
+		if (!this.nombreAcciones.contains(accion)) {
+			this.nombreAcciones.add(accion);
 			ret = Boolean.TRUE;
 		}
 		return ret;
@@ -184,4 +187,44 @@ public class Regla {
 			return false;
 		return true;
 	}
+
+    public void procesar(Mensaje mesg) {
+        System.out.println("Valido la regla " + getNombre() + " con asunto: " + mesg.getAsunto());
+        //TODO: Generar Parametros
+        // mesg.getAsunto() hay que hacer una expresion regular luego de [asunto] y tomar todos los parametros divididos por '-'
+        //TODO: ValidarParametros
+        List<Accion> accionesDeReglas = getAcciones();
+        for (Accion accion : accionesDeReglas) {
+                accion.ejecutar(mesg, getParametrosParaAccion());
+        }
+    }
+    
+    protected List<Accion> getAcciones() {
+            List<Accion> acciones = new ArrayList<Accion>(nombreAcciones.size());
+            for (String nombreAccion : nombreAcciones) {
+                    try {
+                            Class theClass = Class.forName(Constantes.PAQUETE_INTERFAZ_ACCION + "." + nombreAccion);
+                            acciones.add((Accion) theClass.getConstructors()[0].newInstance());
+                    } catch (IllegalArgumentException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                    } catch (SecurityException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                    } catch (InstantiationException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                    }
+            }
+            return acciones;
+    }
 }
