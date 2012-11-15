@@ -17,6 +17,7 @@ import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
 import ar.com.fi.uba.tecnicas.persistencia.Repositorio;
 import ar.com.fi.uba.tecnicas.persistencia.RepositorioMateria;
 import ar.com.fi.uba.tecnicas.persistencia.RepositorioReglas;
+import ar.com.fi.uba.tecnicas.persistencia.RepositorioTickets;
 
 /**
  * Implementacion del patron Mediador junto con la cadena de responsabilidades
@@ -35,6 +36,7 @@ public class Mediador {
 	public Mediador() {
 		this.repositorioRegla = new RepositorioReglas();
 		this.repositorioMateria = new RepositorioMateria();
+		this.repositorioTickets = new RepositorioTickets();
 		this.extremoCadena = CadenaFactory.crearCadenaReglas(repositorioRegla.obtenerTodos(), this);
 	}
 	

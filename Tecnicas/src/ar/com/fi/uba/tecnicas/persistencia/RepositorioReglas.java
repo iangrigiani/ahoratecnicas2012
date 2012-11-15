@@ -55,11 +55,11 @@ public class RepositorioReglas implements Repositorio<Regla> {
 		removerRegla(reglas, regla.getNombre());
 	}
 	
-	private void removerRegla(List<? extends Regla> reglas,String nombre) {
+	private void removerRegla(List<? extends Regla> reglas, String nombre) {
 		Regla c = null;
-		for (Regla comp : reglas) {
-			if (comp.getNombre().equalsIgnoreCase(nombre)) {
-				c = comp;
+		for (Regla regla : reglas) {
+			if (regla.getNombre().equalsIgnoreCase(nombre)) {
+				c = regla;
 			}	
 		}
 		reglas.remove(c);
