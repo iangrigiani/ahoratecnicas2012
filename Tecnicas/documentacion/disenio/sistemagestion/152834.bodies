@@ -1,0 +1,74 @@
+class MailAdapter
+!!!159490.java!!!	MailAdapter()
+		
+!!!159618.java!!!	MailAdapter(inout mensajesMail : Message)
+		this.mensajesMail = mensajesMail;
+!!!159746.java!!!	adaptarMail() : Mensaje
+		
+		Mensaje nuevoMensaje = new Mensaje();
+		Address [] arregloDeDirrecciones = this.mensajesMail.getAllRecipients();
+		
+		nuevoMensaje.setAsunto(this.mensajesMail.getSubject());
+		nuevoMensaje.setDe(this.mensajesMail.getFrom().toString());
+		
+		for (int i=0;i<arregloDeDirrecciones.length;i++){
+			nuevoMensaje.agregarPara(arregloDeDirrecciones[i].toString());
+		}
+		
+		
+		analizaParteDeMensaje(this.mensajesMail,nuevoMensaje);
+		//REALIZO LA ADAPTACION DEL MENSAJE
+		
+		return nuevoMensaje;
+!!!159874.java!!!	salvaUnFichero(inout unaParte : Part, inout myMensaje : Mensaje) : void
+			   
+		       FileOutputStream fichero = new FileOutputStream(
+		               "./" + unaParte.getFileName());
+		       
+		       //TODO VER EL TEMA DE CAMBIAR LA UBICACION DEL PATH
+		       myMensaje.agregarPathAdjunto("./" + unaParte.getFileName());
+		       
+		       InputStream imagen = unaParte.getInputStream();
+		       byte[] bytes = new byte[1000];
+		       int leidos = 0;
+
+		       while ((leidos = imagen.read(bytes)) > 0){
+		           fichero.write(bytes, 0, leidos);
+		       }
+!!!160002.java!!!	analizaParteDeMensaje(inout unaParte : Part, inout myMensaje : Mensaje) : void
+	       try
+	       {
+	         // Si es multipart, se analiza cada una de sus partes recursivamente.
+	           if (unaParte.isMimeType("multipart/*"))
+	           {
+	        	   Multipart multi;
+	               multi = (Multipart) unaParte.getContent();
+
+	               for (int j = 0; j < multi.getCount(); j++)
+	               {
+	                   analizaParteDeMensaje(multi.getBodyPart(j),myMensaje);
+	               }
+	           }
+	           else
+	           {
+	             // Si es texto, se escribe el texto.
+	               if (unaParte.isMimeType("text/*"))
+	               {
+	                   myMensaje.agregarTextoPlano((String)unaParte.getContent());
+	               }
+	               else
+	               {
+	                 // SI NO ES UN ARCHIVO
+	                  
+	                   salvaUnFichero(unaParte, myMensaje);
+	                       
+	                   
+	               }
+	           }
+	       }
+	       catch (Exception e)
+	       {
+	           e.printStackTrace();
+	       }
+!!!160130.java!!!	setMensajesMail(inout mensajesMail : Message) : void
+		this.mensajesMail = mensajesMail;

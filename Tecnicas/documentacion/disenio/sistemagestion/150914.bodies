@@ -1,0 +1,24 @@
+class CadenaFactory
+!!!152706.java!!!	crearCadenaReglas(inout reglas : List<Regla>, inout mediador : Mediador) : Eslabon
+		Eslabon inicioCadena = null;
+		Eslabon eslabonActual = null;
+		for (Regla regla : reglas) {
+			eslabonActual = new EslabonComun();
+			eslabonActual.setRegla(regla);
+			eslabonActual.setMediador(mediador);
+			if (inicioCadena == null) {
+				inicioCadena = eslabonActual;
+			} else {
+				CadenaFactory.agregarEslabon(eslabonActual, inicioCadena);
+			}
+		}
+		CadenaFactory.agregarEslabon(new EslabonFinal(), inicioCadena);
+		return inicioCadena;
+!!!152834.java!!!	agregarEslabon(inout nuevoEslabon : Eslabon, inout extremoDeCadena : Eslabon) : void
+		
+		Eslabon actual = extremoDeCadena;
+		
+		while (actual.getEslabon() != null){
+			actual = actual.getEslabon();
+		}
+		actual.setEslabon(nuevoEslabon);

@@ -1,0 +1,40 @@
+class Eslabon
+!!!153090.java!!!	getAccionesDeReglas(inout nombreAcciones : List<String>) : Accion
+		List<Accion> acciones = new ArrayList<Accion>(nombreAcciones.size());
+		for (String nombreAccion : nombreAcciones) {
+			try {
+				Class theClass = Class.forName(Constantes.PAQUETE_INTERFAZ_ACCION + "." + nombreAccion);
+				acciones.add((Accion) theClass.getConstructors()[0].newInstance());
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return acciones;
+!!!153218.java!!!	getEslabon() : Eslabon
+		return eslabon;
+!!!153346.java!!!	setEslabon(inout eslabon : Eslabon) : void
+		this.eslabon = eslabon;
+!!!153474.java!!!	getRegla() : Regla
+		return regla;
+!!!153602.java!!!	setRegla(inout regla : Regla) : void
+		this.regla = regla;
+!!!153730.java!!!	getMediador() : Mediador
+		return mediador;
+!!!153858.java!!!	setMediador(inout mediador : Mediador) : void
+		this.mediador = mediador;

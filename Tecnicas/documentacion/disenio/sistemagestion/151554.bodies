@@ -1,0 +1,3 @@
+class EslabonFinal
+!!!154370.java!!!	sendToEslabon(inout mesg : Mensaje) : void
+		System.out.println("Llegue a final de la cadena");

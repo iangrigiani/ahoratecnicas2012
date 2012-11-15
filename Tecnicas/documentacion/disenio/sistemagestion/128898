@@ -1,0 +1,752 @@
+format 74
+"cadena" // ar::com::fi::uba::tecnicas::controlador::cadena
+  revision 1
+  modified_by 2 "jonathan"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/jonathan/tp ttdd/Tecnicas/src/ar/com/fi/uba/tecnicas/controlador/cadena/"
+  java_package "ar.com.fi.uba.tecnicas.controlador.cadena"
+  classview 134914 "cadena"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 150530 "Mediador"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Implementacion del patron Mediador junto con la cadena de responsabilidades
+@author ramiro
+"
+      classrelation 151426 // extremoCadena (<unidirectional association>)
+	relation 151298 --->
+	  a role_name "extremoCadena" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 151426 // extremoCadena (<unidirectional association>)
+	  b parent class_ref 151042 // Eslabon
+      end
+
+      classrelation 151554 // repositorioRegla (<unidirectional association>)
+	relation 151426 --->
+	  a role_name "repositorioRegla" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}<Regla> ${name}${value};
+"
+	    classrelation_ref 151554 // repositorioRegla (<unidirectional association>)
+	  b parent class_ref 151682 // Repositorio
+      end
+
+      classrelation 151682 // repositorioMateria (<unidirectional association>)
+	relation 151554 --->
+	  a role_name "repositorioMateria" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}<Materia> ${name}${value};
+"
+	    classrelation_ref 151682 // repositorioMateria (<unidirectional association>)
+	  b parent class_ref 151682 // Repositorio
+      end
+
+      classrelation 151810 // repositorioTickets (<unidirectional association>)
+	relation 151682 --->
+	  a role_name "repositorioTickets" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}<Mensaje> ${name}${value};
+"
+	    classrelation_ref 151810 // repositorioTickets (<unidirectional association>)
+	  b parent class_ref 151682 // Repositorio
+      end
+
+      classrelation 151938 // servicioMail (<unidirectional association>)
+	relation 151810 --->
+	  a role_name "servicioMail" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 151938 // servicioMail (<unidirectional association>)
+	  b parent class_ref 151938 // ServicioMail
+      end
+
+      attribute 135554 "nombreAcciones"
+	private explicit_type "String"
+	stereotype "List"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 154498 "Mediador"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154626 "getEslavon"
+	public return_type class_ref 151042 // Eslabon
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154754 "setEslavon"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "eslavon" type class_ref 151042 // Eslabon
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154882 "generarTickets"
+	public explicit_return_type "void"
+	nparams 0
+	nexceptions 1
+	  exception class_ref 152066 // ValidacionExcepcion
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Genera los tickets de los mensajes nuevos
+@throws ValidacionExcepcion "
+      end
+
+      operation 155010 "getExtremoCadena"
+	public return_type class_ref 151042 // Eslabon
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the extremoCadena"
+      end
+
+      operation 155138 "setExtremoCadena"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "extremoCadena" type class_ref 151042 // Eslabon
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param extremoCadena the extremoCadena to set"
+      end
+
+      operation 155266 "agregarRegla"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "regla" type class_ref 150786 // Regla
+	nexceptions 1
+	  exception class_ref 152066 // ValidacionExcepcion
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param regla
+@throws ValidacionExcepcion"
+      end
+
+      operation 155394 "agregarMateria"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "materia" type class_ref 151810 // Materia
+	nexceptions 1
+	  exception class_ref 152066 // ValidacionExcepcion
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param regla
+@throws ValidacionExcepcion"
+      end
+
+      operation 155522 "getValidadores"
+	public return_type class_ref 150402 // ValidadorParametro
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Busca los validadores disponibles y las instancia
+@return Los validadores disponibles instanciadas"
+      end
+
+      operation 155650 "getAcciones"
+	public explicit_return_type "List<String>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Busca los nombres de las acciones disponibles
+@return Los nombres de las acciones disponibles "
+      end
+
+      operation 155778 "getAccionesInstanciadas"
+	public return_type class_ref 151298 // Accion
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Busca las acciones disponibles y las instancia
+@return Las acciones disponibles instanciadas"
+      end
+
+      operation 155906 "getRepositorioRegla"
+	public return_type class_ref 151682 // Repositorio
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}<Regla> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the repositorioRegla"
+      end
+
+      operation 156034 "setRepositorioRegla"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "repositorioRegla" type class_ref 151682 // Repositorio
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}<Regla> ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param repositorioRegla the repositorioRegla to set"
+      end
+
+      operation 156162 "getRepositorioTickets"
+	public return_type class_ref 151682 // Repositorio
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}<Mensaje> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the repositorioTickets"
+      end
+
+      operation 156290 "setRepositorioTickets"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "repositorioTickets" type class_ref 151682 // Repositorio
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}<Mensaje> ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param repositorioTickets the repositorioTickets to set"
+      end
+
+      operation 156418 "getNombreAcciones"
+	public explicit_return_type "List<String>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the nombreAcciones"
+      end
+
+      operation 156546 "setNombreAcciones"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "nombreAcciones" explicit_type "List<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param nombreAcciones the nombreAcciones to set"
+      end
+    end
+
+    class 150914 "CadenaFactory"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Se encarga de crear la cadena de reglas
+@author ramiro"
+      operation 152706 "crearCadenaReglas"
+	class_operation public return_type class_ref 151042 // Eslabon
+	nparams 2
+	  param inout name "reglas" explicit_type "List<Regla>"
+	  param inout name "mediador" type class_ref 150530 // Mediador
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152834 "agregarEslabon"
+	class_operation private explicit_return_type "void"
+	nparams 2
+	  param inout name "nuevoEslabon" type class_ref 151042 // Eslabon
+	  param inout name "extremoDeCadena" type class_ref 151042 // Eslabon
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Vincula un eslabon con el que le sigue
+@param nuevoEslabon Eslabon a agregar
+@param extremoDeCadena Eslabon existente"
+      end
+    end
+
+    class 151042 "Eslabon"
+      abstract visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Representa el eslabon de una cadena
+@author ramiro"
+      classrelation 150786 // eslabon (<unidirectional association>)
+	relation 150658 --->
+	  a role_name "eslabon" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 150786 // eslabon (<unidirectional association>)
+	  b parent class_ref 151042 // Eslabon
+      end
+
+      classrelation 150914 // regla (<unidirectional association>)
+	relation 150786 --->
+	  a role_name "regla" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 150914 // regla (<unidirectional association>)
+	  b parent class_ref 150786 // Regla
+      end
+
+      classrelation 151042 // mediador (<unidirectional association>)
+	relation 150914 --->
+	  a role_name "mediador" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 151042 // mediador (<unidirectional association>)
+	  b parent class_ref 150530 // Mediador
+      end
+
+      operation 152962 "sendToEslabon"
+	abstract package explicit_return_type "void"
+	nparams 1
+	  param inout name "mesg" type class_ref 151170 // Mensaje
+	nexceptions 1
+	  explicit_exception "Exception"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153090 "getAccionesDeReglas"
+	protected return_type class_ref 151298 // Accion
+	nparams 1
+	  param inout name "nombreAcciones" explicit_type "List<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153218 "getEslabon"
+	public return_type class_ref 151042 // Eslabon
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the eslabon"
+      end
+
+      operation 153346 "setEslabon"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "eslabon" type class_ref 151042 // Eslabon
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param eslabon the eslabon to set"
+      end
+
+      operation 153474 "getRegla"
+	public return_type class_ref 150786 // Regla
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the regla"
+      end
+
+      operation 153602 "setRegla"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "regla" type class_ref 150786 // Regla
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param regla the regla to set"
+      end
+
+      operation 153730 "getMediador"
+	public return_type class_ref 150530 // Mediador
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the mediador"
+      end
+
+      operation 153858 "setMediador"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "mediador" type class_ref 150530 // Mediador
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param mediador the mediador to set"
+      end
+    end
+
+    class 151426 "EslabonComun"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Es el ultimo eslabon de la cadena
+@author ramiro
+"
+      classrelation 151170 // <generalisation>
+	relation 151042 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 151170 // <generalisation>
+	  b parent class_ref 151042 // Eslabon
+      end
+
+      operation 153986 "EslabonComun"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154114 "sendToEslabon"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "mesg" type class_ref 151170 // Mensaje
+	nexceptions 1
+	  explicit_exception "Exception"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "En este metodo realizo el labor que tiene que hacer el eslavon y
+sino tengo nada para hacer entonces llamo al otro eslavon
+@throws Exception "
+      end
+    end
+
+    class 151554 "EslabonFinal"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Es el ultimo eslabon de la cadena
+@author ramiro
+"
+      classrelation 151298 // <generalisation>
+	relation 151170 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 151298 // <generalisation>
+	  b parent class_ref 151042 // Eslabon
+      end
+
+      operation 154242 "EslabonFinal"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154370 "sendToEslabon"
+	package explicit_return_type "void"
+	nparams 1
+	  param inout name "mesg" type class_ref 151170 // Mensaje
+	nexceptions 1
+	  explicit_exception "Exception"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "En este metodo realizo el labor que tiene que hacer el eslavon y
+sino tengo nada para hacer entonces llamo al otro eslavon
+@throws Exception "
+      end
+    end
+  end
+
+  deploymentview 134786 "cadena"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 135170 "CadenaFactory"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.List;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
+${definition}"
+      associated_classes
+	class_ref 150914 // CadenaFactory
+      end
+    end
+
+    artifact 135298 "Eslabon"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
+import ar.com.fi.uba.tecnicas.controlador.comun.Constantes;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
+import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
+${definition}"
+      associated_classes
+	class_ref 151042 // Eslabon
+      end
+    end
+
+    artifact 135426 "EslabonComun"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.List;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
+import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
+${definition}"
+      associated_classes
+	class_ref 151426 // EslabonComun
+      end
+    end
+
+    artifact 135554 "EslabonFinal"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
+${definition}"
+      associated_classes
+	class_ref 151554 // EslabonFinal
+      end
+    end
+
+    artifact 135682 "Mediador"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.List;
+import ar.com.fi.uba.tecnicas.Configuracion;
+import ar.com.fi.uba.tecnicas.controlador.BuscadorClases;
+import ar.com.fi.uba.tecnicas.controlador.comun.Constantes;
+import ar.com.fi.uba.tecnicas.controlador.comun.Converter;
+import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMail;
+import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMailMockImpl;
+import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Materia;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
+import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
+import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
+import ar.com.fi.uba.tecnicas.persistencia.Repositorio;
+import ar.com.fi.uba.tecnicas.persistencia.RepositorioMateria;
+import ar.com.fi.uba.tecnicas.persistencia.RepositorioReglas;
+import ar.com.fi.uba.tecnicas.persistencia.RepositorioTickets;
+${definition}"
+      associated_classes
+	class_ref 150530 // Mediador
+      end
+    end
+  end
+end

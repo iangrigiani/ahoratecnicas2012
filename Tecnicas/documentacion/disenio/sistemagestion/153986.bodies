@@ -1,0 +1,3 @@
+class EnviarMail
+!!!167042.java!!!	ejecutar(inout mensaje : Mensaje, inout parametros : Set<Parametro>) : void
+		System.out.println("Envio un mail!");

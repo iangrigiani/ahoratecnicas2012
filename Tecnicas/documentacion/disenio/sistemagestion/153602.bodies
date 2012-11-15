@@ -1,0 +1,12 @@
+class ValidadorPrivacidad
+!!!161794.java!!!	getDescripcion() : String
+		return "Privacidad";
+!!!161922.java!!!	validar(in parametro : String) : boolean
+		Boolean ret = Boolean.FALSE;
+		try{
+			if (parametro.equalsIgnoreCase("PUBLICA") || parametro.equalsIgnoreCase("PRIVADA")) {
+				ret = Boolean.TRUE;
+			}
+		} catch (NumberFormatException e) {
+		}
+		return ret;

@@ -1,0 +1,27 @@
+class Mensaje
+!!!162562.java!!!	getTextoPlano() : String
+		return textoPlano;
+!!!162690.java!!!	setTextoPlano(in textoPlano : String) : void
+		this.textoPlano = textoPlano;
+!!!162818.java!!!	getDe() : String
+		return de;
+!!!162946.java!!!	setDe(in de : String) : void
+		this.de = de;
+!!!163074.java!!!	getPara() : List<String>
+		return para;
+!!!163202.java!!!	setPara(inout para : List<String>) : void
+		this.para = para;
+!!!163330.java!!!	getAsunto() : String
+		return asunto;
+!!!163458.java!!!	setAsunto(in asunto : String) : void
+		this.asunto = asunto;
+!!!163586.java!!!	getPathAdjunto() : List<String>
+		return pathAdjunto;
+!!!163714.java!!!	setPahtAdjunto(inout pathAdjunto : List<String>) : void
+		this.pathAdjunto = pathAdjunto;
+!!!163842.java!!!	agregarPathAdjunto(in newPath : String) : void
+		this.pathAdjunto.add(newPath); 
+!!!163970.java!!!	agregarTextoPlano(in newTexto : String) : void
+		this.textoPlano+=newTexto;
+!!!164098.java!!!	agregarPara(in newPara : String) : void
+		this.para.add(newPara);

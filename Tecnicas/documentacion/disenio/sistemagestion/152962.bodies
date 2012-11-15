@@ -1,0 +1,20 @@
+class ServicioMailMockImpl
+!!!160386.java!!!	getMensajesNuevos() : Mensaje
+		List<Mensaje> mensajes = new ArrayList<Mensaje>();
+		
+		Mensaje msg = new Mensaje();
+		msg.setAsunto("[ALTA-MATERIA-CODIGO] PADRON-NOMBRE");
+		mensajes.add(msg);
+		
+		msg = new Mensaje();
+		msg.setAsunto("[ENTREGA-TP-NUMERO]");
+		mensajes.add(msg);
+		
+		msg = new Mensaje();
+		msg.setAsunto("[CONSULTA-PUBLICA/PRIVADA] Tema");
+		mensajes.add(msg);	
+		
+		msg = new Mensaje();
+		msg.setAsunto("Basura");
+		mensajes.add(msg);	
+		return mensajes;

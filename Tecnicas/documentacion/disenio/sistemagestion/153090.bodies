@@ -1,0 +1,13 @@
+class ValidadorCodigoMateria
+!!!160770.java!!!	getDescripcion() : String
+		return "Codigo de la materia";
+!!!160898.java!!!	validar(in parametro : String) : boolean
+		Boolean ret = Boolean.FALSE;
+		try{
+			//Agregar el existe materia con un repositorio
+			if (Integer.parseInt(parametro)>0) {
+				ret = Boolean.TRUE;
+			}
+		} catch (NumberFormatException e) {
+		}
+		return ret;

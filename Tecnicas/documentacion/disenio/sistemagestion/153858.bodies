@@ -1,0 +1,28 @@
+class Parametro
+!!!164226.java!!!	getNombre() : String
+		return nombre;
+!!!164354.java!!!	setNombre(in nombre : String) : void
+		this.nombre = nombre;
+!!!164482.java!!!	getValor() : String
+		return valor;
+!!!164610.java!!!	setValor(in valor : String) : void
+		this.valor = valor;
+!!!164738.java!!!	hashCode() : int
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
+!!!164866.java!!!	equals(inout obj : Object) : boolean
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Parametro other = (Parametro) obj;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;

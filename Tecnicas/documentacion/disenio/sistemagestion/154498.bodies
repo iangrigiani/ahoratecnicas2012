@@ -1,0 +1,37 @@
+class RepositorioTickets
+!!!170626.java!!!	obtener(in nombre : String) : Mensaje
+		Mensaje elementoMateria = obtenerTickets(tickets, nombre);
+		if (elementoMateria != null) {
+			return elementoMateria;
+		}
+		return elementoMateria;
+!!!170754.java!!!	agregar(inout ticket : Mensaje) : void
+		if (tickets.size() > 0) {
+			throw new ValidacionExcepcion("Ya existe una ticket en el sistema.");
+		}
+		tickets.add((Mensaje)ticket);
+!!!170882.java!!!	vaciar() : void
+		tickets.clear();
+!!!171010.java!!!	quitar(in nombre : String) : void
+		
+		Mensaje ticket = obtener(nombre);
+		removerTicket(tickets, ticket.getAsunto());
+!!!171138.java!!!	removerTicket(inout tickets : List<? extends Mensaje>, in codigo : String) : void
+		Mensaje c = null;
+		for (Mensaje comp : tickets) {
+			if (comp.getAsunto().equalsIgnoreCase(codigo)) {
+				c = comp;
+			}	
+		}
+		tickets.remove(c);
+!!!171266.java!!!	obtenerTickets(inout tickets : List<? extends Mensaje>, in codigo : String) : Mensaje
+		if (tickets != null && !tickets.isEmpty()) {
+			for (Mensaje ticket : tickets) {
+				if (ticket.getAsunto().equals(codigo)) {
+					return ticket;
+				}
+			}			
+		}
+		return null;
+!!!171394.java!!!	obtenerTodos() : Mensaje
+		return new ArrayList<Mensaje>(tickets);

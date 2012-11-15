@@ -1,0 +1,9 @@
+class ValidacionExcepcion
+!!!167682.java!!!	ValidacionExcepcion()
+		super();
+!!!167810.java!!!	ValidacionExcepcion(in message : String, inout cause : Throwable)
+		super(message, cause);
+!!!167938.java!!!	ValidacionExcepcion(in message : String)
+		super(message);
+!!!168066.java!!!	ValidacionExcepcion(inout cause : Throwable)
+		super(cause);
