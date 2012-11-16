@@ -19,7 +19,7 @@ public class ServicioMailMockImpl implements ServicioMail {
 		List<Mensaje> mensajes = new ArrayList<Mensaje>();
 		
 		Mensaje msg = new Mensaje();
-		msg.setAsunto("[ALTA-MATERIA] 7510-87330-Juan");
+		msg.setAsunto("[ALTA-MATERIA] 7510-87330-John-Bonachon");
 		mensajes.add(msg);
 		
 		msg = new Mensaje();
