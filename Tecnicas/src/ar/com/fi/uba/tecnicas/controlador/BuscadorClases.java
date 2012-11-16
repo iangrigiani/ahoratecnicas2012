@@ -8,6 +8,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.com.fi.uba.tecnicas.controlador.comun.Constantes;
+import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
+
 /**
  * @author ramiro
  *
@@ -18,32 +21,15 @@ public class BuscadorClases {
 		List<String> nombreClases = BuscadorClases.buscarNombreClasesImplementanInterfaz(interfas, directorio, paquete);
 		List<Object> clases = new ArrayList<Object>(nombreClases.size());
 		for (String nombreClase : nombreClases) {
-			try {
-				Class theClass = Class.forName(paquete + "." +nombreClase);
-				clases.add(theClass.getConstructors()[0].newInstance());
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InstantiationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			Object instancia = getInstancia(paquete + "." +nombreClase);
+			if (instancia != null) {
+				clases.add(instancia);
 			}
 		}
 		return clases;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public static List<String> buscarNombreClasesImplementanInterfaz(String interfas, String directorio, String paquete) {
 		File currentDirectory = new File(directorio);
 
@@ -79,5 +65,44 @@ public class BuscadorClases {
             }
         }
 		return nombresClases;
+	}
+	
+	  
+    public static List<Accion> getAcciones(List<String> nombreAcciones) {
+            List<Accion> acciones = new ArrayList<Accion>(nombreAcciones.size());
+            for (String nombreAccion : nombreAcciones) {
+                    Object instancia = getInstancia(Constantes.PAQUETE_INTERFAZ_ACCION + "." + nombreAccion);
+                    if (instancia != null) {
+                    	acciones.add((Accion) instancia);
+                    }
+            }
+            return acciones;
+    }
+
+	@SuppressWarnings("rawtypes")
+	private static Object getInstancia(String nombreClase) {
+		try {
+		       Class theClass = Class.forName(nombreClase);
+		       return theClass.getConstructors()[0].newInstance();
+		} catch (IllegalArgumentException e) {
+		        // TODO Auto-generated catch block
+		        e.printStackTrace();
+		} catch (SecurityException e) {
+		        // TODO Auto-generated catch block
+		        e.printStackTrace();
+		} catch (InstantiationException e) {
+		        // TODO Auto-generated catch block
+		        e.printStackTrace();
+		} catch (IllegalAccessException e) {
+		        // TODO Auto-generated catch block
+		        e.printStackTrace();
+		} catch (InvocationTargetException e) {
+		        // TODO Auto-generated catch block
+		        e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+		        // TODO Auto-generated catch block
+		        e.printStackTrace();
+		}
+		return null;
 	}
 }

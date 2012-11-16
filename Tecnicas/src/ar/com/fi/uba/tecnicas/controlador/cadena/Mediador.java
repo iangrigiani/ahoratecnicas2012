@@ -37,7 +37,12 @@ public class Mediador {
 		this.repositorioRegla = new RepositorioReglas();
 		this.repositorioMateria = new RepositorioMateria();
 		this.repositorioTickets = new RepositorioTickets();
-		this.extremoCadena = CadenaFactory.crearCadenaReglas(repositorioRegla.obtenerTodos(), this);
+		List<Regla> todasLasReglas = repositorioRegla.obtenerTodos();
+		if (todasLasReglas == null || todasLasReglas.isEmpty()) {
+			System.out.println("Warning: No se encontraron reglas definidas por el usuario.");
+		}
+		this.extremoCadena = CadenaFactory.crearCadenaReglas(todasLasReglas, this);	
+		
 	}
 	
     public Eslabon getEslavon() {

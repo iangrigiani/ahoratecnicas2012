@@ -14,25 +14,27 @@ import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
 
 public class RepositorioReglas implements Repositorio<Regla> {
 
+	private static final String DIRECTORIO_REGLAS = "/reglas";
+
 	static {
-		File file = new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + "/reglas"); 
+		File file = new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + DIRECTORIO_REGLAS); 
 		if (!file.exists()) {
 			file.mkdir();
 		}
 	}
 	
-	private PersistenceStrategy strategyReglas = new FilePersistenceStrategy(new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + "/reglas"));
+	private PersistenceStrategy strategyReglas = new FilePersistenceStrategy(new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + DIRECTORIO_REGLAS));
 	
 	@SuppressWarnings("unchecked")
 	private List<Regla> reglas = new XmlArrayList(strategyReglas);
 
 	@Override
 	public Regla obtener(String nombre) {
-		Regla elementoRegla = obtenerRegla(reglas, nombre);
-		if (elementoRegla != null) {
-			return elementoRegla;
+		List<Regla> elementoRegla = obtenerRegla(reglas, nombre);
+		if (elementoRegla != null && !elementoRegla.isEmpty()) {
+			return elementoRegla.get(0);
 		}
-		return elementoRegla;
+		return null;
 	}
 	
 	@Override
@@ -65,19 +67,25 @@ public class RepositorioReglas implements Repositorio<Regla> {
 		reglas.remove(c);
 	}
 	
-	private Regla obtenerRegla(List<? extends Regla> reglas, String nombre) {
+	private List<Regla> obtenerRegla(List<? extends Regla> reglas, String nombre) {
+		List<Regla> reglasByClave = new ArrayList<Regla>();
 		if (reglas != null && !reglas.isEmpty()) {
 			for (Regla regla : reglas) {
 				if (regla.getNombre().equals(nombre)) {
-					return regla;
+					reglasByClave.add(regla);
 				}
 			}			
 		}
-		return null;
+		return reglasByClave;
 	}
 
 	@Override
 	public List<Regla> obtenerTodos() {
 		return new ArrayList<Regla>(reglas);
+	}
+
+	@Override
+	public List<Regla> obtenerTodos(String nombre) {
+		return obtenerRegla(reglas, nombre);
 	}
 }

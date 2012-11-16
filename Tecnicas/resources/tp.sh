@@ -2,4 +2,4 @@
 
 #Ejecutar el tp
 
-java -jar ./bin/emails.jar
+java -jar ./bin/tp.jar

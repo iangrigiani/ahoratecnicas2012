@@ -7,13 +7,22 @@ import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
 public interface Repositorio<T> {
 
 	/**
-	 * Obtiene un elemento sin importar de que tipo sea.
+	 * Obtiene un elemento sin importar de que tipo sea, si hay muchos devuelve el primero que encuentra.
 	 * 
 	 * @param nombre
 	 *            identificador del elemento.
 	 * @return
 	 */
 	T obtener(String clave);
+	
+	/**
+	 * Obtiene varios elementos sin importar de que tipo sea para una clave dada.
+	 * 
+	 * @param nombre
+	 *            identificador del elemento.
+	 * @return
+	 */	
+	List<T> obtenerTodos(String clave);
 	
 	/**
 	 * Devuelve todos los objetos de un determinados tipo.

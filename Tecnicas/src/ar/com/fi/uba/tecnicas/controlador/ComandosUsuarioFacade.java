@@ -69,6 +69,7 @@ public class ComandosUsuarioFacade {
 		}
 			
 		Materia materia = new Materia();
+		materia.setNombre(invocador.obtenerDatos("Ingrese el nombre de la materia: "));
 		materia.setCodigo(invocador.obtenerDatos("Ingrese el codigo de la materia: "));
 		
 		try {
@@ -173,6 +174,8 @@ public class ComandosUsuarioFacade {
 		String mensaje="LISTA DE COMANDOS\n" +
 				"* crearRegla \n" +
 				"	-Crea una regla vinculando los validadores y las acciones disponibles al momento de crearla." +
+				"* crearMateria \n" +
+				"	-Crea una materia." +
 				"* actualizarBandejas\n" +
 				"	-Actualiza las bandejas disponibles.\n\n"+
 				"\nFIN\n";

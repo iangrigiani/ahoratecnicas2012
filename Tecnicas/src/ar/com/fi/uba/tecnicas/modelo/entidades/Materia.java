@@ -9,6 +9,7 @@ package ar.com.fi.uba.tecnicas.modelo.entidades;
  */
 public class Materia {
 	
+	private String nombre;
 	private String codigo;
 
 	/**
@@ -54,6 +55,20 @@ public class Materia {
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
+	}
+
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 }
