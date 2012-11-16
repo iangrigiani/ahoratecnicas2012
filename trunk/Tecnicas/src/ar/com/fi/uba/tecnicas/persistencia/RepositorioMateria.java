@@ -30,11 +30,11 @@ public class RepositorioMateria implements Repositorio<Materia> {
 
 	@Override
 	public Materia obtener(String nombre) {
-		Materia elementoMateria = obtenerMateria(materias, nombre);
-		if (elementoMateria != null) {
-			return elementoMateria;
+		List<Materia> elementoMateria = obtenerMateria(materias, nombre);
+		if (elementoMateria != null && !elementoMateria.isEmpty()) {
+			return elementoMateria.get(0);
 		}
-		return elementoMateria;
+		return null;
 	}
 	
 	@Override
@@ -67,19 +67,25 @@ public class RepositorioMateria implements Repositorio<Materia> {
 		materias.remove(c);
 	}
 	
-	private Materia obtenerMateria(List<? extends Materia> materias, String codigo) {
+	private List<Materia> obtenerMateria(List<? extends Materia> materias, String codigo) {
+		List<Materia> materiasByCodigo = new ArrayList<Materia>();
 		if (materias != null && !materias.isEmpty()) {
 			for (Materia materia : materias) {
 				if (materia.getCodigo().equals(codigo)) {
-					return materia;
+					materiasByCodigo.add(materia);
 				}
 			}			
 		}
-		return null;
+		return materiasByCodigo;
 	}
 
 	@Override
 	public List<Materia> obtenerTodos() {
 		return new ArrayList<Materia>(materias);
+	}
+
+	@Override
+	public List<Materia> obtenerTodos(String clave) {
+		return obtenerMateria(materias, clave);
 	}
 }

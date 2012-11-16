@@ -3,7 +3,6 @@
  */
 package ar.com.fi.uba.tecnicas.modelo.entidades;
 
-import ar.com.fi.uba.tecnicas.controlador.comun.Constantes;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,9 +10,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import ar.com.fi.uba.tecnicas.controlador.BuscadorClases;
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
 import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * La regla
@@ -26,98 +25,33 @@ public class Regla {
 	private Map<Parametro, ValidadorParametro> parametros;
 	private List<String> nombreAcciones;
 	
+	/**
+	 * Valida que el filtro de la regla concuerde con el asunto del mensaje
+	 * @param mensaje Mensaje a procesar
+	 * @return True si valida y false sino.
+	 */
 	public Boolean validar(Mensaje mensaje) {
-		Boolean valida = Boolean.TRUE;
-		valida = valida && validarAsunto(mensaje);
-		if (!valida) {
-			return valida;
-		}
-		parsearParametros();
-		valida = valida && validarParametros();
-		return valida;
-	}
-
-	private boolean validarAsunto(Mensaje mensaje) {
-		return mensaje.getAsunto().contains('['+asunto+']');
-	}
-
-	private void parsearParametros() {
-		for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
-			//le hardcodeo un valor hasta que hagamos el parser de los parametros
-			parParametroValidador.getKey().setValor("83350");
-		}
-	}
-	
-	private boolean validarParametros() {
-		Boolean ret = Boolean.TRUE;
-		for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
-			parParametroValidador.getValue().validar(parParametroValidador.getKey());
-		}
-		return ret;
-	}	
-	
-	public List<String> getParametros(Mensaje mensaje) {
-		return null;
-	}
-	
-	/**
-	 * @return the nombre
-	 */
-	public String getNombre() {
-		return nombre;
-	}
-	/**
-	 * @param nombre the nombre to set
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	/**
-	 * @return the asunto
-	 */
-	public String getAsunto() {
-		return asunto;
-	}
-	/**
-	 * @param asunto the asunto to set
-	 */
-	public void setAsunto(String asunto) {
-		this.asunto = asunto;
-	}
-	/**
-	 * @return the parametros
-	 */
-	public Map<Parametro, ValidadorParametro> getParametros() {
-		return parametros;
-	}
-	/**
-	 * @param parametros the parametros to set
-	 */
-	public void setParametros(Map<Parametro, ValidadorParametro> parametros) {
-		this.parametros = parametros;
-	}
-	
-	/**
-	 * @return the parametros
-	 */
-	public Set<Parametro> getParametrosParaAccion() {
-		return parametros.keySet();
+		return validarAsunto(mensaje);
 	}
 
 	/**
-	 * @return the nombreAcciones
+	 * Parsea los parametros del mensaje, los valida y ejecuta las acciones que la regla tiene configurada
+	 * para dicho mensaje.
+	 * @param mesg El mensaje a procesar.
 	 */
-	public List<String> getNombreAcciones() {
-		return nombreAcciones;
-	}
+	public void procesar(Mensaje mesg) {
+	    System.out.println("Valido la regla " + getNombre() + " con asunto: " + mesg.getAsunto());
+	    
+	    parsearParametros();
+	    
+		validarParametros();
 
-	/**
-	 * @param nombreAcciones the nombreAcciones to set
-	 */
-	public void setAcciones(List<String> acciones) {
-		this.nombreAcciones = acciones;
+		List<Accion> accionesDeReglas = BuscadorClases.getAcciones(nombreAcciones);
+	    for (Accion accion : accionesDeReglas) {
+	    	accion.ejecutar(mesg, getParametrosParaAccion());
+	    }
 	}
-
+	  
 	/**
 	 * Agrego un parametro pero primero valido que no se repita
 	 * @param parametro Parametro a agregar
@@ -187,44 +121,83 @@ public class Regla {
 			return false;
 		return true;
 	}
+	
+	private boolean validarAsunto(Mensaje mensaje) {
+		return mensaje.getAsunto().contains('['+asunto+']');
+	}
 
-    public void procesar(Mensaje mesg) {
-        System.out.println("Valido la regla " + getNombre() + " con asunto: " + mesg.getAsunto());
-        //TODO: Generar Parametros
-        // mesg.getAsunto() hay que hacer una expresion regular luego de [asunto] y tomar todos los parametros divididos por '-'
-        //TODO: ValidarParametros
-        List<Accion> accionesDeReglas = getAcciones();
-        for (Accion accion : accionesDeReglas) {
-                accion.ejecutar(mesg, getParametrosParaAccion());
-        }
-    }
-    
-    protected List<Accion> getAcciones() {
-            List<Accion> acciones = new ArrayList<Accion>(nombreAcciones.size());
-            for (String nombreAccion : nombreAcciones) {
-                    try {
-                            Class theClass = Class.forName(Constantes.PAQUETE_INTERFAZ_ACCION + "." + nombreAccion);
-                            acciones.add((Accion) theClass.getConstructors()[0].newInstance());
-                    } catch (IllegalArgumentException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                    } catch (SecurityException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                    } catch (InstantiationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                    } catch (ClassNotFoundException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                    }
-            }
-            return acciones;
-    }
+	private void parsearParametros() {
+        //TODO: mesg.getAsunto() hay que hacer una expresion regular luego de [asunto] y tomar todos los parametros divididos por '-'
+		for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
+			//le hardcodeo un valor hasta que hagamos el parser de los parametros
+			parParametroValidador.getKey().setValor("83350");
+		}
+	}
+	
+	private boolean validarParametros() {
+		Boolean ret = Boolean.TRUE;
+		for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
+			parParametroValidador.getValue().validar(parParametroValidador.getKey());
+		}
+		return ret;
+	}	
+	
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	/**
+	 * @return the asunto
+	 */
+	public String getAsunto() {
+		return asunto;
+	}
+	/**
+	 * @param asunto the asunto to set
+	 */
+	public void setAsunto(String asunto) {
+		this.asunto = asunto;
+	}
+	/**
+	 * @return the parametros
+	 */
+	public Map<Parametro, ValidadorParametro> getParametros() {
+		return parametros;
+	}
+	/**
+	 * @param parametros the parametros to set
+	 */
+	public void setParametros(Map<Parametro, ValidadorParametro> parametros) {
+		this.parametros = parametros;
+	}
+	
+	/**
+	 * @return the parametros
+	 */
+	public Set<Parametro> getParametrosParaAccion() {
+		return parametros.keySet();
+	}
+
+	/**
+	 * @return the nombreAcciones
+	 */
+	public List<String> getNombreAcciones() {
+		return nombreAcciones;
+	}
+
+	/**
+	 * @param nombreAcciones the nombreAcciones to set
+	 */
+	public void setAcciones(List<String> acciones) {
+		this.nombreAcciones = acciones;
+	}
+
 }

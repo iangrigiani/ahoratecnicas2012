@@ -23,7 +23,13 @@ public class CadenaFactory {
 				CadenaFactory.agregarEslabon(eslabonActual, inicioCadena);
 			}
 		}
-		CadenaFactory.agregarEslabon(new EslabonFinal(), inicioCadena);
+		if (reglas == null || reglas.isEmpty()) {
+			inicioCadena = new EslabonFinal();
+			inicioCadena.setMediador(mediador);
+		} else {
+			CadenaFactory.agregarEslabon(new EslabonFinal(), inicioCadena);
+		}
+		
 		return inicioCadena;
 	}
 	

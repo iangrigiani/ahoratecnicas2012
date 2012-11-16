@@ -28,15 +28,21 @@ public class RepositorioTickets implements Repositorio<Mensaje> {
 	@SuppressWarnings("unchecked")
 	private List<Mensaje> tickets = new XmlArrayList(strategyTickets);
 
+	/**
+	 * @see ar.com.fi.uba.tecnicas.persistencia.Repositorio#obtener(java.lang.String)
+	 */
 	@Override
 	public Mensaje obtener(String nombre) {
-		Mensaje elementoMateria = obtenerTickets(tickets, nombre);
-		if (elementoMateria != null) {
-			return elementoMateria;
+		List<Mensaje> mensajes = obtenerTickets(tickets, nombre);
+		if (mensajes != null && !mensajes.isEmpty()) {
+			return mensajes.get(0);
 		}
-		return elementoMateria;
+		return null;
 	}
 	
+	/**
+	 * @see ar.com.fi.uba.tecnicas.persistencia.Repositorio#agregar(java.lang.Object)
+	 */
 	@Override
 	public void agregar(Mensaje ticket) throws ValidacionExcepcion {
 		if (tickets.size() > 0) {
@@ -45,11 +51,17 @@ public class RepositorioTickets implements Repositorio<Mensaje> {
 		tickets.add((Mensaje)ticket);
 	}
 	
+	/**
+	 * @see ar.com.fi.uba.tecnicas.persistencia.Repositorio#vaciar()
+	 */
 	@Override
 	public void vaciar() {
 		tickets.clear();
 	}
 
+	/**
+	 * @see ar.com.fi.uba.tecnicas.persistencia.Repositorio#quitar(java.lang.String)
+	 */
 	@Override
 	public void quitar(String nombre) {
 		
@@ -67,19 +79,31 @@ public class RepositorioTickets implements Repositorio<Mensaje> {
 		tickets.remove(c);
 	}
 	
-	private Mensaje obtenerTickets(List<? extends Mensaje> tickets, String codigo) {
+	private List<Mensaje> obtenerTickets(List<? extends Mensaje> tickets, String codigo) {
+		List<Mensaje> mensajes = new ArrayList<Mensaje>();
 		if (tickets != null && !tickets.isEmpty()) {
 			for (Mensaje ticket : tickets) {
 				if (ticket.getAsunto().equals(codigo)) {
-					return ticket;
+					mensajes.add(ticket);
 				}
 			}			
 		}
-		return null;
+		return mensajes;
 	}
 
+	/**
+	 * @see ar.com.fi.uba.tecnicas.persistencia.Repositorio#obtenerTodos()
+	 */
 	@Override
 	public List<Mensaje> obtenerTodos() {
 		return new ArrayList<Mensaje>(tickets);
+	}
+
+	/**
+	 * @see ar.com.fi.uba.tecnicas.persistencia.Repositorio#obtenerTodos(java.lang.String)
+	 */
+	@Override
+	public List<Mensaje> obtenerTodos(String codigo) {
+		return obtenerTickets(tickets, codigo);
 	}
 }
