@@ -13,6 +13,8 @@ import java.util.Set;
 import ar.com.fi.uba.tecnicas.controlador.BuscadorClases;
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
 import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
+import java.util.LinkedList;
+import java.util.regex.Pattern;
 
 /**
  * La regla
@@ -37,19 +39,30 @@ public class Regla {
 	/**
 	 * Parsea los parametros del mensaje, los valida y ejecuta las acciones que la regla tiene configurada
 	 * para dicho mensaje.
-	 * @param mesg El mensaje a procesar.
+	 * @param mensaje El mensaje a procesar.
 	 */
-	public void procesar(Mensaje mesg) {
-	    System.out.println("Valido la regla " + getNombre() + " con asunto: " + mesg.getAsunto());
+	public String procesar(Mensaje mensaje) {
+	    String error = "";
+            System.out.println("Valido la regla " + getNombre() + " con asunto: " + mensaje.getAsunto());
 	    
-	    parsearParametros();
+	    error = parsearParametros(mensaje);
+            if (!error.isEmpty())
+                return error;
 	    
-		validarParametros();
+            error = validarParametros();
+            if (!error.isEmpty())
+                return error;
 
-		List<Accion> accionesDeReglas = BuscadorClases.getAcciones(nombreAcciones);
+            List<Accion> accionesDeReglas = BuscadorClases.getAcciones(nombreAcciones);
 	    for (Accion accion : accionesDeReglas) {
-	    	accion.ejecutar(mesg, getParametrosParaAccion());
+	    	error = accion.puedeEjecutar(mensaje, getParametrosParaAccion());
+                if (!error.isEmpty())
+                    return error;
 	    }
+            for (Accion accion : accionesDeReglas) {
+	    	accion.ejecutar(mensaje, getParametrosParaAccion());
+	    }
+            return error;
 	}
 	  
 	/**
@@ -126,20 +139,27 @@ public class Regla {
 		return mensaje.getAsunto().contains('['+asunto+']');
 	}
 
-	private void parsearParametros() {
-        //TODO: mesg.getAsunto() hay que hacer una expresion regular luego de [asunto] y tomar todos los parametros divididos por '-'
-		for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
-			//le hardcodeo un valor hasta que hagamos el parser de los parametros
-			parParametroValidador.getKey().setValor("83350");
+	private String parsearParametros(Mensaje mensaje) {
+
+                String[] valoresParametros = obtenerParametrosDelAsunto(mensaje.getAsunto());
+                if(valoresParametros.length != parametros.size())
+                    return "Cantidad de parametros incorrecto.";
+                int i = 0;
+                for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
+			parParametroValidador.getKey().setValor(valoresParametros[i]);
+                        i++;
 		}
+                return "";
 	}
 	
-	private boolean validarParametros() {
-		Boolean ret = Boolean.TRUE;
+	private String validarParametros() {
+		String error = "";
 		for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
-			parParametroValidador.getValue().validar(parParametroValidador.getKey());
+			/*error = */parParametroValidador.getValue().validar(parParametroValidador.getKey());
+                        if(!error.isEmpty())
+                            return error;
 		}
-		return ret;
+		return error;
 	}	
 	
 	/**
@@ -199,5 +219,15 @@ public class Regla {
 	public void setAcciones(List<String> acciones) {
 		this.nombreAcciones = acciones;
 	}
+
+        String[] obtenerParametrosDelAsunto(String asuntoMensaje) {
+            String formatoAsunto = '['+asunto+']';
+            String listaDeparametros = asuntoMensaje.substring(asuntoMensaje.lastIndexOf(formatoAsunto)+formatoAsunto.length());
+            String[] valoresParametros = Pattern.compile("\\s*-\\s*").split(listaDeparametros);
+            while(valoresParametros[0].startsWith(" ")){
+                valoresParametros[0].substring(1);
+            }
+            return valoresParametros;
+        }
 
 }

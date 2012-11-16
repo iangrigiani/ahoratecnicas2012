@@ -14,6 +14,8 @@ import ar.com.fi.uba.tecnicas.modelo.entidades.Parametro;
  */
 public interface Accion {
 	
-	void ejecutar(Mensaje mensaje, Set<Parametro> parametros);
+    void ejecutar(Mensaje mensaje, Set<Parametro> parametros);
+
+    public String puedeEjecutar(Mensaje mesg, Set<Parametro> parametrosParaAccion);
 	
 }
