@@ -16,6 +16,6 @@ public interface Accion {
 	
     void ejecutar(Mensaje mensaje, Set<Parametro> parametros);
 
-    public String puedeEjecutar(Mensaje mesg, Set<Parametro> parametrosParaAccion);
+    String puedeEjecutar(Mensaje mesg, Set<Parametro> parametrosParaAccion);
 	
 }

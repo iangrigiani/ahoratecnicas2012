@@ -22,4 +22,10 @@ public class EnviarMail implements Accion {
 		System.out.println("Envio un mail!");
 	}
 
+	@Override
+	public String puedeEjecutar(Mensaje mesg, Set<Parametro> parametrosParaAccion) {
+		System.out.println("Envio un mail!");
+		return "";
+	}
+
 }
