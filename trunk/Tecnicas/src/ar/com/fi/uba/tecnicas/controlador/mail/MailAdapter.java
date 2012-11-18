@@ -12,6 +12,7 @@ import javax.mail.Multipart;
 import javax.mail.Part;
 
 import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
+import ar.com.fi.uba.tecnicas.modelo.excepciones.MailException;
 
 /**
  * Convierte un mail en un mensaje
@@ -19,14 +20,12 @@ import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
  */
 public class MailAdapter {
 
-	@SuppressWarnings("unused")
 	private Message mensajesMail;
 	
 	/**
 	 * Constructor
 	 */
 	public MailAdapter(){
-		
 	}
 	
 	/**
@@ -54,66 +53,60 @@ public class MailAdapter {
 			nuevoMensaje.agregarPara(arregloDeDirrecciones[i].toString());
 		}
 		
-		
 		analizaParteDeMensaje(this.mensajesMail,nuevoMensaje);
 		//REALIZO LA ADAPTACION DEL MENSAJE
 		
 		return nuevoMensaje;
 	}
 	
-	private void salvaUnFichero(Part unaParte,Mensaje myMensaje)
-			throws FileNotFoundException, MessagingException, IOException{
+	private void salvaUnFichero(Part unaParte,Mensaje myMensaje) throws MailException {
 			   
-		       FileOutputStream fichero = new FileOutputStream(
-		               "./" + unaParte.getFileName());
-		       
-		       //TODO VER EL TEMA DE CAMBIAR LA UBICACION DEL PATH
-		       myMensaje.agregarPathAdjunto("./" + unaParte.getFileName());
-		       
-		       InputStream imagen = unaParte.getInputStream();
-		       byte[] bytes = new byte[1000];
-		       int leidos = 0;
-
-		       while ((leidos = imagen.read(bytes)) > 0){
-		           fichero.write(bytes, 0, leidos);
-		       }
-		   }
+	    FileOutputStream fichero;
+		try {
+			fichero = new FileOutputStream("./" + unaParte.getFileName());
+			//TODO VER EL TEMA DE CAMBIAR LA UBICACION DEL PATH
+			myMensaje.agregarPathAdjunto("./" + unaParte.getFileName());
+			   
+			InputStream imagen = unaParte.getInputStream();
+			byte[] bytes = new byte[1000];
+			int leidos = 0;
+			
+			while ((leidos = imagen.read(bytes)) > 0){
+				fichero.write(bytes, 0, leidos);
+			}
+		} catch (FileNotFoundException e) {
+			throw new MailException("Archivo no encontrado", e);
+		} catch (MessagingException e) {
+			throw new MailException("Archivo no encontrado", e);
+		} catch (IOException e) {
+			throw new MailException("Error al escribir", e);
+		}
+	}
+	
 	private void analizaParteDeMensaje(Part unaParte,Mensaje myMensaje){
-	       try
-	       {
-	         // Si es multipart, se analiza cada una de sus partes recursivamente.
-	           if (unaParte.isMimeType("multipart/*"))
-	           {
-	        	   Multipart multi;
-	               multi = (Multipart) unaParte.getContent();
-
-	               for (int j = 0; j < multi.getCount(); j++)
-	               {
-	                   analizaParteDeMensaje(multi.getBodyPart(j),myMensaje);
-	               }
-	           }
-	           else
-	           {
-	             // Si es texto, se escribe el texto.
-	               if (unaParte.isMimeType("text/*"))
-	               {
-	                   myMensaje.agregarTextoPlano((String)unaParte.getContent());
-	               }
-	               else
-	               {
-	                 // SI NO ES UN ARCHIVO
-	                  
-	                   salvaUnFichero(unaParte, myMensaje);
-	                       
-	                   
-	               }
-	           }
-	       }
-	       catch (Exception e)
-	       {
-	           e.printStackTrace();
-	       }
-	   }
+	   try {
+	     // Si es multipart, se analiza cada una de sus partes recursivamente.
+		   if (unaParte.isMimeType("multipart/*")) {
+			   Multipart multi;
+		       multi = (Multipart) unaParte.getContent();
+		
+		       for (int j = 0; j < multi.getCount(); j++) {
+		           analizaParteDeMensaje(multi.getBodyPart(j),myMensaje);
+		       }
+		       
+		   } else {
+			   // Si es texto, se escribe el texto.
+			   if (unaParte.isMimeType("text/*"))  {
+			       myMensaje.agregarTextoPlano((String)unaParte.getContent());
+			   } else {
+				   salvaUnFichero(unaParte, myMensaje);
+			   }
+		   }
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+	}
+	
 	/**
 	 * @param mensajesMail the mensajesMail to set
 	 */

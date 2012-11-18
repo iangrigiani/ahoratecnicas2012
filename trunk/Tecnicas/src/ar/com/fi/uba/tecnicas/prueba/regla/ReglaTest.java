@@ -2,9 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ar.com.fi.uba.tecnicas.modelo.entidades;
+package ar.com.fi.uba.tecnicas.prueba.regla;
 
 import org.junit.Test;
+
+import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
 import static org.junit.Assert.*;
 
 /**

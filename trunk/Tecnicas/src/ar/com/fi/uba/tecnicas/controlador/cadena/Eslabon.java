@@ -1,13 +1,7 @@
 package ar.com.fi.uba.tecnicas.controlador.cadena;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
-
-import ar.com.fi.uba.tecnicas.controlador.comun.Constantes;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
-import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
 
 
 /**

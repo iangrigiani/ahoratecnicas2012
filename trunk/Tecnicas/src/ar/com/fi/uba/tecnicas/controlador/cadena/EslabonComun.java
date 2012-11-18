@@ -1,9 +1,6 @@
 package ar.com.fi.uba.tecnicas.controlador.cadena;
 
-import java.util.List;
-
 import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
-import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
 
 /**
  * Es el ultimo eslabon de la cadena

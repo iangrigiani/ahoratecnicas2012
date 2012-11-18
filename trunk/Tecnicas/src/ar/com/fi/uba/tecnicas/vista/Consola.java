@@ -104,7 +104,7 @@ public class Consola extends Thread implements InterfazUsuario {
 	/**
 	 * Lee desde la entrada estandar y ejecuta el metodo correspondiente.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public final void leer() {
 		
 		BufferedReader br = new BufferedReader(

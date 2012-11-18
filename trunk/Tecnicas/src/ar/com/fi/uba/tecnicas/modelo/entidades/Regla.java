@@ -9,12 +9,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import ar.com.fi.uba.tecnicas.controlador.BuscadorClases;
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
 import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
-import java.util.LinkedList;
-import java.util.regex.Pattern;
 
 /**
  * La regla
@@ -43,26 +42,27 @@ public class Regla {
 	 */
 	public String procesar(Mensaje mensaje) {
 	    String error = "";
-            System.out.println("Valido la regla " + getNombre() + " con asunto: " + mensaje.getAsunto());
+        System.out.println("Valido la regla " + getNombre() + " con asunto: " + mensaje.getAsunto());
 	    
 	    error = parsearParametros(mensaje);
-            if (!error.isEmpty())
-                return error;
-	    
-            error = validarParametros();
-            if (!error.isEmpty())
-                return error;
-
-            List<Accion> accionesDeReglas = BuscadorClases.getAcciones(nombreAcciones);
+        if (!error.isEmpty()) {
+            return error;
+        }
+        error = validarParametros();
+        if (!error.isEmpty()) {
+            return error;
+        }
+        List<Accion> accionesDeReglas = BuscadorClases.getAcciones(nombreAcciones);
 	    for (Accion accion : accionesDeReglas) {
 	    	error = accion.puedeEjecutar(mensaje, getParametrosParaAccion());
-                if (!error.isEmpty())
-                    return error;
+            if (!error.isEmpty()) {
+                return error;
+            }
 	    }
-            for (Accion accion : accionesDeReglas) {
+        for (Accion accion : accionesDeReglas) {
 	    	accion.ejecutar(mensaje, getParametrosParaAccion());
 	    }
-            return error;
+        return error;
 	}
 	  
 	/**
@@ -140,27 +140,42 @@ public class Regla {
 	}
 
 	private String parsearParametros(Mensaje mensaje) {
-
-                String[] valoresParametros = obtenerParametrosDelAsunto(mensaje.getAsunto());
-                if(valoresParametros.length != parametros.size())
-                    return "Cantidad de parametros incorrecto.";
-                int i = 0;
-                for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
-			parParametroValidador.getKey().setValor(valoresParametros[i]);
-                        i++;
+        String[] valoresParametros = obtenerParametrosDelAsunto(mensaje.getAsunto());
+        if(valoresParametros.length != parametros.size())
+            return "Cantidad de parametros incorrecto.";
+        int i = 0;
+        for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
+        	parParametroValidador.getKey().setValor(valoresParametros[i]);
+            i++;
 		}
-                return "";
+        return "";
 	}
 	
 	private String validarParametros() {
 		String error = "";
 		for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
 			/*error = */parParametroValidador.getValue().validar(parParametroValidador.getKey());
-                        if(!error.isEmpty())
-                            return error;
+            if (!error.isEmpty()) {
+                return error;
+            }
 		}
 		return error;
-	}	
+	}
+	
+	/**
+	 * Es publico solo para los test
+	 * @param asuntoMensaje
+	 * @return
+	 */
+	public String[] obtenerParametrosDelAsunto(String asuntoMensaje) {
+        String formatoAsunto = '[' + asunto + ']';
+        String listaDeparametros = asuntoMensaje.substring(asuntoMensaje.lastIndexOf(formatoAsunto)+formatoAsunto.length());
+        String[] valoresParametros = Pattern.compile("\\s*-\\s*").split(listaDeparametros);
+        for (String parametro : valoresParametros) {
+        	parametro = parametro.trim();
+		}
+        return valoresParametros;
+    }
 	
 	/**
 	 * @return the nombre
@@ -219,15 +234,5 @@ public class Regla {
 	public void setAcciones(List<String> acciones) {
 		this.nombreAcciones = acciones;
 	}
-
-        String[] obtenerParametrosDelAsunto(String asuntoMensaje) {
-            String formatoAsunto = '['+asunto+']';
-            String listaDeparametros = asuntoMensaje.substring(asuntoMensaje.lastIndexOf(formatoAsunto)+formatoAsunto.length());
-            String[] valoresParametros = Pattern.compile("\\s*-\\s*").split(listaDeparametros);
-            while(valoresParametros[0].startsWith(" ")){
-                valoresParametros[0].substring(1);
-            }
-            return valoresParametros;
-        }
 
 }
