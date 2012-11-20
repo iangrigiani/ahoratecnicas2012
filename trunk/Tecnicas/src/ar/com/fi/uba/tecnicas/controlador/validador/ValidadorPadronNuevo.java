@@ -25,12 +25,17 @@ public class ValidadorPadronNuevo implements ValidadorParametro {
 	@Override
 	public boolean validar(Parametro parametro) {
 		try{
-			if (Integer.parseInt(parametro.getValor())>0) {
-				return true;
+			int padron = Integer.parseInt(parametro.getValor());
+			if (padron<=0) {
+				return false;
 			}
-			return false;
+			// TODO checkear que sea un padron que no esta en la base de datos de este cuatrimestre stub
+			return true;
+			
+			
 		} catch (NumberFormatException e) {
 			return false;
 		}
 	}
+
 }

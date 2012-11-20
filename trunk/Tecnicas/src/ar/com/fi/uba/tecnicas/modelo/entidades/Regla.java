@@ -32,7 +32,7 @@ public class Regla {
 	 * @param mensaje Mensaje a procesar
 	 * @return True si valida y false sino.
 	 */
-	public Boolean validar(Mensaje mensaje) {
+	public Boolean cumple(Mensaje mensaje) {
 		return validarAsunto(mensaje);
 	}
 
@@ -41,31 +41,38 @@ public class Regla {
 	 * para dicho mensaje.
 	 * @param mensaje El mensaje a procesar.
 	 */
-	public String procesar(Mensaje mensaje) {
+	public void procesar(Mensaje mensaje) {
 	    String error = "";
         System.out.println("Valido la regla " + getNombre() + " con asunto: " + mensaje.getAsunto());
 	    
 	    error = parsearParametros(mensaje);
         if (!error.isEmpty()) {
-            return error;
+            enviarMensajeDeError(mensaje,error);
+            return;
         }
         error = validarParametros();
         if (!error.isEmpty()) {
-            return error;
+            enviarMensajeDeError(mensaje,error);
+            return;
         }
         List<Accion> accionesDeReglas = BuscadorClases.getAcciones(nombreAcciones);
 	    for (Accion accion : accionesDeReglas) {
 	    	error = accion.puedeEjecutar(mensaje, getParametrosParaAccion());
             if (!error.isEmpty()) {
-                return error;
+                enviarMensajeDeError(mensaje,error);
+                return;
             }
 	    }
         for (Accion accion : accionesDeReglas) {
 	    	accion.ejecutar(mensaje, getParametrosParaAccion());
 	    }
-        return error;
 	}
 	  
+	private void enviarMensajeDeError(Mensaje mensaje, String error) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * Agrego un parametro pero primero valido que no se repita
 	 * @param parametro Parametro a agregar
@@ -154,14 +161,15 @@ public class Regla {
 	}
 	
 	private String validarParametros() {
-		String error = "";
+		boolean error;
 		for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
-			/*error = */parParametroValidador.getValue().validar(parParametroValidador.getKey());
-            if (!error.isEmpty()) {
-                return error;
+			Parametro parametroAValidar = parParametroValidador.getKey();
+			error = parParametroValidador.getValue().validar(parametroAValidar);
+            if (error) {
+                return "Parametro" + parametroAValidar.getNombre() + " incorrecto: " +parametroAValidar.getNombre() ;
             }
 		}
-		return error;
+		return "";
 	}
 	
 	/**
