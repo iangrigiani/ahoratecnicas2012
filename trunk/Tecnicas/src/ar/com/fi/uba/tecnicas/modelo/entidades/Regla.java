@@ -12,6 +12,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import ar.com.fi.uba.tecnicas.controlador.BuscadorClases;
+import ar.com.fi.uba.tecnicas.controlador.comun.Constantes;
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
 import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
 
@@ -141,8 +142,9 @@ public class Regla {
 
 	private String parsearParametros(Mensaje mensaje) {
         String[] valoresParametros = obtenerParametrosDelAsunto(mensaje.getAsunto());
-        if(valoresParametros.length != parametros.size())
-            return "Cantidad de parametros incorrecto.";
+        if (valoresParametros.length != parametros.size()) {
+            return Constantes.CANTIDAD_DE_PARAMETROS_INCORRECTO;
+        }
         int i = 0;
         for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
         	parParametroValidador.getKey().setValor(valoresParametros[i]);
@@ -169,7 +171,7 @@ public class Regla {
 	 */
 	public String[] obtenerParametrosDelAsunto(String asuntoMensaje) {
         String formatoAsunto = '[' + asunto + ']';
-        String listaDeparametros = asuntoMensaje.substring(asuntoMensaje.lastIndexOf(formatoAsunto)+formatoAsunto.length());
+        String listaDeparametros = asuntoMensaje.substring(asuntoMensaje.lastIndexOf(formatoAsunto) + formatoAsunto.length());
         String[] valoresParametros = Pattern.compile("\\s*-\\s*").split(listaDeparametros);
         for (String parametro : valoresParametros) {
         	parametro = parametro.trim();
