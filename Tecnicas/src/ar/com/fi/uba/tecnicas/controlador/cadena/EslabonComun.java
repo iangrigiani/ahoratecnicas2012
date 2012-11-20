@@ -19,7 +19,7 @@ public class EslabonComun extends Eslabon {
 	 */
 	@Override
 	public void sendToEslabon(Mensaje mesg) throws Exception {
-		if (getRegla().validar(mesg)) {
+		if (getRegla().cumple(mesg)) {
 			getRegla().procesar(mesg);
 		} else {
 			getEslabon().sendToEslabon(mesg);

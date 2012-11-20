@@ -24,7 +24,7 @@ public class EnviarMail implements Accion {
 
 	@Override
 	public String puedeEjecutar(Mensaje mesg, Set<Parametro> parametrosParaAccion) {
-		System.out.println("Envio un mail!");
+		System.out.println("Chequeo Envio un mail!");
 		return "";
 	}
 
