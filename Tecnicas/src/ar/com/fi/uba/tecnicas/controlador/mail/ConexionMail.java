@@ -9,6 +9,8 @@ import javax.mail.MessagingException;
 import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
 import javax.mail.Store;
+import javax.mail.Transport;
+import javax.mail.internet.MimeMessage;
 
 import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.MailException;
@@ -21,21 +23,23 @@ import ar.com.fi.uba.tecnicas.modelo.excepciones.MailException;
 public class ConexionMail {
 	
 	private Folder carpeta;
-	private List<String> bandejas = new ArrayList<String>();
-
+	private List<String> bandejas;
+	
+	
 	public ConexionMail(){
+		bandejas = new ArrayList<String>();
 		bandejas.add("INBOX");
 		//carpeta = store.getFolder("INBOX"); //POR AHORA SOLO LEEMOS DE INBOX
 	}
 	
 	public void establecerConexionRecepcion(DatosConexion propiedades) throws MailException {
 		
-		Session sesion = Session.getInstance(propiedades.getDatosPop3());
+		Session sesionPop3 = Session.getInstance(propiedades.getDatosPop3());
 		
 		Store store;
 		try {
 			//POR AHORA SOLO SOPORTAMOS POP3
-			store = sesion.getStore("pop3");
+			store = sesionPop3.getStore("pop3");
 			store.connect(propiedades.getPopNameServer(), propiedades.getMailUser(), propiedades.getMailPass());
 			carpeta = store.getFolder("INBOX");
 			carpeta.open(Folder.READ_ONLY);
@@ -45,8 +49,9 @@ public class ConexionMail {
 		catch (MessagingException e) {
 			throw new MailException("No se pudo conectar a la cuenta, revise usuario o contraseña.", e);
 		}
-				
+				//TODO CERRAR CONEXIONES?
 	}
+
 	
 	/**
 	 * Obtiene una lista de mensajes
@@ -80,9 +85,24 @@ public class ConexionMail {
 			// TODO DONDE SE TOMA LA EXCEPCION
 			
 			
-		}
-		
+		}	
+
 		//DEVUELVO LA LISTA DE MENSAJES
 		return mensajes;
 	}
+	
+	
+	public void establecerConexionEnvio(DatosConexion propiedades,MimeMessage mensajeAEnviar) throws MessagingException{
+		
+		 Session sessionSmtp = Session.getDefaultInstance(propiedades.getDatosSmtp(), null);
+		 
+         Transport t = sessionSmtp.getTransport("smtp");
+         t.connect("chuidiang@gmail.com", "la clave");
+         t.sendMessage(mensajeAEnviar, mensajeAEnviar.getAllRecipients());
+         
+      // Cierre.
+         t.close();
+		 
+	}
+	
 }
