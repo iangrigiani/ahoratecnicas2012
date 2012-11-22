@@ -4,13 +4,13 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.thoughtworks.xstream.persistence.FilePersistenceStrategy;
-import com.thoughtworks.xstream.persistence.PersistenceStrategy;
-import com.thoughtworks.xstream.persistence.XmlArrayList;
-
 import ar.com.fi.uba.tecnicas.Configuracion;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Materia;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
+
+import com.thoughtworks.xstream.persistence.FilePersistenceStrategy;
+import com.thoughtworks.xstream.persistence.PersistenceStrategy;
+import com.thoughtworks.xstream.persistence.XmlArrayList;
 
 public class RepositorioMateria implements Repositorio<Materia> {
 

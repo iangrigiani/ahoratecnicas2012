@@ -4,10 +4,11 @@
  */
 package ar.com.fi.uba.tecnicas.prueba.regla;
 
+import static org.junit.Assert.assertArrayEquals;
+
 import org.junit.Test;
 
 import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
-import static org.junit.Assert.*;
 
 /**
  *
