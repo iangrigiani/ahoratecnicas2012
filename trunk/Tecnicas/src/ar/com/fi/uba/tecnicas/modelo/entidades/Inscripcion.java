@@ -16,6 +16,16 @@ public class Inscripcion {
 	private Date fechaInscripcion;
 	private Boolean primerCuatrimestre;
 	
+	public Inscripcion() {
+		
+	}
+	public Inscripcion(String padron, String codigo, Date date) {
+		this.padron = padron;
+		this.codigoMateria = codigo;
+		this.fechaInscripcion = date;
+		this.primerCuatrimestre = this.pertenecePrimerCuatrimestre(fechaInscripcion);
+	}
+
 	@SuppressWarnings("deprecation")
 	public Boolean pertenecePrimerCuatrimestre(Date fecha) {
 		Date limiteSuperiorPrimerCuatri = new Date(fecha.getYear(), 6, 30);
