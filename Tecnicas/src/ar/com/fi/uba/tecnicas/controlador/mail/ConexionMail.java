@@ -92,13 +92,17 @@ public class ConexionMail {
 	}
 	
 	
-	public void establecerConexionEnvio(DatosConexion propiedades,MimeMessage mensajeAEnviar) throws MessagingException{
+	public void establecerConexionEnvio(DatosConexion propiedades,Mensaje AEnviar) throws MessagingException{
 		
 		 Session sessionSmtp = Session.getDefaultInstance(propiedades.getDatosSmtp(), null);
 		 
+		 MensajeAdapter convertirMensajeAMime = new MensajeAdapter(AEnviar);
+		 
+		 MimeMessage MimeAEnviar=convertirMensajeAMime.adaptarMensaje(sessionSmtp);
+		 
          Transport t = sessionSmtp.getTransport("smtp");
-         t.connect("chuidiang@gmail.com", "la clave");
-         t.sendMessage(mensajeAEnviar, mensajeAEnviar.getAllRecipients());
+         t.connect(propiedades.getMailUser(), propiedades.getMailPass());
+         t.sendMessage(MimeAEnviar, MimeAEnviar.getAllRecipients());
          
       // Cierre.
          t.close();
