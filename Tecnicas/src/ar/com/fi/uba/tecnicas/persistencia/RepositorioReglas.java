@@ -16,6 +16,8 @@ public class RepositorioReglas implements Repositorio<Regla> {
 
 	private static final String DIRECTORIO_REGLAS = "/reglas";
 
+	private static RepositorioReglas INSTANCE = null;
+	
 	static {
 		File file = new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + DIRECTORIO_REGLAS); 
 		if (!file.exists()) {
@@ -87,5 +89,16 @@ public class RepositorioReglas implements Repositorio<Regla> {
 	@Override
 	public List<Regla> obtenerTodos(String nombre) {
 		return obtenerRegla(reglas, nombre);
+	}
+
+	public static Repositorio<Regla> getInstance() {
+		if (INSTANCE == null) {
+			INSTANCE = new RepositorioReglas();
+		}
+		return INSTANCE;
+	}
+	
+	private RepositorioReglas() {
+		
 	}
 }

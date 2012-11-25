@@ -16,6 +16,8 @@ public class RepositorioMateria implements Repositorio<Materia> {
 
 	private static final String CARPETA_MATERIA = "/materia";
 
+	private static RepositorioMateria INSTANCE = null;
+	
 	static {
 		File file = new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + CARPETA_MATERIA); 
 		if (!file.exists()) {
@@ -28,6 +30,10 @@ public class RepositorioMateria implements Repositorio<Materia> {
 	@SuppressWarnings("unchecked")
 	private List<Materia> materias = new XmlArrayList(strategyMaterias);
 
+	private RepositorioMateria() {
+		
+	}
+	
 	@Override
 	public Materia obtener(String nombre) {
 		List<Materia> elementoMateria = obtenerMateria(materias, nombre);
@@ -88,4 +94,12 @@ public class RepositorioMateria implements Repositorio<Materia> {
 	public List<Materia> obtenerTodos(String clave) {
 		return obtenerMateria(materias, clave);
 	}
+
+	public static Repositorio<Materia> getInstance() {
+		if (INSTANCE == null) {
+			INSTANCE = new RepositorioMateria();
+		}
+		return INSTANCE;
+	}
+	
 }

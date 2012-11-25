@@ -34,9 +34,9 @@ public class Mediador {
 	private List<String> nombreAcciones;
 
 	public Mediador() {
-		this.repositorioRegla = new RepositorioReglas();
-		this.repositorioMateria = new RepositorioMateria();
-		this.repositorioTickets = new RepositorioTickets();
+		this.repositorioRegla = RepositorioReglas.getInstance();
+		this.repositorioMateria = RepositorioMateria.getInstance();
+		this.repositorioTickets = RepositorioTickets.getInstance();
 		List<Regla> todasLasReglas = repositorioRegla.obtenerTodos();
 		if (todasLasReglas == null || todasLasReglas.isEmpty()) {
 			System.out.println("Warning: No se encontraron reglas definidas por el usuario.");

@@ -23,6 +23,8 @@ public class RepositorioAlumno implements Repositorio<Alumno> {
 
 	private static final String CARPETA_ALUMNO = "/alumno";
 
+	private static RepositorioAlumno INSTANCE = null;
+
 	static {
 		File file = new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + CARPETA_ALUMNO); 
 		if (!file.exists()) {
@@ -86,6 +88,17 @@ public class RepositorioAlumno implements Repositorio<Alumno> {
 		return materiasByCodigo;
 	}
 
+	public static Repositorio<Alumno> getInstance() {
+		if (INSTANCE == null) {
+			INSTANCE = new RepositorioAlumno();
+		}
+		return INSTANCE;
+	}
+	
+	private RepositorioAlumno() {
+		
+	}
+	
 	@Override
 	public List<Alumno> obtenerTodos() {
 		return new ArrayList<Alumno>(alumnos);

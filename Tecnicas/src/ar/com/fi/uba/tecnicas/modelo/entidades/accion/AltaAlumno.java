@@ -25,7 +25,7 @@ public class AltaAlumno implements Accion {
 	@Override
 	public String ejecutar(Mensaje mensaje, Set<Parametro> parametros) {
 		System.out.println("Se va a crear un nuevo usuario!");
-		Repositorio<Alumno> repositorioAlumno = new RepositorioAlumno();
+		Repositorio<Alumno> repositorioAlumno = RepositorioAlumno.getInstance();
 		Alumno alumno = new Alumno();
 		alumno.setMail(mensaje.getDe());
 		for (Parametro parametro : parametros) {
@@ -48,7 +48,7 @@ public class AltaAlumno implements Accion {
 
 	@Override
 	public String puedeEjecutar(Mensaje mesg, Set<Parametro> parametrosParaAccion) {
-		Repositorio<Alumno> repositorioAlumno = new RepositorioAlumno();
+		Repositorio<Alumno> repositorioAlumno = RepositorioAlumno.getInstance();
 		String padron = "";
 		for (Parametro parametro : parametrosParaAccion) {
 			if (parametro.getNombre().equalsIgnoreCase("PADRON")) {

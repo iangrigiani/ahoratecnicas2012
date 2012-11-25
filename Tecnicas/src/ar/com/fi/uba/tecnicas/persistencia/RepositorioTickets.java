@@ -16,6 +16,8 @@ public class RepositorioTickets implements Repositorio<Mensaje> {
 
 	private static final String CARPETA_TICKETS = "/tickets";
 
+	private static RepositorioTickets INSTANCE = null;
+
 	static {
 		File file = new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + CARPETA_TICKETS); 
 		if (!file.exists()) {
@@ -28,6 +30,17 @@ public class RepositorioTickets implements Repositorio<Mensaje> {
 	@SuppressWarnings("unchecked")
 	private List<Mensaje> tickets = new XmlArrayList(strategyTickets);
 
+	public static Repositorio<Mensaje> getInstance() {
+		if (INSTANCE == null) {
+			INSTANCE = new RepositorioTickets();
+		}
+		return INSTANCE;
+	}
+	
+	private RepositorioTickets() {
+		
+	}
+	
 	/**
 	 * @see ar.com.fi.uba.tecnicas.persistencia.Repositorio#obtener(java.lang.String)
 	 */

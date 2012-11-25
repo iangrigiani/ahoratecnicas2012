@@ -16,6 +16,8 @@ public class RepositorioAlumnoGrupo implements Repositorio<AlumnoGrupo> {
 
 	private static final String CARPETA_ALUMNO_GRUPO = "/alumno_grupo";
 
+	private static RepositorioAlumnoGrupo INSTANCE;
+
 	static {
 		File file = new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + CARPETA_ALUMNO_GRUPO); 
 		if (!file.exists()) {
@@ -28,6 +30,18 @@ public class RepositorioAlumnoGrupo implements Repositorio<AlumnoGrupo> {
 	@SuppressWarnings("unchecked")
 	private List<AlumnoGrupo> alumnoGrupos = new XmlArrayList(strategyAlumnoGrupo);
 
+	public static Repositorio<AlumnoGrupo> getInstance() {
+		if (INSTANCE == null) {
+			INSTANCE = new RepositorioAlumnoGrupo();
+		}
+		return INSTANCE;
+	}
+	
+	private RepositorioAlumnoGrupo() {
+		
+	}
+	
+	
 	@Override
 	public AlumnoGrupo obtener(String nombre) {
 		List<AlumnoGrupo> elementoAlumnoGrupo = obtenerAlumnoGrupoPorPadron(alumnoGrupos, nombre);

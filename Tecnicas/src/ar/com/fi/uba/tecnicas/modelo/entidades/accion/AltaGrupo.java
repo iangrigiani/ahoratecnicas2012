@@ -48,10 +48,10 @@ public class AltaGrupo implements Accion {
 		// Aca tengo que obtener el listado de padrones
 		 
 		
-		Repositorio<Inscripcion> repositorioInscripcion = new RepositorioIncripciones();
-		Repositorio<Materia> repositorioMateria = new RepositorioMateria();
-		Repositorio<Grupo> repositorioGrupo = new RepositorioGrupo();
-		Repositorio<AlumnoGrupo> repositorioAlumnoGrupo = new RepositorioAlumnoGrupo();
+		Repositorio<Inscripcion> repositorioInscripcion = RepositorioIncripciones.getInstance();
+		Repositorio<Materia> repositorioMateria = RepositorioMateria.getInstance();
+		Repositorio<Grupo> repositorioGrupo = RepositorioGrupo.getInstance();
+		Repositorio<AlumnoGrupo> repositorioAlumnoGrupo = RepositorioAlumnoGrupo.getInstance();
 
 		
     	List<Materia> obtenerTodos = repositorioMateria.obtenerTodos();
@@ -109,7 +109,7 @@ public class AltaGrupo implements Accion {
 	}
 
 	private Boolean validarPadrones(List<String> padrones) {
-		Repositorio<Alumno> repositorioAlumno = new RepositorioAlumno();
+		Repositorio<Alumno> repositorioAlumno = RepositorioAlumno.getInstance();
 		for (String string : padrones) {
 			if (repositorioAlumno.obtener(string) == null) {
 	    		return false;
