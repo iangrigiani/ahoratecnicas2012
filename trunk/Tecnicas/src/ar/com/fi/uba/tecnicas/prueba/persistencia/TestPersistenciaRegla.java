@@ -22,7 +22,7 @@ public class TestPersistenciaRegla {
 
 		try {
 			
-			Repositorio<Regla> repo = new RepositorioReglas();
+			Repositorio<Regla> repo = RepositorioReglas.getInstance();
 			repo.vaciar();
 			
 			Regla regla = new Regla();
@@ -57,7 +57,7 @@ public class TestPersistenciaRegla {
 	
 	@Test
 	public void agregarDosReglasConElmismoNombre() throws ValidacionExcepcion {
-		Repositorio<Regla> repo = new RepositorioReglas();
+		Repositorio<Regla> repo = RepositorioReglas.getInstance();
 		repo.vaciar();
 		
 		Regla regla = new Regla();
@@ -78,7 +78,7 @@ public class TestPersistenciaRegla {
 
 	@Test
 	public void removerUnaRegla() throws ValidacionExcepcion {
-		Repositorio<Regla> repo = new RepositorioReglas();
+		Repositorio<Regla> repo = RepositorioReglas.getInstance();
 		repo.vaciar();
 		
 		Regla regla = new Regla();

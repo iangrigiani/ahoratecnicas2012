@@ -16,7 +16,7 @@ public class TestPersistenciaMateria {
 
 		try {
 			
-			Repositorio<Materia> repo = new RepositorioMateria();
+			Repositorio<Materia> repo = RepositorioMateria.getInstance();
 			repo.vaciar();
 			
 			Materia materia = new Materia();
@@ -34,7 +34,7 @@ public class TestPersistenciaMateria {
 	
 	@Test
 	public void agregarDosMateriasConElmismoCodigo() throws ValidacionExcepcion {
-		Repositorio<Materia> repo = new RepositorioMateria();
+		Repositorio<Materia> repo = RepositorioMateria.getInstance();
 		repo.vaciar();
 		
 		Materia materia = new Materia();
@@ -55,7 +55,7 @@ public class TestPersistenciaMateria {
 
 	@Test
 	public void agregarDosMaterias() throws ValidacionExcepcion {
-		Repositorio<Materia> repo = new RepositorioMateria();
+		Repositorio<Materia> repo = RepositorioMateria.getInstance();
 		repo.vaciar();
 		
 		Materia materia = new Materia();
@@ -75,7 +75,7 @@ public class TestPersistenciaMateria {
 
 	@Test
 	public void removerUnaMateria() throws ValidacionExcepcion {
-		Repositorio<Materia> repo = new RepositorioMateria();
+		Repositorio<Materia> repo = RepositorioMateria.getInstance();
 		repo.vaciar();
 		
 		Materia materia = new Materia();

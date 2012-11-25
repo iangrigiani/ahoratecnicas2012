@@ -25,7 +25,7 @@ public class InscribirAlumno implements Accion {
 	 */
 	@Override
 	public String ejecutar(Mensaje mensaje, Set<Parametro> parametros) {
-		Repositorio<Inscripcion> repositorioInscripcion = new RepositorioIncripciones();
+		Repositorio<Inscripcion> repositorioInscripcion = RepositorioIncripciones.getInstance();
 		Inscripcion inscripcion = new Inscripcion();
 		for (Parametro parametro : parametros) {
 			if (parametro.getNombre().equalsIgnoreCase("CODIGO")) {

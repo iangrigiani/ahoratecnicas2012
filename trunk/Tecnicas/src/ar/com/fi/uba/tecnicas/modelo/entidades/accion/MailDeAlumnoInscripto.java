@@ -24,7 +24,7 @@ public class MailDeAlumnoInscripto implements Accion {
 	 */
 	@Override
 	public String ejecutar(Mensaje mensaje, Set<Parametro> parametros) {
-		Repositorio<Alumno> repositorioAlumno = new RepositorioAlumno();
+		Repositorio<Alumno> repositorioAlumno = RepositorioAlumno.getInstance();
 		List<Alumno> obtenerTodos = repositorioAlumno.obtenerTodos();
 		for (Alumno alumno : obtenerTodos) {
 			if (alumno.getMail().equalsIgnoreCase(mensaje.getDe())) {

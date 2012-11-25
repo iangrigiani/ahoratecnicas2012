@@ -23,6 +23,8 @@ public class RepositorioIncripciones implements Repositorio<Inscripcion> {
 
 	private static final String CARPETA_INSCRIPCION = "/inscripcion";
 
+	private static RepositorioIncripciones INSTANCE = null;
+
 	static {
 		File file = new File(Configuracion.DIRECTORIO_PRESISTENCIA_BASE + CARPETA_INSCRIPCION); 
 		if (!file.exists()) {
@@ -35,6 +37,18 @@ public class RepositorioIncripciones implements Repositorio<Inscripcion> {
 	@SuppressWarnings("unchecked")
 	private List<Inscripcion> inscripicones = new XmlArrayList(strategyInscripcion);
 
+	public static Repositorio<Inscripcion> getInstance() {
+		if (INSTANCE == null) {
+			INSTANCE = new RepositorioIncripciones();
+		}
+		return INSTANCE;
+	}
+	
+	private RepositorioIncripciones() {
+		
+	}
+	
+	
 	@Override
 	public Inscripcion obtener(String nombre) {
 		List<Inscripcion> elementoInscripcion = obtenerInscripcion(inscripicones, nombre);

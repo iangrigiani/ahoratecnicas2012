@@ -14,7 +14,7 @@ public class PadronEnMateria implements Accion {
 
 	@Override
 	public String ejecutar(Mensaje mensaje, Set<Parametro> parametros) {
-		Repositorio<Inscripcion> repo = new RepositorioIncripciones();
+		Repositorio<Inscripcion> repo = RepositorioIncripciones.getInstance();
 		Inscripcion ins = new Inscripcion();
 		for (Parametro parametro : parametros) {
 			if (parametro.getNombre().equalsIgnoreCase("CODIGO")) {
