@@ -9,12 +9,14 @@ import ar.com.fi.uba.tecnicas.controlador.comun.Converter;
 import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMail;
 import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMailMockImpl;
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Grupo;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Materia;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
 import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
 import ar.com.fi.uba.tecnicas.persistencia.Repositorio;
+import ar.com.fi.uba.tecnicas.persistencia.RepositorioGrupo;
 import ar.com.fi.uba.tecnicas.persistencia.RepositorioMateria;
 import ar.com.fi.uba.tecnicas.persistencia.RepositorioReglas;
 import ar.com.fi.uba.tecnicas.persistencia.RepositorioTickets;
@@ -29,6 +31,7 @@ public class Mediador {
 	private Eslabon extremoCadena;
 	private Repositorio<Regla> repositorioRegla;
 	private Repositorio<Materia> repositorioMateria;
+	private Repositorio<Grupo> repositorioGrupo;
 	private Repositorio<Mensaje> repositorioTickets;
 	private ServicioMail servicioMail;
 	private List<String> nombreAcciones;
@@ -36,6 +39,7 @@ public class Mediador {
 	public Mediador() {
 		this.repositorioRegla = RepositorioReglas.getInstance();
 		this.repositorioMateria = RepositorioMateria.getInstance();
+		this.repositorioGrupo = RepositorioGrupo.getInstance();
 		this.repositorioTickets = RepositorioTickets.getInstance();
 		List<Regla> todasLasReglas = repositorioRegla.obtenerTodos();
 		if (todasLasReglas == null || todasLasReglas.isEmpty()) {
@@ -89,12 +93,21 @@ public class Mediador {
 	}
 
 	/**
-	 * 
+	 * Agrega una regla al repositorio de reglas
 	 * @param regla
 	 * @throws ValidacionExcepcion
 	 */
 	public void agregarRegla(Regla regla) throws ValidacionExcepcion {
 		repositorioRegla.agregar(regla);
+	}
+	
+	/**
+	 * Agrega un grupo al repositorio de grupos
+	 * @param grupo
+	 * @throws ValidacionExcepcion
+	 */
+	public void agregarGrupo(Grupo grupo) throws ValidacionExcepcion {
+		repositorioGrupo.agregar(grupo);
 	}
 
 	/**
@@ -180,5 +193,46 @@ public class Mediador {
 		this.nombreAcciones = nombreAcciones;
 	}
 
+	/**
+	 * @return the repositorioMateria
+	 */
+	public Repositorio<Materia> getRepositorioMateria() {
+		return repositorioMateria;
+	}
+
+	/**
+	 * @param repositorioMateria the repositorioMateria to set
+	 */
+	public void setRepositorioMateria(Repositorio<Materia> repositorioMateria) {
+		this.repositorioMateria = repositorioMateria;
+	}
+
+	/**
+	 * @return the repositorioGrupo
+	 */
+	public Repositorio<Grupo> getRepositorioGrupo() {
+		return repositorioGrupo;
+	}
+
+	/**
+	 * @param repositorioGrupo the repositorioGrupo to set
+	 */
+	public void setRepositorioGrupo(Repositorio<Grupo> repositorioGrupo) {
+		this.repositorioGrupo = repositorioGrupo;
+	}
+
+	/**
+	 * @return the servicioMail
+	 */
+	public ServicioMail getServicioMail() {
+		return servicioMail;
+	}
+
+	/**
+	 * @param servicioMail the servicioMail to set
+	 */
+	public void setServicioMail(ServicioMail servicioMail) {
+		this.servicioMail = servicioMail;
+	}
 
 }
