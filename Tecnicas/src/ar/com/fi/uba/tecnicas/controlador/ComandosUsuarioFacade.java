@@ -6,6 +6,7 @@ import java.util.List;
 
 import ar.com.fi.uba.tecnicas.controlador.cadena.Mediador;
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Grupo;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Materia;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Parametro;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
@@ -58,6 +59,26 @@ public class ComandosUsuarioFacade {
 		return "Se creo la regla.";
 	}
 
+	/**
+	 * Crea un grupo interactuando con el usuario
+	 * @param invocador
+	 * @return
+	 */
+	public String crearGrupo(InterfazUsuario invocador){
+
+		Grupo grupo = new Grupo();
+		grupo.setCodigo(invocador.obtenerDatos("Ingrese el código o número de grupo: "));
+		grupo.setNombre(invocador.obtenerDatos("Ingrese el nombre del grupo: "));
+
+		try {
+			mediador.agregarGrupo(grupo);
+		} catch (ValidacionExcepcion e) {
+			invocador.mensaje("No pudo guardarse la nueva regla, puede que ya exista. Por favor intentelo de nuevo.");
+			return "";
+		}
+		return "Se creo la regla.";
+	}
+	
 	/**
 	 * Crea la regla interactuando con el usuario
 	 * @param invocador
