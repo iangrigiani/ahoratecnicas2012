@@ -1,5 +1,6 @@
 package ar.com.fi.uba.tecnicas.modelo.entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mensaje {
@@ -10,8 +11,14 @@ public class Mensaje {
 	private String asunto;
 	//private String copia; AL PARECER NO LOS ENCONTRE EN LA CLASE 
 	//private String copiaOculta; AL PARECER NO LOS ENCONTRE EN LA CLASE
-	
 	private List<String> pathAdjunto;
+	
+	public Mensaje (){
+		
+		this.para = new ArrayList<String>();
+		this.pathAdjunto=new ArrayList<String>();
+		
+	}
 
 	/**
 	 * @return the textoPlano
@@ -38,7 +45,7 @@ public class Mensaje {
 	 * @param de the de to set
 	 */
 	public void setDe(String de) {
-		this.de = de;
+		this.de= de;
 	}
 
 	/**
@@ -116,7 +123,12 @@ public class Mensaje {
 	}
 	
 	public void agregarTextoPlano(String newTexto){
-		this.textoPlano+=newTexto;
+		if (textoPlano==null){
+			this.textoPlano=newTexto;
+		}else{
+			this.textoPlano+=newTexto;
+		}
+		
 	}
 	
 	public void agregarPara(String newPara){

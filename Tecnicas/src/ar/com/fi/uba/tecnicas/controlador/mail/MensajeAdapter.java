@@ -65,7 +65,8 @@ public class MensajeAdapter {
         while (iter.hasNext())
         {
            String aPath = (String) iter.next();
-           adjunto.setDataHandler(new DataHandler(new FileDataSource(aPath)));
+           adjunto.setDataHandler(
+                   new DataHandler(new FileDataSource(aPath)));
            adjunto.setFileName(aPath.substring(aPath.lastIndexOf('/') + 1));
            multiParte.addBodyPart(adjunto);
         }
@@ -73,7 +74,7 @@ public class MensajeAdapter {
         
         
         MimeMessage mensajesMail = new MimeMessage(sessionSmtp);
-        mensajesMail.setFrom(new InternetAddress(this.mensajesToAdapt.getDe()));
+        mensajesMail.setFrom(new InternetAddress((String)this.mensajesToAdapt.getDe()));
         mensajesMail.setSubject(this.mensajesToAdapt.getAsunto());
         
         List<String> para=mensajesToAdapt.getPara();
@@ -83,7 +84,7 @@ public class MensajeAdapter {
         
         while (iterPara.hasNext())
         {
-           String aPara = (String) iter.next();
+           String aPara = (String) iterPara.next();
            mensajesMail.addRecipient( Message.RecipientType.TO,new InternetAddress(aPara));
            
         }

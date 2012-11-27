@@ -19,12 +19,12 @@ public class DatosConexion {
 	public DatosConexion(String dirMail, String passMail, String popServer) {
 		datosConexionSmtp=null;
 		datosConexionPop3=null;
-		mailPass=dirMail;
-		mailUser=passMail;
+		mailPass=passMail;
+		mailUser=dirMail;
 		this.popNameServer=popServer;
 	}
 	
-	public void DatosConexionSmtp(String newHost, boolean tls, String numeroDePuerto, String mailUsuario, boolean passNeed){
+	public void setDatosConexionSmtp(String newHost, boolean tls, String numeroDePuerto, String mailUsuario, boolean passNeed){
 		
 		datosConexionSmtp=new Properties();
 		
@@ -39,10 +39,10 @@ public class DatosConexion {
 		return this.datosConexionSmtp;
 	}
 	
-	public void setDatosConexionPop3(boolean tls,String socketsSllNombre,String puerto){
+	public void setDatosConexionPop3(boolean tls,String puerto){
 		datosConexionPop3 = new Properties();
 		setIsTlsPop3(tls);
-		setSslPop3(socketsSllNombre);
+		setSslPop3();
 		setPuertoRecepcionCorreoPop3(puerto);
 	}
 	
@@ -103,9 +103,11 @@ public class DatosConexion {
 		
 	};
 	
-	public void setSslPop3(String socketsSllNombre){
-		
-		datosConexionPop3.setProperty("mail.pop3.starttls.enable", "true");
+	public void setSslPop3(){
+		//USA SIEMPRE ESTAS OPCIONES SEGUN VI
+			
+		datosConexionPop3.setProperty("mail.pop3.socketFactory.class","javax.net.ssl.SSLSocketFactory" );
+		datosConexionPop3.setProperty("mail.pop3.socketFactory.fallback", "false");
 	}
 	
 	public void setPuertoRecepcionCorreoPop3(String puerto){
