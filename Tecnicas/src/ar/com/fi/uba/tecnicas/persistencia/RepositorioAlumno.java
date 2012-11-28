@@ -48,9 +48,6 @@ public class RepositorioAlumno implements Repositorio<Alumno> {
 	
 	@Override
 	public void agregar(Alumno alumno) throws ValidacionExcepcion {
-		if (alumnos.size() > 0) {
-			throw new ValidacionExcepcion("Ya existe el alumno en el sistema.");
-		}
 		alumnos.add((Alumno)alumno);
 	}
 	
