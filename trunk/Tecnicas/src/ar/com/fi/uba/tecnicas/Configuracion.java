@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 
+
 public class Configuracion {
 
 	private static Properties properties = null;
@@ -32,5 +33,22 @@ public class Configuracion {
 	public static String SUBDIR_REGLAS = "/reglas";
 	
 	public static String SUBDIR_MENSAJES = "/mensajes";
+	
+	//Configuracion de mail
+	public static final Boolean MAIL_CONEXION_SMTP = properties.getProperty("configuracion.server.mail.tipo.conexion.smtp").equalsIgnoreCase("true")? Boolean.TRUE : Boolean.FALSE;
+	public static final String MAIL_USER_NAME = properties.getProperty("configuracion.server.mail.user");
+	public static final String MAIL_USER_PASS = properties.getProperty("configuracion.server.mail.pass");
+	public static final String MAIL_SERVER_NAME_POP = properties.getProperty("configuracion.server.mail.server.name.pop");
+	
+	//Configuracion de smtp
+	public static final String MAIL_SMTP_SERVER_HOST = properties.getProperty("configuracion.server.mail.smtp.host");
+	public static final String MAIL_SMTP_PUERTO = properties.getProperty("configuracion.server.mail.smtp.puerto");
+	public static final Boolean MAIL_SMTP_TLS = properties.getProperty("configuracion.server.mail.smtp.tls").equalsIgnoreCase("true")? Boolean.TRUE : Boolean.FALSE;
+	public static final Boolean MAIL_SMTP_NEED_PASS = properties.getProperty("configuracion.server.mail.smtp.need.pass").equalsIgnoreCase("true")? Boolean.TRUE : Boolean.FALSE;
+
+	//Conexion POP3
+	public static final String MAIL_POP3_PUERTO = properties.getProperty("configuracion.server.mail.pop.puerto");
+	public static final Boolean MAIL_POP3_TLS = properties.getProperty("configuracion.server.mail.pop.tls").equalsIgnoreCase("true")? Boolean.TRUE : Boolean.FALSE;
+	
 	
 }

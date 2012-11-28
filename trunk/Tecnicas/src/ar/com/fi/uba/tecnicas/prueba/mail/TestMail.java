@@ -2,20 +2,17 @@ package ar.com.fi.uba.tecnicas.prueba.mail;
 
 import static org.junit.Assert.assertEquals;
 
-
-import java.io.IOException;
-
 import java.util.Properties;
 
-import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Part;
 import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 
-
 import org.junit.Test;
-import ar.com.fi.uba.tecnicas.controlador.mail.*;
+
+import ar.com.fi.uba.tecnicas.controlador.mail.DatosConexion;
+import ar.com.fi.uba.tecnicas.controlador.mail.MensajeAdapter;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
 
 public class TestMail {

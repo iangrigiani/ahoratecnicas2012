@@ -29,7 +29,7 @@ public class DatosConexion {
 		datosConexionSmtp=new Properties();
 		
 		setHostCorreoSmtp(newHost);
-		setTlsSmtp (tls);
+		setTlsSmtp(tls);
 		setPuertoEnvioCorreoSmtp(numeroDePuerto);
 		setUserSmtp(mailUsuario);
 		setIsPasswordNesesarioSmtp(passNeed);
