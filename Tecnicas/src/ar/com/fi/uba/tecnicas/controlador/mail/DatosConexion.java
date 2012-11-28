@@ -92,7 +92,6 @@ public class DatosConexion {
 	}
 	
 	/*----SET POP3---*/
-	
 	public void setIsTlsPop3(boolean tls){
 		
 		if (tls==true){
