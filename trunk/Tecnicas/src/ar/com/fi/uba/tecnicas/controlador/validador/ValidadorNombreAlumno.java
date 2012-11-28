@@ -9,14 +9,14 @@ import ar.com.fi.uba.tecnicas.modelo.entidades.Parametro;
  * @author Jonathan
  *
  */
-public class ValidadorCodigoMateria implements ValidadorParametro {
+public class ValidadorNombreAlumno implements ValidadorParametro {
 	
 	/**
 	 * @see ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro#getDescripcion()
 	 */
 	@Override
 	public String getDescripcion() {
-		return "CODIGO_MATERIA";
+		return "NOMBRE_ALUMNO";
 	}
 	
 	/**
@@ -24,14 +24,13 @@ public class ValidadorCodigoMateria implements ValidadorParametro {
 	 */
 	@Override
 	public boolean validar(Parametro parametro) {
-		Boolean ret = Boolean.FALSE;
 		try{
-			//Agregar el existe materia con un repositorio
-			if (Integer.parseInt(parametro.getValor())>0) {
-				ret = Boolean.TRUE;
+			if (!parametro.getValor().isEmpty()) {
+				return true;
 			}
+			return false;
 		} catch (NumberFormatException e) {
+			return false;
 		}
-		return ret;
 	}
 }

@@ -165,7 +165,7 @@ public class Regla {
 		for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
 			Parametro parametroAValidar = parParametroValidador.getKey();
 			error = parParametroValidador.getValue().validar(parametroAValidar);
-            if (error) {
+            if (!error) {
                 return "Parametro" + parametroAValidar.getNombre() + " incorrecto: " +parametroAValidar.getNombre() ;
             }
 		}
@@ -181,8 +181,8 @@ public class Regla {
         String formatoAsunto = '[' + asunto + ']';
         String listaDeparametros = asuntoMensaje.substring(asuntoMensaje.lastIndexOf(formatoAsunto) + formatoAsunto.length());
         String[] valoresParametros = Pattern.compile("\\s*-\\s*").split(listaDeparametros);
-        for (String parametro : valoresParametros) {
-        	parametro = parametro.trim();
+        for (int i = 0; i < valoresParametros.length; i++) {
+        	valoresParametros[i] = valoresParametros[i].trim();
 		}
         return valoresParametros;
     }
