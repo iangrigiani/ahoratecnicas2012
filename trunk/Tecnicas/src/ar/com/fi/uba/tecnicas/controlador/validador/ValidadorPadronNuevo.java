@@ -1,6 +1,7 @@
 package ar.com.fi.uba.tecnicas.controlador.validador;
 
 import ar.com.fi.uba.tecnicas.modelo.entidades.Parametro;
+import ar.com.fi.uba.tecnicas.persistencia.RepositorioBuilder;
 
 
 /**
@@ -24,13 +25,18 @@ public class ValidadorPadronNuevo implements ValidadorParametro {
 	 */
 	@Override
 	public boolean validar(Parametro parametro) {
+		RepositorioBuilder repoB = new RepositorioBuilder();
+		Boolean ret = Boolean.TRUE;
 		try{
 			int padron = Integer.parseInt(parametro.getValor());
 			if (padron<=0) {
-				return false;
+				ret = Boolean.FALSE;
 			}
 			// TODO checkear que sea un padron que no esta en la base de datos de este cuatrimestre stub
-			return true;
+			if (repoB.getRepositorioAlumno().obtener(parametro.getValor()) != null) {
+				ret = Boolean.FALSE;
+			}
+			return ret;
 			
 			
 		} catch (NumberFormatException e) {

@@ -1,6 +1,7 @@
 package ar.com.fi.uba.tecnicas.controlador.validador;
 
 import ar.com.fi.uba.tecnicas.modelo.entidades.Parametro;
+import ar.com.fi.uba.tecnicas.persistencia.RepositorioBuilder;
 
 
 /**
@@ -25,10 +26,14 @@ public class ValidadorCodigoMateria implements ValidadorParametro {
 	@Override
 	public boolean validar(Parametro parametro) {
 		Boolean ret = Boolean.FALSE;
+		RepositorioBuilder repoB = new RepositorioBuilder();
 		try{
 			//Agregar el existe materia con un repositorio
 			if (Integer.parseInt(parametro.getValor())>0) {
 				ret = Boolean.TRUE;
+			}
+			if (repoB.getRepositorioMateria().obtener(parametro.getValor()) != null) {
+				ret = ret && Boolean.TRUE;
 			}
 		} catch (NumberFormatException e) {
 		}

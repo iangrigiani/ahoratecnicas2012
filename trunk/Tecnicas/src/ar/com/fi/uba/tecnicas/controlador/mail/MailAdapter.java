@@ -10,6 +10,7 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Part;
+import javax.mail.internet.InternetAddress;
 
 import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.MailException;
@@ -47,8 +48,8 @@ public class MailAdapter {
 		Address [] arregloDeDirrecciones = this.mensajesMail.getAllRecipients();
 		
 		nuevoMensaje.setAsunto(this.mensajesMail.getSubject());
-		nuevoMensaje.setDe(this.mensajesMail.getFrom().toString());
-		
+		nuevoMensaje.setDe(((InternetAddress) this.mensajesMail.getFrom()[0]).getAddress());
+
 		for (int i=0;i<arregloDeDirrecciones.length;i++){
 			nuevoMensaje.agregarPara(arregloDeDirrecciones[i].toString());
 		}
