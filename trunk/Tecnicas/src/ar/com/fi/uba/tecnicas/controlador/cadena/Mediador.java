@@ -7,6 +7,7 @@ import ar.com.fi.uba.tecnicas.controlador.BuscadorClases;
 import ar.com.fi.uba.tecnicas.controlador.comun.Constantes;
 import ar.com.fi.uba.tecnicas.controlador.comun.Converter;
 import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMail;
+import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMailImpl;
 import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMailMockImpl;
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Grupo;
@@ -14,6 +15,7 @@ import ar.com.fi.uba.tecnicas.modelo.entidades.Materia;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
 import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
+import ar.com.fi.uba.tecnicas.modelo.excepciones.MailException;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
 import ar.com.fi.uba.tecnicas.persistencia.Repositorio;
 import ar.com.fi.uba.tecnicas.persistencia.RepositorioGrupo;
@@ -62,9 +64,16 @@ public class Mediador {
 	 */	
 	public void generarTickets() throws ValidacionExcepcion {
 		if (servicioMail == null) {
-			servicioMail = new ServicioMailMockImpl();
+			servicioMail = new ServicioMailImpl();
 		}
-		List<Mensaje> mensajes = servicioMail.getMensajesNuevos();
+		List<Mensaje> mensajes;
+		
+		try {
+			mensajes = servicioMail.getMensajesNuevos();
+		} catch (MailException e1) {
+			throw new ValidacionExcepcion("No se pudo recuperar los mails nuevos del servidor de correo configurado", e1);
+		}
+		
 		for (Mensaje mensaje : mensajes) {
 			try {
 				extremoCadena.sendToEslabon(mensaje);

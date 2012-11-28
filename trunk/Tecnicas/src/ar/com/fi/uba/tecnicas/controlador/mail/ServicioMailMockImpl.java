@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
+import ar.com.fi.uba.tecnicas.modelo.excepciones.MailException;
 
 /**
  * Interfaz para el servicio de mails
@@ -15,7 +16,7 @@ import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
 public class ServicioMailMockImpl implements ServicioMail {
 
 	@Override
-	public List<Mensaje> getMensajesNuevos() {
+	public List<Mensaje> getMensajesNuevos() throws MailException {
 		List<Mensaje> mensajes = new ArrayList<Mensaje>();
 		
 		Mensaje msg = new Mensaje();

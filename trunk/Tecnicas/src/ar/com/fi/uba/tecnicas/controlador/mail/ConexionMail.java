@@ -24,6 +24,7 @@ public class ConexionMail {
 	
 	private Folder carpeta;
 	private List<String> bandejas;
+	private Session session;
 	
 	
 	public ConexionMail(){
@@ -34,12 +35,12 @@ public class ConexionMail {
 	
 	public void establecerConexionRecepcion(DatosConexion propiedades) throws MailException {
 		
-		Session sesionPop3 = Session.getInstance(propiedades.getDatosPop3());
-		
+		session = Session.getInstance(propiedades.getDatosPop3());
+		session.setDebug(true);
 		Store store;
 		try {
 			//POR AHORA SOLO SOPORTAMOS POP3
-			store = sesionPop3.getStore("pop3");
+			store = session.getStore("pop3");
 			store.connect(propiedades.getPopNameServer(), propiedades.getMailUser(), propiedades.getMailPass());
 			carpeta = store.getFolder("INBOX");
 			carpeta.open(Folder.READ_ONLY);
@@ -86,7 +87,6 @@ public class ConexionMail {
 			
 			
 		}	
-
 		//DEVUELVO LA LISTA DE MENSAJES
 		return mensajes;
 	}
@@ -94,13 +94,13 @@ public class ConexionMail {
 	
 	public void establecerConexionEnvio(DatosConexion propiedades,Mensaje AEnviar) throws MessagingException{
 		
-		 Session sessionSmtp = Session.getDefaultInstance(propiedades.getDatosSmtp(), null);
+		 Session session = Session.getDefaultInstance(propiedades.getDatosSmtp(), null);
 		 
 		 MensajeAdapter convertirMensajeAMime = new MensajeAdapter(AEnviar);
 		 
-		 MimeMessage MimeAEnviar=convertirMensajeAMime.adaptarMensaje(sessionSmtp);
+		 MimeMessage MimeAEnviar=convertirMensajeAMime.adaptarMensaje(session);
 		 
-         Transport t = sessionSmtp.getTransport("smtp");
+         Transport t = session.getTransport("smtp");
          t.connect(propiedades.getMailUser(), propiedades.getMailPass());
          t.sendMessage(MimeAEnviar, MimeAEnviar.getAllRecipients());
          
