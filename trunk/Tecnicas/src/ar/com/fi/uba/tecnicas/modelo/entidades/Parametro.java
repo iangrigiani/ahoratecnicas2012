@@ -1,26 +1,16 @@
 package ar.com.fi.uba.tecnicas.modelo.entidades;
 
+import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
+
 /**
  * Representa a un parametro del asunto de un mensaje
  * @author ramiro
  */
 public class Parametro {
 	
-	private String nombre;
 	private String valor;
-	
-	/**
-	 * @return the nombre
-	 */
-	public String getNombre() {
-		return nombre;
-	}
-	/**
-	 * @param nombre the nombre to set
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+	private ValidadorParametro validador;
+
 	/**
 	 * @return the valor
 	 */
@@ -41,7 +31,7 @@ public class Parametro {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((validador.getDescripcion() == null) ? 0 : validador.getDescripcion().hashCode());
 		return result;
 	}
 	
@@ -57,12 +47,32 @@ public class Parametro {
 		if (getClass() != obj.getClass())
 			return false;
 		Parametro other = (Parametro) obj;
-		if (nombre == null) {
-			if (other.nombre != null)
+		if (validador.getDescripcion() == null) {
+			if (other.validador.getDescripcion() != null)
 				return false;
-		} else if (!nombre.equals(other.nombre))
+		} else if (!validador.getDescripcion().equals(other.validador.getDescripcion()))
 			return false;
 		return true;
+	}
+	/**
+	 * @return the validador
+	 */
+	public ValidadorParametro getValidador() {
+		return validador;
+	}
+	/**
+	 * @param validador the validador to set
+	 */
+	public void setValidador(ValidadorParametro validador) {
+		this.validador = validador;
+	}
+	
+	/**
+	 * El parametro se autovalida
+	 * @return
+	 */
+	public boolean validar() {
+		return this.validador.validar(this);
 	}
 	
 }

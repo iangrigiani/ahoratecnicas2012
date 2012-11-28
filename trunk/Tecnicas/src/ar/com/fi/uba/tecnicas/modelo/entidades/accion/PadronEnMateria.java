@@ -17,10 +17,10 @@ public class PadronEnMateria implements Accion {
 		Repositorio<Inscripcion> repo = RepositorioIncripciones.getInstance();
 		Inscripcion ins = new Inscripcion();
 		for (Parametro parametro : parametros) {
-			if (parametro.getNombre().equalsIgnoreCase("CODIGO")) {
+			if (parametro.getValidador().getDescripcion().equalsIgnoreCase("CODIGO")) {
 				ins.setCodigoMateria(parametro.getValor());
 			}
-			if (parametro.getNombre().equalsIgnoreCase("PADRON")) {
+			if (parametro.getValidador().getDescripcion().equalsIgnoreCase("PADRON_INSCRIPTO")) {
 				ins.setPadron(parametro.getValor());
 			}
 		}

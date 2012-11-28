@@ -28,10 +28,10 @@ public class InscribirAlumno implements Accion {
 		Repositorio<Inscripcion> repositorioInscripcion = RepositorioIncripciones.getInstance();
 		Inscripcion inscripcion = new Inscripcion();
 		for (Parametro parametro : parametros) {
-			if (parametro.getNombre().equalsIgnoreCase("CODIGO")) {
+			if (parametro.getValidador().getDescripcion().equalsIgnoreCase("CODIGO_MATERIA")) {
 				inscripcion.setCodigoMateria(parametro.getValor());
 			}
-			if (parametro.getNombre().equalsIgnoreCase("PADRON")) {
+			if (parametro.getValidador().getDescripcion().equalsIgnoreCase("PADRON_NUEVO")) {
 				inscripcion.setPadron(parametro.getValor());
 			}
 		}
