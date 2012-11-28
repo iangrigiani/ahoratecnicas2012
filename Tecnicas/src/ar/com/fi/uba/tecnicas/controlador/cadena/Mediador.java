@@ -108,6 +108,7 @@ public class Mediador {
 	 */
 	public void agregarRegla(Regla regla) throws ValidacionExcepcion {
 		repositorioRegla.agregar(regla);
+		this.extremoCadena = CadenaFactory.crearCadenaReglas(repositorioRegla.obtenerTodos(), this);	
 	}
 	
 	/**
