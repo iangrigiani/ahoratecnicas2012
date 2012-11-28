@@ -4,16 +4,13 @@
 package ar.com.fi.uba.tecnicas.modelo.entidades;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.regex.Pattern;
 
 import ar.com.fi.uba.tecnicas.controlador.BuscadorClases;
 import ar.com.fi.uba.tecnicas.controlador.comun.Constantes;
-import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
 import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
 
 /**
@@ -24,7 +21,7 @@ public class Regla {
 
 	private String nombre;
 	private String asunto;
-	private Map<Parametro, ValidadorParametro> parametros;
+	private Set<Parametro> parametros;
 	private List<String> nombreAcciones;
 	
 	/**
@@ -57,14 +54,14 @@ public class Regla {
         }
         List<Accion> accionesDeReglas = BuscadorClases.getAcciones(nombreAcciones);
 	    for (Accion accion : accionesDeReglas) {
-	    	error = accion.puedeEjecutar(mensaje, getParametrosParaAccion());
+	    	error = accion.puedeEjecutar(mensaje, parametros);
             if (!error.isEmpty()) {
                 enviarMensajeDeError(mensaje,error);
                 return;
             }
 	    }
         for (Accion accion : accionesDeReglas) {
-	    	accion.ejecutar(mensaje, getParametrosParaAccion());
+	    	accion.ejecutar(mensaje, parametros);
 	    }
 	}
 	  
@@ -79,15 +76,15 @@ public class Regla {
 	 * @param validador Validador vinculado al parametro
 	 * @return True se pudo agregar o false si el parametro ya existe
 	 */
-	public Boolean addParametro(Parametro parametro, ValidadorParametro validador) {
+	public Boolean addParametro(Parametro parametro) {
 		Boolean ret = Boolean.FALSE;
 		
 		if (this.parametros == null) {
-			this.parametros = new HashMap<Parametro, ValidadorParametro>();
+			this.parametros = new HashSet<Parametro>();
 		}
 		
-		if (!this.parametros.containsKey(parametro)) {
-			this.parametros.put(parametro, validador);
+		if (!this.parametros.contains(parametro)) {
+			this.parametros.add(parametro);
 			ret = Boolean.TRUE;
 		}
 		return ret;
@@ -153,20 +150,23 @@ public class Regla {
             return Constantes.CANTIDAD_DE_PARAMETROS_INCORRECTO;
         }
         int i = 0;
-        for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
-        	parParametroValidador.getKey().setValor(valoresParametros[i]);
+        for (Parametro parametro : parametros) {
+        	parametro.setValor(valoresParametros[i]);
             i++;
 		}
+//        for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
+//        	parParametroValidador.getKey().setValor(valoresParametros[i]);
+//            i++;
+//		}
         return "";
 	}
 	
 	private String validarParametros() {
 		boolean error;
-		for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
-			Parametro parametroAValidar = parParametroValidador.getKey();
-			error = parParametroValidador.getValue().validar(parametroAValidar);
+		for (Parametro parParametroValidador : parametros) {
+			error = parParametroValidador.validar();
             if (!error) {
-                return "Parametro" + parametroAValidar.getNombre() + " incorrecto: " +parametroAValidar.getNombre() ;
+                return "Parametro " + parParametroValidador.getValidador().getDescripcion() + " incorrecto.";
             }
 		}
 		return "";
@@ -211,25 +211,6 @@ public class Regla {
 	public void setAsunto(String asunto) {
 		this.asunto = asunto;
 	}
-	/**
-	 * @return the parametros
-	 */
-	public Map<Parametro, ValidadorParametro> getParametros() {
-		return parametros;
-	}
-	/**
-	 * @param parametros the parametros to set
-	 */
-	public void setParametros(Map<Parametro, ValidadorParametro> parametros) {
-		this.parametros = parametros;
-	}
-	
-	/**
-	 * @return the parametros
-	 */
-	public Set<Parametro> getParametrosParaAccion() {
-		return parametros.keySet();
-	}
 
 	/**
 	 * @return the nombreAcciones
@@ -243,6 +224,27 @@ public class Regla {
 	 */
 	public void setAcciones(List<String> acciones) {
 		this.nombreAcciones = acciones;
+	}
+
+	/**
+	 * @return the parametros
+	 */
+	public Set<Parametro> getParametros() {
+		return parametros;
+	}
+
+	/**
+	 * @param parametros the parametros to set
+	 */
+	public void setParametros(Set<Parametro> parametros) {
+		this.parametros = parametros;
+	}
+
+	/**
+	 * @param nombreAcciones the nombreAcciones to set
+	 */
+	public void setNombreAcciones(List<String> nombreAcciones) {
+		this.nombreAcciones = nombreAcciones;
 	}
 
 }

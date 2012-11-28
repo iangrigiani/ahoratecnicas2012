@@ -1,14 +1,13 @@
 package ar.com.fi.uba.tecnicas.prueba.persistencia;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
 
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorCodigoMateria;
-import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Parametro;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
@@ -30,10 +29,10 @@ public class TestPersistenciaRegla {
 			regla.setAsunto("REGLA");
 			regla.setAcciones(new ArrayList<String>());
 			regla.getNombreAcciones().add("EnviarMail");
-			regla.setParametros(new HashMap<Parametro, ValidadorParametro>());
+			regla.setParametros(new HashSet<Parametro>());
 			Parametro parametro = new Parametro();
-			parametro.setNombre("PARAM1");
-			regla.getParametros().put(parametro, new ValidadorCodigoMateria());
+			parametro.setValidador(new ValidadorCodigoMateria());
+			regla.getParametros().add(parametro);
 			repo.agregar(regla);
 			
 			Regla reglaRecup = (Regla) repo.obtener(regla.getNombre());
@@ -47,8 +46,8 @@ public class TestPersistenciaRegla {
 			Assert.assertNotNull(reglaRecup.getParametros());
 			Assert.assertEquals(regla.getParametros().size(), reglaRecup.getParametros().size());
 			Assert.assertEquals(reglaRecup.getParametros().size(), 1);
-			Assert.assertTrue(reglaRecup.getParametros().containsKey(parametro));
-			Assert.assertTrue(reglaRecup.getParametros().get(parametro) instanceof ValidadorCodigoMateria);
+			Assert.assertTrue(reglaRecup.getParametros().contains(parametro));
+			Assert.assertTrue(reglaRecup.getParametros().iterator().next().getValidador() instanceof ValidadorCodigoMateria);
 		} catch (ValidacionExcepcion e) {
 			e.printStackTrace();
 			Assert.fail();

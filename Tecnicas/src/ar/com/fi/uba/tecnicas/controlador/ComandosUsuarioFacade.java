@@ -133,14 +133,14 @@ public class ComandosUsuarioFacade {
 		String agregarParametros = invocador.obtenerDatos("Desea especificar parametros? (Si/No): "); 
 		while (agregarParametros.equalsIgnoreCase("si")) {
 			parametro = new Parametro();
-			parametro.setNombre(invocador.obtenerDatos("Ingrese el nombre del parametro: "));
 			//Necesito listar los validadores que tengo para los parametros
 			invocador.mensaje("Validadores disponibles para su parametro: ");
 			for (ValidadorParametro validador : validadores) {
 				invocador.mensaje(validadores.indexOf(validador) + ") " + validador.getDescripcion());
 			}
 			indice = Integer.valueOf(invocador.obtenerDatos("Elija el validador para su parametro: "));
-			if (!regla.addParametro(parametro, validadores.get(indice))) {
+			parametro.setValidador(validadores.get(indice));
+			if (!regla.addParametro(parametro)) {
 				invocador.mensaje("No pudo agregarse el nuevo parametro por favor intentelo de nuevo.");
 			}
 			agregarParametros = invocador.obtenerDatos("Desea especificar más parametros? (Si/No): ");	

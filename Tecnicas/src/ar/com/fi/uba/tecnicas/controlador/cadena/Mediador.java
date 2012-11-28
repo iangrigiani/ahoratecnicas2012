@@ -8,7 +8,6 @@ import ar.com.fi.uba.tecnicas.controlador.comun.Constantes;
 import ar.com.fi.uba.tecnicas.controlador.comun.Converter;
 import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMail;
 import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMailImpl;
-import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMailMockImpl;
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Grupo;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Materia;

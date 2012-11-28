@@ -29,11 +29,11 @@ public class AltaAlumno implements Accion {
 		Alumno alumno = new Alumno();
 		alumno.setMail(mensaje.getDe());
 		for (Parametro parametro : parametros) {
-			if (parametro.getNombre().equalsIgnoreCase("PADRON")) {
+			if (parametro.getValidador().getDescripcion().equalsIgnoreCase("PADRON_NUEVO")) {
 				alumno.setPadron(parametro.getValor());
 			}
-			if (parametro.getNombre().equalsIgnoreCase("NOMBRE")) {
-				alumno.setPadron(parametro.getValor());
+			if (parametro.getValidador().getDescripcion().equalsIgnoreCase("NOMBRE_ALUMNO")) {
+				alumno.setNombre(parametro.getValor());
 			}
 		}
 		try {
@@ -51,7 +51,7 @@ public class AltaAlumno implements Accion {
 		Repositorio<Alumno> repositorioAlumno = RepositorioAlumno.getInstance();
 		String padron = "";
 		for (Parametro parametro : parametrosParaAccion) {
-			if (parametro.getNombre().equalsIgnoreCase("PADRON")) {
+			if (parametro.getValidador().getDescripcion().equalsIgnoreCase("PADRON_NUEVO")) {
 				padron = parametro.getValor();
 			}
 		}
