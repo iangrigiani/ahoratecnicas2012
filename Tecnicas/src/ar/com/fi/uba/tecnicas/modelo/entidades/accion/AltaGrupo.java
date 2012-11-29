@@ -91,9 +91,9 @@ public class AltaGrupo implements Accion {
 	            		//Crear el grupo y crear la vinculacion del alumno con el grupo
 	            		try {
 							agregarAlGrupo(padron, nroGrupo, ins.getPrimerCuatrimestre(), repositorioGrupo, repositorioAlumnoGrupo);
+							System.out.println("Alta Grupo: Se dio de alta correctamente los alumno en el grupo " + nroGrupo);
 						} catch (ValidacionExcepcion e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							System.out.println("Alta Grupo: Alguno de los algunos ya existe en otro grupo en este cuatrimestre");
 						}
 	            	}
 	            }
@@ -133,7 +133,7 @@ public class AltaGrupo implements Accion {
 			archivo = new RandomAccessFile(archivoName, "r");
 			 String line = archivo.readLine();
 		        int i = 0;
-		        while (!line.isEmpty()) {
+		        while (line != null && !line.isEmpty()) {
 					padrones.add(line);
 		        	line = archivo.readLine();
 		        	i++;

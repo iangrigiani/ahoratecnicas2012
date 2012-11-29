@@ -1,0 +1,16 @@
+<ar.com.fi.uba.tecnicas.modelo.entidades.Regla>
+  <nombre>CONSULTA</nombre>
+  <asunto>CONSULTA</asunto>
+  <parametros>
+    <ar.com.fi.uba.tecnicas.modelo.entidades.Parametro>
+      <validador class="ar.com.fi.uba.tecnicas.controlador.validador.ValidadorPrivacidad"/>
+    </ar.com.fi.uba.tecnicas.modelo.entidades.Parametro>
+    <ar.com.fi.uba.tecnicas.modelo.entidades.Parametro>
+      <validador class="ar.com.fi.uba.tecnicas.controlador.validador.ValidadorNombreAlumno"/>
+    </ar.com.fi.uba.tecnicas.modelo.entidades.Parametro>
+  </parametros>
+  <nombreAcciones>
+    <string>MailDeAlumnoInscripto</string>
+    <string>CrearTicket</string>
+  </nombreAcciones>
+</ar.com.fi.uba.tecnicas.modelo.entidades.Regla>

@@ -187,6 +187,27 @@ public class ComandosUsuarioFacade {
 		}
 		return "Los tickets fueron creados correctamente";
 	}
+	
+	
+	/**
+	 * help! I need somebody!
+	 * @param invocador
+	 * @return
+	 */
+	public String ayuda(InterfazUsuario invocador){
+		String mensaje="LISTA DE COMANDOS\n" +
+				"* crearRegla \n" +
+				"	-Crea una regla vinculando los validadores y las acciones disponibles al momento de crearla." +
+				"* crearMateria \n" +
+				"	-Crea una materia." +
+				"* crearGrupo \n" +
+				"	-Crea un grupo." +
+				"* actualizarBandejas\n" +
+				"	-Actualiza las bandejas disponibles.\n\n"+
+				"\nFIN\n";
+		return mensaje;
+			
+	}
 }
 	
 	
