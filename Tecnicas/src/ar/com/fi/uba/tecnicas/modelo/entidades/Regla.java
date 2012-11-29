@@ -9,8 +9,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import javax.mail.MessagingException;
+
+import ar.com.fi.uba.tecnicas.Configuracion;
 import ar.com.fi.uba.tecnicas.controlador.BuscadorClases;
 import ar.com.fi.uba.tecnicas.controlador.comun.Mensajes;
+import ar.com.fi.uba.tecnicas.controlador.mail.*;
 import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
 
 /**
@@ -70,7 +74,23 @@ public class Regla {
 	}
 	  
 	private void enviarMensajeDeError(Mensaje mensaje, String error) {
-		System.out.println("Se ha producido un error: " + error);
+		ServicioMailImpl mailAenviar=new ServicioMailImpl();
+		Mensaje mensajeError=new Mensaje();
+		
+		mensajeError.setAsunto("ERROR AL PROCESAR"+mensaje.getAsunto());
+		mensajeError.setTextoPlano("ERROR AL PROCESAR POR FAVOR VERIFICAR EL MAIL Y REENVIAR"+mensaje);
+		mensajeError.agregarPara(mensaje.getDe()); // LO ENVIO A LA DIR POR LA CUAL ME LLEGA
+		mensajeError.setDe(Configuracion.MAIL_USER_NAME);
+		mensajeError.setPahtAdjunto(mensaje.getPathAdjunto());
+		
+		
+		try {
+			mailAenviar.sendMensajes(mensajeError);
+		} catch (MessagingException e) {
+			System.out.println("No se pudo enviar mail con mensaje de error");
+		}
+		
+		
 		
 	}
 
