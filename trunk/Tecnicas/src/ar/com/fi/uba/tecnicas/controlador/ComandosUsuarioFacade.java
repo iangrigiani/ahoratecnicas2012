@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.com.fi.uba.tecnicas.controlador.cadena.Mediador;
+import ar.com.fi.uba.tecnicas.controlador.comun.Mensajes;
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Grupo;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Materia;
@@ -33,12 +34,12 @@ public class ComandosUsuarioFacade {
 		inicializar(invocador);
 		
 		if (validadores.isEmpty()) {
-			invocador.mensaje("No hay validadores para crear la regla.");
+			invocador.mensaje(Mensajes.REGLA_NO_HAY_VALIDADORES_PARA_CREAR_REGLA);
 			return "";
 		}
 
 		if (acciones.isEmpty()) {
-			invocador.mensaje("No hay acciones para crear la regla.");
+			invocador.mensaje(Mensajes.REGLA_NO_HAY_ACCIONES_PARA_CREAR_REGLA);
 			return "";
 		}
 
@@ -53,7 +54,7 @@ public class ComandosUsuarioFacade {
 		try {
 			mediador.agregarRegla(regla);
 		} catch (ValidacionExcepcion e) {
-			invocador.mensaje("No pudo guardarse la nueva regla, puede que ya exista. Por favor intentelo de nuevo.");
+			invocador.mensaje(e.getMessage());
 			return "";
 		}
 		return "Se creo la regla.";
@@ -76,7 +77,7 @@ public class ComandosUsuarioFacade {
 		try {
 			mediador.agregarGrupo(grupo);
 		} catch (ValidacionExcepcion e) {
-			invocador.mensaje("No pudo guardarse la nueva regla, puede que ya exista. Por favor intentelo de nuevo.");
+			invocador.mensaje(e.getMessage());
 			return "";
 		}
 		return "Se creo el grupo.";
@@ -99,7 +100,7 @@ public class ComandosUsuarioFacade {
 		try {
 			mediador.agregarMateria(materia);
 		} catch (ValidacionExcepcion e) {
-			invocador.mensaje("No pudo guardarse porque ya existe una materia.");
+			invocador.mensaje(e.getMessage());
 			return "";
 		}
 		return "Se creo la materia.";
@@ -181,7 +182,7 @@ public class ComandosUsuarioFacade {
 		try {
 			mediador.generarTickets();
 		} catch (ValidacionExcepcion e) {
-			invocador.mensaje("No pudo actualizarse las bandejas y/o generar los tickets. Por favor intentelo de nuevo.");
+			invocador.mensaje(e.getMessage());
 			return "";
 		}
 		return "Los tickets fueron creados correctamente";

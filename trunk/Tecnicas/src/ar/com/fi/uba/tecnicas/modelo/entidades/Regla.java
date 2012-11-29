@@ -160,10 +160,7 @@ public class Regla {
 	            i++;
 			}
         }
-//        for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
-//        	parParametroValidador.getKey().setValor(valoresParametros[i]);
-//            i++;
-//		}
+
         return "";
 	}
 	
