@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.com.fi.uba.tecnicas.Configuracion;
+import ar.com.fi.uba.tecnicas.controlador.comun.Mensajes;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Materia;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
 
@@ -46,7 +47,7 @@ public class RepositorioMateria implements Repositorio<Materia> {
 	@Override
 	public void agregar(Materia materia) throws ValidacionExcepcion {
 		if (materias.size() > 0) {
-			throw new ValidacionExcepcion("Ya existe una materia en el sistema.");
+			throw new ValidacionExcepcion(Mensajes.REPOSITORIO_YA_EXISTE_MATERIA);
 		}
 		materias.add((Materia)materia);
 	}

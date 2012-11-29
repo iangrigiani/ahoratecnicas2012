@@ -6,6 +6,7 @@ import ar.com.fi.uba.tecnicas.Configuracion;
 import ar.com.fi.uba.tecnicas.controlador.BuscadorClases;
 import ar.com.fi.uba.tecnicas.controlador.comun.Constantes;
 import ar.com.fi.uba.tecnicas.controlador.comun.Converter;
+import ar.com.fi.uba.tecnicas.controlador.comun.Mensajes;
 import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMail;
 import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMailImpl;
 import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMailMockImpl;
@@ -71,7 +72,7 @@ public class Mediador {
 		try {
 			mensajes = servicioMail.getMensajesNuevos();
 		} catch (MailException e1) {
-			throw new ValidacionExcepcion("No se pudo recuperar los mails nuevos del servidor de correo configurado", e1);
+			throw new ValidacionExcepcion(Mensajes.SERVICIO_MAIL_NO_SE_RECUPERARON_MAILS, e1);
 		}
 		
 		for (Mensaje mensaje : mensajes) {

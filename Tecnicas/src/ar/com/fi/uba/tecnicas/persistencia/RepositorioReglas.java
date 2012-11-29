@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.com.fi.uba.tecnicas.Configuracion;
+import ar.com.fi.uba.tecnicas.controlador.comun.Mensajes;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
 
@@ -42,7 +43,7 @@ public class RepositorioReglas implements Repositorio<Regla> {
 	@Override
 	public void agregar(Regla regla) throws ValidacionExcepcion {
 		if (obtener(regla.getNombre()) != null) {
-			throw new ValidacionExcepcion("Ya existe una regla con el mismo nombre.");
+			throw new ValidacionExcepcion(Mensajes.REPOSITORIO_YA_EXISTE_REGLA);
 		}
 		reglas.add((Regla)regla);
 	}

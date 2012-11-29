@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.com.fi.uba.tecnicas.Configuracion;
+import ar.com.fi.uba.tecnicas.controlador.comun.Mensajes;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Grupo;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
 
@@ -53,7 +54,7 @@ public class RepositorioGrupo implements Repositorio<Grupo> {
 	@Override
 	public void agregar(Grupo grupo) throws ValidacionExcepcion {
 		if (grupos.contains(grupo)) {
-			throw new ValidacionExcepcion("Ya existe una grupo en el sistema.");
+			throw new ValidacionExcepcion(Mensajes.REPOSITORIO_YA_EXISTE_GRUPO);
 		}
 		grupos.add((Grupo)grupo);
 	}
