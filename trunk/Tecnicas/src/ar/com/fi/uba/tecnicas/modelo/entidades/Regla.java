@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import ar.com.fi.uba.tecnicas.controlador.BuscadorClases;
-import ar.com.fi.uba.tecnicas.controlador.comun.Constantes;
+import ar.com.fi.uba.tecnicas.controlador.comun.Mensajes;
 import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
 
 /**
@@ -70,7 +70,7 @@ public class Regla {
 	}
 	  
 	private void enviarMensajeDeError(Mensaje mensaje, String error) {
-		// TODO Auto-generated method stub
+		System.out.println("Se ha producido un error: " + error);
 		
 	}
 
@@ -152,7 +152,7 @@ public class Regla {
         String[] valoresParametros = obtenerParametrosDelAsunto(mensaje.getAsunto());
         if (parametros.size() > 0) {
             if (valoresParametros.length != parametros.size()) {
-                return Constantes.CANTIDAD_DE_PARAMETROS_INCORRECTO;
+                return Mensajes.CANTIDAD_DE_PARAMETROS_INCORRECTO;
             }        	
 	        int i = 0;
 	        for (Parametro parametro : parametros) {
@@ -169,7 +169,7 @@ public class Regla {
 		for (Parametro parParametroValidador : parametros) {
 			error = parParametroValidador.validar();
             if (!error) {
-                return "Parametro " + parParametroValidador.getValidador().getDescripcion() + " incorrecto.";
+                return Mensajes.VALIDACION_PARAMETRO_INCORRECTO.replace("{0}", parParametroValidador.getValidador().getDescripcion());
             }
 		}
 		return "";
@@ -251,3 +251,4 @@ public class Regla {
 	}
 
 }
+

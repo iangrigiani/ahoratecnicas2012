@@ -19,7 +19,9 @@ public class EslabonFinal extends Eslabon {
 	 */
 	@Override
 	void sendToEslabon(Mensaje mesg) throws Exception {
-		System.out.println("Llegue a final de la cadena");
+		System.out.println("Se ha enviado un mail un mail al usuario porque no pudo reconocerse el asunto con las reglas actuales.");
+		//TODO: Mandar mail avisando que no se pudo hacer nada por formato incorrecto con las reglas actuales.
 	}
 
 }
+

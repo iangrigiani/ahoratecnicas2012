@@ -31,12 +31,12 @@ public class ExisteAdjunto implements Accion {
 
 	private String existenAdjuntos(Mensaje mesg) {
 		if (mesg.getPathAdjunto() == null || mesg.getPathAdjunto().isEmpty()) {
-			return "No contiene adjuntos el mail";
+			return "Existe Adjunto: No contiene adjuntos el mail";
 		}
 		for (String adjunto : mesg.getPathAdjunto()) {
 			File file = new File(adjunto);
 			if (!file.exists()) {
-				return "El adjunto " + adjunto + " no exite.";
+				return "Existe Adjuno: El adjunto " + adjunto + " no exite.";
 			}
 		}
 		
@@ -44,3 +44,4 @@ public class ExisteAdjunto implements Accion {
 	}
 
 }
+

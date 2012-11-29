@@ -8,13 +8,13 @@ import ar.com.fi.uba.tecnicas.controlador.comun.Constantes;
 import ar.com.fi.uba.tecnicas.controlador.comun.Converter;
 import ar.com.fi.uba.tecnicas.controlador.comun.Mensajes;
 import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMail;
-import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMailImpl;
 import ar.com.fi.uba.tecnicas.controlador.mail.ServicioMailMockImpl;
 import ar.com.fi.uba.tecnicas.controlador.validador.ValidadorParametro;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Grupo;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Materia;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Ticket;
 import ar.com.fi.uba.tecnicas.modelo.entidades.accion.Accion;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.MailException;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.ValidacionExcepcion;
@@ -35,7 +35,7 @@ public class Mediador {
 	private Repositorio<Regla> repositorioRegla;
 	private Repositorio<Materia> repositorioMateria;
 	private Repositorio<Grupo> repositorioGrupo;
-	private Repositorio<Mensaje> repositorioTickets;
+	private Repositorio<Ticket> repositorioTickets;
 	private ServicioMail servicioMail;
 	private List<String> nombreAcciones;
 
@@ -66,6 +66,7 @@ public class Mediador {
 	public void generarTickets() throws ValidacionExcepcion {
 		if (servicioMail == null) {
 			servicioMail = new ServicioMailMockImpl();
+			//servicioMail = new ServicioMailImpl();
 		}
 		List<Mensaje> mensajes;
 		
@@ -179,14 +180,14 @@ public class Mediador {
 	/**
 	 * @return the repositorioTickets
 	 */
-	public Repositorio<Mensaje> getRepositorioTickets() {
+	public Repositorio<Ticket> getRepositorioTickets() {
 		return repositorioTickets;
 	}
 
 	/**
 	 * @param repositorioTickets the repositorioTickets to set
 	 */
-	public void setRepositorioTickets(Repositorio<Mensaje> repositorioTickets) {
+	public void setRepositorioTickets(Repositorio<Ticket> repositorioTickets) {
 		this.repositorioTickets = repositorioTickets;
 	}
 
@@ -247,3 +248,4 @@ public class Mediador {
 	}
 
 }
+

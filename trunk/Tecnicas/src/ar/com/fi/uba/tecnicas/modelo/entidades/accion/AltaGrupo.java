@@ -154,10 +154,11 @@ public class AltaGrupo implements Accion {
 		String retorno = "";
 		List<String> pathAdjuntos = mesg.getPathAdjunto();
 		if (pathAdjuntos.isEmpty()){
-			retorno = "El mensaje no tiene un archivo adjunto";
+			retorno = "Alta de Grupo: El mensaje no tiene un archivo adjunto";
 		}
 		
 		return retorno;
 	}
 
 }
+
