@@ -74,11 +74,14 @@ public class Regla {
 	}
 	  
 	private void enviarMensajeDeError(Mensaje mensaje, String error) {
+		
 		ServicioMailImpl mailAenviar=new ServicioMailImpl();
 		Mensaje mensajeError=new Mensaje();
 		
 		mensajeError.setAsunto("ERROR AL PROCESAR"+mensaje.getAsunto());
+		
 		mensajeError.setTextoPlano("ERROR AL PROCESAR POR FAVOR VERIFICAR EL MAIL Y REENVIAR"+mensaje);
+		
 		mensajeError.agregarPara(mensaje.getDe()); // LO ENVIO A LA DIR POR LA CUAL ME LLEGA
 		mensajeError.setDe(Configuracion.MAIL_USER_NAME);
 		mensajeError.setPahtAdjunto(mensaje.getPathAdjunto());
