@@ -150,14 +150,16 @@ public class Regla {
 
 	private String parsearParametros(Mensaje mensaje) {
         String[] valoresParametros = obtenerParametrosDelAsunto(mensaje.getAsunto());
-        if (valoresParametros.length != parametros.size()) {
-            return Constantes.CANTIDAD_DE_PARAMETROS_INCORRECTO;
+        if (parametros.size() > 0) {
+            if (valoresParametros.length != parametros.size()) {
+                return Constantes.CANTIDAD_DE_PARAMETROS_INCORRECTO;
+            }        	
+	        int i = 0;
+	        for (Parametro parametro : parametros) {
+	        	parametro.setValor(valoresParametros[i]);
+	            i++;
+			}
         }
-        int i = 0;
-        for (Parametro parametro : parametros) {
-        	parametro.setValor(valoresParametros[i]);
-            i++;
-		}
 //        for (Entry<Parametro, ValidadorParametro> parParametroValidador : parametros.entrySet()) {
 //        	parParametroValidador.getKey().setValor(valoresParametros[i]);
 //            i++;

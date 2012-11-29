@@ -65,7 +65,10 @@ public class ComandosUsuarioFacade {
 	 * @return
 	 */
 	public String crearGrupo(InterfazUsuario invocador){
-
+		if (mediador == null) {
+			mediador = new Mediador();
+		}
+			
 		Grupo grupo = new Grupo();
 		grupo.setCodigo(invocador.obtenerDatos("Ingrese el código o número de grupo: "));
 		grupo.setNombre(invocador.obtenerDatos("Ingrese el nombre del grupo: "));
@@ -76,7 +79,7 @@ public class ComandosUsuarioFacade {
 			invocador.mensaje("No pudo guardarse la nueva regla, puede que ya exista. Por favor intentelo de nuevo.");
 			return "";
 		}
-		return "Se creo la regla.";
+		return "Se creo el grupo.";
 	}
 	
 	/**

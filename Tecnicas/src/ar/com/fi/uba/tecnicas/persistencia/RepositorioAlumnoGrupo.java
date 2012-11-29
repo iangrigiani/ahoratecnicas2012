@@ -53,8 +53,8 @@ public class RepositorioAlumnoGrupo implements Repositorio<AlumnoGrupo> {
 	
 	@Override
 	public void agregar(AlumnoGrupo grupo) throws ValidacionExcepcion {
-		if (alumnoGrupos.size() > 0) {
-			throw new ValidacionExcepcion("Ya existe una grupo en el sistema.");
+		if (alumnoGrupos.contains(grupo)) {
+			throw new ValidacionExcepcion("Ya existe el alumno en algun grupo en este cuatrimestre.");
 		}
 		alumnoGrupos.add((AlumnoGrupo)grupo);
 	}

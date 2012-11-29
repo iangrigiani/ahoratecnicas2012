@@ -44,11 +44,18 @@ public class RealizarEntrega implements Accion {
 		for (Alumno alumno : obtenerTodos) {
 			if (alumno.getMail().equalsIgnoreCase(mensaje.getDe())) {
 				AlumnoGrupo grupo = repositorioAlumnoGrupo.obtener(alumno.getPadron());
+				//TODO: Pasar a una accion distinta
+				if (grupo == null) {
+					return "El alumno no esta en ningun grupo.";
+				}
 				codigoGrupo = grupo.getGrupo();
 				break;
 			}
 		}
-		String carpetaDestino = Configuracion.DIRECTORIO_PRESISTENCIA_BASE + "/" + codigoMateria + "/Entregas/" + codigoGrupo + "/";
+		
+		String carpetaDestino = Configuracion.DIRECTORIO_PRESISTENCIA_BASE + codigoMateria + File.separatorChar + "Entregas" + File.separatorChar + codigoGrupo + File.separatorChar;
+		
+		crearArbolDirectorio(carpetaDestino);
 		
 		if (mensaje.getPathAdjunto() == null || mensaje.getPathAdjunto().isEmpty()) {
 			return "No contiene adjuntos el mail";
@@ -56,11 +63,24 @@ public class RealizarEntrega implements Accion {
 		
 		for (String adjunto : mensaje.getPathAdjunto()) {
 			File file = new File(adjunto);
-			File fileDestino = new File(carpetaDestino + "nombre.ddd");
-			//fileDestino.
+			File fileDestino = new File(carpetaDestino + file.getName());
+			file.renameTo(fileDestino);
 		}
 		
 		return "";
+	}
+
+	private void crearArbolDirectorio(String carpetaDestino) {
+		String[] carpetas = carpetaDestino.split(String.valueOf(File.separatorChar));
+		File file;
+		String acumulador = String.valueOf(File.separatorChar);
+		for (String string : carpetas) {
+			file = new File(acumulador + string); 
+			if (!file.exists()) {
+				file.mkdir();
+			}			
+			acumulador += string + File.separatorChar;
+		}
 	}
 
 	@Override
