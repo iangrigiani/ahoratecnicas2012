@@ -1,0 +1,14 @@
+<ar.com.fi.uba.tecnicas.modelo.entidades.Regla>
+  <nombre>alta grupo</nombre>
+  <asunto>ALTA-GRUPO</asunto>
+  <parametros>
+    <ar.com.fi.uba.tecnicas.modelo.entidades.Parametro>
+      <validador class="ar.com.fi.uba.tecnicas.controlador.validador.ValidadorNumeroGrupo"/>
+    </ar.com.fi.uba.tecnicas.modelo.entidades.Parametro>
+  </parametros>
+  <nombreAcciones>
+    <string>MailDeAlumnoInscripto</string>
+    <string>ExisteAdjunto</string>
+    <string>AltaGrupo</string>
+  </nombreAcciones>
+</ar.com.fi.uba.tecnicas.modelo.entidades.Regla>
