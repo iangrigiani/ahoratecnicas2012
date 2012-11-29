@@ -34,6 +34,8 @@ public class ValidadorCodigoMateria implements ValidadorParametro {
 			}
 			if (repoB.getRepositorioMateria().obtener(parametro.getValor()) != null) {
 				ret = ret && Boolean.TRUE;
+			} else {
+				ret = Boolean.FALSE;
 			}
 		} catch (NumberFormatException e) {
 		}

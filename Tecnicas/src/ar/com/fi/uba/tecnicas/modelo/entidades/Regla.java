@@ -61,7 +61,11 @@ public class Regla {
             }
 	    }
         for (Accion accion : accionesDeReglas) {
-	    	accion.ejecutar(mensaje, parametros);
+        	error = accion.ejecutar(mensaje, parametros);
+        	if (!error.isEmpty()) {
+                enviarMensajeDeError(mensaje,error);
+                return;
+            }
 	    }
 	}
 	  

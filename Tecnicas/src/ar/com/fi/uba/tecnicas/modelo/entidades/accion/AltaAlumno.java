@@ -28,8 +28,6 @@ public class AltaAlumno implements Accion {
 		Repositorio<Alumno> repositorioAlumno = RepositorioAlumno.getInstance();
 		Alumno alumno = new Alumno();
 		alumno.setMail(mensaje.getDe());
-		System.out.println(mensaje.getDe());
-		System.out.println(mensaje.getDe().toString());
 		for (Parametro parametro : parametros) {
 			if (parametro.getValidador().getDescripcion().equalsIgnoreCase("PADRON_NUEVO")) {
 				alumno.setPadron(parametro.getValor());
