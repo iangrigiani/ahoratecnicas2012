@@ -6,6 +6,7 @@ package ar.com.fi.uba.tecnicas.modelo.entidades.accion;
 import java.util.List;
 import java.util.Set;
 
+import ar.com.fi.uba.tecnicas.controlador.comun.Mensajes;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Alumno;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Parametro;
@@ -24,6 +25,16 @@ public class MailDeAlumnoInscripto implements Accion {
 	 */
 	@Override
 	public String ejecutar(Mensaje mensaje, Set<Parametro> parametros) {
+		return correspondeMailAAlumnoInscripto(mensaje);
+	}
+
+
+	@Override
+	public String puedeEjecutar(Mensaje mesg, Set<Parametro> parametrosParaAccion) {
+		return correspondeMailAAlumnoInscripto(mesg);
+	}
+
+	private String correspondeMailAAlumnoInscripto(Mensaje mensaje) {
 		Repositorio<Alumno> repositorioAlumno = RepositorioAlumno.getInstance();
 		List<Alumno> obtenerTodos = repositorioAlumno.obtenerTodos();
 		for (Alumno alumno : obtenerTodos) {
@@ -31,13 +42,7 @@ public class MailDeAlumnoInscripto implements Accion {
 				return "";
 			}
 		}
-		return "No existe";
+		System.out.println(Mensajes.ACCION_MAIL_DE_ALUMNO_NO_CORRESPONDE);
+		return Mensajes.ACCION_MAIL_DE_ALUMNO_NO_CORRESPONDE;
 	}
-
-	@Override
-	public String puedeEjecutar(Mensaje mesg, Set<Parametro> parametrosParaAccion) {
-		System.out.println("Envio un mail!");
-		return "";
-	}
-
 }

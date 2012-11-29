@@ -16,7 +16,7 @@ public class ValidadorPrivacidad implements ValidadorParametro {
 	 */
 	@Override
 	public String getDescripcion() {
-		return "Privacidad";
+		return "PRIVACIDAD";
 	}
 	
 	/**

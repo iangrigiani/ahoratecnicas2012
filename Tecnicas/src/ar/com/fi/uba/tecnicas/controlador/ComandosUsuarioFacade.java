@@ -80,7 +80,7 @@ public class ComandosUsuarioFacade {
 			invocador.mensaje(e.getMessage());
 			return "";
 		}
-		return "Se creo el grupo.";
+		return "Se creo el grupo " + grupo.getCodigo() + ".";
 	}
 	
 	/**
@@ -103,7 +103,7 @@ public class ComandosUsuarioFacade {
 			invocador.mensaje(e.getMessage());
 			return "";
 		}
-		return "Se creo la materia.";
+		return "Se creo la materia "+ materia.getCodigo() + ":" + materia.getNombre() + ".";
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class ComandosUsuarioFacade {
 			}
 			indice = Integer.valueOf(invocador.obtenerDatos("Elija la accion para ejecutar: "));
 			if (!regla.addAccion(acciones.get(indice))) {
-				invocador.mensaje("No pudo agregarse el nuevo parametro por favor intentelo de nuevo.");
+				invocador.mensaje("No pudo agregarse la nueva accion por favor intentelo de nuevo.");
 			}
 			agregarMasAcciones = invocador.obtenerDatos("Desea especificar más acciones? (Si/No): ");	
 		} while (agregarMasAcciones.equalsIgnoreCase("si"));
@@ -187,25 +187,6 @@ public class ComandosUsuarioFacade {
 		}
 		return "Los tickets fueron creados correctamente";
 	}
-	
-	
-	
-	/**
-	 * help! I need somebody!
-	 * @param invocador
-	 * @return
-	 */
-	public String ayuda(InterfazUsuario invocador){
-		String mensaje="LISTA DE COMANDOS\n" +
-				"* crearRegla \n" +
-				"	-Crea una regla vinculando los validadores y las acciones disponibles al momento de crearla." +
-				"* crearMateria \n" +
-				"	-Crea una materia." +
-				"* actualizarBandejas\n" +
-				"	-Actualiza las bandejas disponibles.\n\n"+
-				"\nFIN\n";
-		return mensaje;
-			
-	}
-	
 }
+	
+	

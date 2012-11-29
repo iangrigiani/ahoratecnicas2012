@@ -24,7 +24,6 @@ public class AltaAlumno implements Accion {
 	 */
 	@Override
 	public String ejecutar(Mensaje mensaje, Set<Parametro> parametros) {
-		System.out.println("Se va a crear un nuevo usuario!");
 		Repositorio<Alumno> repositorioAlumno = RepositorioAlumno.getInstance();
 		Alumno alumno = new Alumno();
 		alumno.setMail(mensaje.getDe());
@@ -38,10 +37,9 @@ public class AltaAlumno implements Accion {
 		}
 		try {
 			repositorioAlumno.agregar(alumno);
+			System.out.println("Alta Usuario: Se a creado un nuevo alumno [" + alumno.getNombre() + "] con padron: " + alumno.getPadron());
 		} catch (ValidacionExcepcion e) {
-			// Ya existe el usuario
-			e.printStackTrace();
-			return "Ya existe el usuario";
+			return "Alta Alumno: Ya existe un alumno con ese padrón [" + alumno.getPadron() + "]";
 		}
 		return "";
 	}
@@ -56,9 +54,10 @@ public class AltaAlumno implements Accion {
 			}
 		}
 		if (repositorioAlumno.obtener(padron) != null) {
-			return "El usuario ya existe. No puede agregarse el alumno";
+			return "Alta de alumno: El alumno con padrón [" + padron + "] ya existe. No puede agregarse el alumno.";
 		}
 		return "";
 	}
 
 }
+

@@ -8,8 +8,8 @@ import ar.com.fi.uba.tecnicas.modelo.entidades.AlumnoGrupo;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Grupo;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Inscripcion;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Materia;
-import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
+import ar.com.fi.uba.tecnicas.modelo.entidades.Ticket;
 
 /**
  * @author ramiro
@@ -17,7 +17,7 @@ import ar.com.fi.uba.tecnicas.modelo.entidades.Regla;
  */
 public class RepositorioBuilder {
 	
-	public Repositorio<Regla> getRep3ositorioRegla() {
+	public Repositorio<Regla> getRepositorioRegla() {
 		return RepositorioReglas.getInstance();
 	}
 	
@@ -37,7 +37,7 @@ public class RepositorioBuilder {
 	public Repositorio<Grupo> getRepositorioGrupo() {
 		return RepositorioGrupo.getInstance();
 	}
-	public Repositorio<Mensaje> getRepositorioTickets() {
+	public Repositorio<Ticket> getRepositorioTickets() {
 		return RepositorioTickets.getInstance();
 	}
 }
