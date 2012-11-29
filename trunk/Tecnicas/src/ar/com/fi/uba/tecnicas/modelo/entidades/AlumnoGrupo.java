@@ -55,7 +55,6 @@ public class AlumnoGrupo {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((grupo == null) ? 0 : grupo.hashCode());
 		result = prime * result + ((padron == null) ? 0 : padron.hashCode());
 		result = prime
 				* result
@@ -75,11 +74,6 @@ public class AlumnoGrupo {
 		if (getClass() != obj.getClass())
 			return false;
 		AlumnoGrupo other = (AlumnoGrupo) obj;
-		if (grupo == null) {
-			if (other.grupo != null)
-				return false;
-		} else if (!grupo.equals(other.grupo))
-			return false;
 		if (padron == null) {
 			if (other.padron != null)
 				return false;

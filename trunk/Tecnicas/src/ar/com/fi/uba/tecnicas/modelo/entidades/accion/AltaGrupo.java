@@ -54,12 +54,19 @@ public class AltaGrupo implements Accion {
 		Repositorio<AlumnoGrupo> repositorioAlumnoGrupo = RepositorioAlumnoGrupo.getInstance();
 
 		
-    	List<Materia> obtenerTodos = repositorioMateria.obtenerTodos();
-    	if (obtenerTodos == null || obtenerTodos.isEmpty()) {
+    	List<Materia> obtenerTodasMaterias = repositorioMateria.obtenerTodos();
+    	if (obtenerTodasMaterias == null || obtenerTodasMaterias.isEmpty()) {
     		return "No existe materia";
     	}
-    	Materia materia = obtenerTodos.get(0);
-		String nroGrupo = "";
+    	Materia materia = obtenerTodasMaterias.get(0);
+    	
+    	String nroGrupo = "";
+    	for (Parametro parametro : parametros) {
+			if (parametro.getValidador().getDescripcion().equalsIgnoreCase("NUMERO_GRUPO")) {
+				nroGrupo = parametro.getValor(); 
+			}
+		}
+		
 		// Recorro la lista de padrones y verifico:
 		// * que sean validos
 		// * que existan en la materia en el cuatrimestre
@@ -68,30 +75,31 @@ public class AltaGrupo implements Accion {
 		Inscripcion ins;
 		
 		//Asumo que solo existe un ajunto
-		if (mensaje.getPathAdjunto() != null && mensaje.getPathAdjunto().isEmpty()) {
-			File currentDirectory = new File(mensaje.getPathAdjunto().get(0));
-			File[] archivos = currentDirectory.listFiles();
-			if (archivos == null || archivos.length == 0) {
+		if (mensaje.getPathAdjunto() != null && !mensaje.getPathAdjunto().isEmpty()) {
+			File archivo = new File(mensaje.getPathAdjunto().get(0));
+			if (!archivo.exists()) {
 				return "No se encuentran los adjuntos";
 			}
-		            File child = archivos[0];
-		            List<String> padrones = obtenerPadrones(child);
-		            if (validarPadrones(padrones)) {
-		            	for (String padron : padrones) {
-			            	
-			            	ins = new Inscripcion(padron, materia.getCodigo(), new Date());
-	
-			            	if (inscripciones.contains(ins)) {
-			            		//Crear el grupo y crear la vinculacion del alumno con el grupo
-			            		try {
-									agregarAlGrupo(padron, nroGrupo, ins.getPrimerCuatrimestre(), repositorioGrupo, repositorioAlumnoGrupo);
-								} catch (ValidacionExcepcion e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-			            	}
-			            }
-		            }
+		            
+            List<String> padrones = obtenerPadrones(archivo);
+            if (validarPadrones(padrones)) {
+            	for (String padron : padrones) {
+	            	
+	            	ins = new Inscripcion(padron, materia.getCodigo(), new Date());
+
+	            	if (inscripciones.contains(ins)) {
+	            		//Crear el grupo y crear la vinculacion del alumno con el grupo
+	            		try {
+							agregarAlGrupo(padron, nroGrupo, ins.getPrimerCuatrimestre(), repositorioGrupo, repositorioAlumnoGrupo);
+						} catch (ValidacionExcepcion e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	            	}
+	            }
+            } else {
+            	retorno = "No exiten uno o mas padrones.";
+            }
 	     
 		} 
       
