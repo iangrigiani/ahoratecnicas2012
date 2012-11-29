@@ -51,11 +51,19 @@ public class ServicioMailImpl implements ServicioMail {
 	public void sendMensajes(Mensaje AEnviar) throws MessagingException{
 		DatosConexion datos = new DatosConexion(Configuracion.MAIL_USER_NAME, Configuracion.MAIL_USER_PASS, Configuracion.MAIL_SERVER_NAME_POP);
 	
-		datos.setDatosConexionPop3( Configuracion.MAIL_POP3_TLS, Configuracion.MAIL_POP3_PUERTO);
-		
+		datos.setDatosConexionSmtp(
+				Configuracion.MAIL_SMTP_SERVER_HOST,
+				Configuracion.MAIL_SMTP_TLS,
+				Configuracion.MAIL_SMTP_PUERTO,
+				Configuracion.MAIL_USER_NAME,
+				Configuracion.MAIL_SMTP_NEED_PASS);
+	
 		ConexionMail conexionMail = new ConexionMail();
+		
 		try {
+			
 			conexionMail.establecerConexionEnvio(datos,AEnviar);
+			
 		}catch (MessagingException e) {
 		
 		// TODO Auto-generated catch block

@@ -93,17 +93,18 @@ public class ConexionMail {
 	
 	
 	public void establecerConexionEnvio(DatosConexion propiedades,Mensaje AEnviar) throws MessagingException{
-		
-		 Session session = Session.getDefaultInstance(propiedades.getDatosSmtp(), null);
 		 
+		 Session session = Session.getDefaultInstance(propiedades.getDatosSmtp(), null);
 		 MensajeAdapter convertirMensajeAMime = new MensajeAdapter(AEnviar);
 		 
 		 MimeMessage MimeAEnviar=convertirMensajeAMime.adaptarMensaje(session);
+		
+		 Transport t = session.getTransport("smtp");
 		 
-         Transport t = session.getTransport("smtp");
          t.connect(propiedades.getMailUser(), propiedades.getMailPass());
          t.sendMessage(MimeAEnviar, MimeAEnviar.getAllRecipients());
-         
+        
+        
       // Cierre.
          t.close();
 		 
