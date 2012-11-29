@@ -1,0 +1,14 @@
+<ar.com.fi.uba.tecnicas.modelo.entidades.Regla>
+  <nombre>ENTREGA-TP</nombre>
+  <asunto>ENTREGA-TP</asunto>
+  <parametros>
+    <ar.com.fi.uba.tecnicas.modelo.entidades.Parametro>
+      <validador class="ar.com.fi.uba.tecnicas.controlador.validador.ValidadorNumeroTP"/>
+    </ar.com.fi.uba.tecnicas.modelo.entidades.Parametro>
+  </parametros>
+  <nombreAcciones>
+    <string>MailDeAlumnoInscripto</string>
+    <string>ExisteAdjunto</string>
+    <string>RealizarEntrega</string>
+  </nombreAcciones>
+</ar.com.fi.uba.tecnicas.modelo.entidades.Regla>

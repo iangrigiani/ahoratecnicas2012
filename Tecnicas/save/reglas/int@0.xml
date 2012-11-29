@@ -1,0 +1,19 @@
+<ar.com.fi.uba.tecnicas.modelo.entidades.Regla>
+  <nombre>alta materia</nombre>
+  <asunto>ALTA-MATERIA</asunto>
+  <parametros>
+    <ar.com.fi.uba.tecnicas.modelo.entidades.Parametro>
+      <validador class="ar.com.fi.uba.tecnicas.controlador.validador.ValidadorCodigoMateria"/>
+    </ar.com.fi.uba.tecnicas.modelo.entidades.Parametro>
+    <ar.com.fi.uba.tecnicas.modelo.entidades.Parametro>
+      <validador class="ar.com.fi.uba.tecnicas.controlador.validador.ValidadorNombreAlumno"/>
+    </ar.com.fi.uba.tecnicas.modelo.entidades.Parametro>
+    <ar.com.fi.uba.tecnicas.modelo.entidades.Parametro>
+      <validador class="ar.com.fi.uba.tecnicas.controlador.validador.ValidadorPadronNuevo"/>
+    </ar.com.fi.uba.tecnicas.modelo.entidades.Parametro>
+  </parametros>
+  <nombreAcciones>
+    <string>AltaAlumno</string>
+    <string>InscribirAlumno</string>
+  </nombreAcciones>
+</ar.com.fi.uba.tecnicas.modelo.entidades.Regla>
