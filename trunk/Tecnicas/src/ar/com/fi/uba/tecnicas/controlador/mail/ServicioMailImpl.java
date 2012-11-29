@@ -5,6 +5,8 @@ package ar.com.fi.uba.tecnicas.controlador.mail;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import ar.com.fi.uba.tecnicas.Configuracion;
 import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.MailException;
@@ -44,5 +46,21 @@ public class ServicioMailImpl implements ServicioMail {
 			throw e;
 		}
 	}
+	
+	@Override
+	public void sendMensajes(Mensaje AEnviar) throws MessagingException{
+		DatosConexion datos = new DatosConexion(Configuracion.MAIL_USER_NAME, Configuracion.MAIL_USER_PASS, Configuracion.MAIL_SERVER_NAME_POP);
+	
+		datos.setDatosConexionPop3( Configuracion.MAIL_POP3_TLS, Configuracion.MAIL_POP3_PUERTO);
+		
+		ConexionMail conexionMail = new ConexionMail();
+		try {
+			conexionMail.establecerConexionEnvio(datos,AEnviar);
+		}catch (MessagingException e) {
+		
+		// TODO Auto-generated catch block
+		throw e;
+		}
 
+	}
 }

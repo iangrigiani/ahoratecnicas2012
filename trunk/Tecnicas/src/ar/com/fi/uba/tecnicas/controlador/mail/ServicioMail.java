@@ -5,6 +5,8 @@ package ar.com.fi.uba.tecnicas.controlador.mail;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.MailException;
 
@@ -19,5 +21,7 @@ public interface ServicioMail {
 	 * @return Lista de mensajes nuevos
 	 */
 	List<Mensaje> getMensajesNuevos() throws MailException;
+	
+	void sendMensajes(Mensaje AEnviar) throws MessagingException;
 
 }

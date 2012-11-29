@@ -6,6 +6,8 @@ package ar.com.fi.uba.tecnicas.controlador.mail;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import ar.com.fi.uba.tecnicas.modelo.entidades.Mensaje;
 import ar.com.fi.uba.tecnicas.modelo.excepciones.MailException;
 
@@ -88,6 +90,10 @@ public class ServicioMailMockImpl implements ServicioMail {
 		msg.setAsunto("Basura");
 		mensajes.add(msg);	
 		return mensajes;
+	}
+	
+	public void sendMensajes(Mensaje AEnviar) throws MessagingException{
+		
 	}
 
 }
